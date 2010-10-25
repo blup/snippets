@@ -2,6 +2,7 @@
  * Vim snippets for Drupal 7
  */
 
+ - REQUIRED: snipMate for vim: http://www.vim.org/scripts/script.php?script_id=2540
  - Included: All 330+ Drupal 7 hooks
  - Missing: Other functions
 
