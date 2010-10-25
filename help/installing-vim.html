@@ -1,0 +1,75 @@
+<html>
+        <head>
+                <meta http-equiv="content-type" content="text/html; charset=utf-8">
+                <title>Installing-vim</title>
+        </head>
+<body>
+<h1> Vim snippets for Drupal 7</h1>
+<ul>
+<li><u>REQUIRED:</u> snipMate for vim: <a href="http://www.vim.org/scripts/script.php?script_id=2540">http://www.vim.org/scripts/script.php?script_id=2540</a></li>
+<li><u>Included:</u> All 330+ Drupal 7 hooks</li>
+<li><u>Missing:</u> Other functions</li>
+<br />
+<li>Replace the php.snippets file in the ~/.vim/snippets directory with the one included.</li>
+<li>Type hook_HOOKNAME<tab> for annotated snippets, and h_HOOKNAME<tab> for the non-annotated versions.</li>
+<li>Most snippets include multiple <tab> placemarks.</li>
+</ul>
+<br />
+<strong>Example 1:</strong> h_block_view<tab> (file is called test.module)
+<pre>
+/**
+ * Implements hook_block_view()
+ */
+function test_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case '':
+      $block['subject'] = t('');
+      $block['content'] = theme('', array('' =>));
+      break;
+
+  }
+  return $block;
+}
+</pre><br />
+<strong>Example 2:</strong> hook_block_view<tab> (file is called test.module)
+<pre>
+/**
+ * Implements hook_block_view()
+ */
+function test_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+  /*
+   *case 'syndicate':
+   *  $block['subject'] = t('Syndicate');
+   *  $block['content'] = theme('feed_icon', array('url' => url('rss.xml'), 'title' => t('Syndicate')));
+   *  break;
+   *
+   *case 'recent':
+   *  if (user_access('access content')) {
+   *    $block['subject'] = t('Recent content');
+   *    if ($nodes = node_get_recent(variable_get('node_recent_block_count', 10))) {
+   *      $block['content'] = theme('node_recent_block', array(
+   *        'nodes' => $nodes,
+   *      ));
+   *    } else {
+   *      $block['content'] = t('No content available.');
+   *    }
+   *  }
+   *  break;
+   */
+    case '':
+      $block['subject'] = t('');
+      $block['content'] = theme('', array('' =>));
+      break;
+
+  }
+  return $block;
+}
+</pre>
+
+</body>
+</html>
