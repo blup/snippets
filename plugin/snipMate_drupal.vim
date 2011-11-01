@@ -14,6 +14,7 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.test set filetype=php
     autocmd BufRead,BufNewFile *.inc set filetype=php
     autocmd BufRead,BufNewFile *.profile set filetype=php
+    autocmd BufRead,BufNewFile *.make set filetype=dmake
   augroup END
 endif
 " vim:noet:sw=4:ts=4:ft=vim

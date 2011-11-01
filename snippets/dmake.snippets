@@ -1,0 +1,127 @@
+snippet core
+	api = 2
+	core = ${1}.x
+	${2}
+#contrib Module, Theme or Profile
+snippet p
+	projects[${1}][subdir] = ${2:contrib}
+	${3}
+
+#contrib Module, Theme or Profile specified Version
+snippet pv
+	projects[${1:}][subdir] = ${2:contrib}
+	projects[$1][version] = ${3}
+	${4}
+#contrib Module, Theme or Profile from Git
+snippet pg branch
+	projects[${1:}][subdir] = ${2:contrib}
+	projects[$1][download][type] = git
+	projects[$1][download][url] = http://git.drupal.org/project/$1.git
+	projects[$1][download][branch] = ${3:master}
+	${4}
+snippet pg tag
+	projects[${1:}][subdir] = ${2:contrib}
+	projects[$1][download][type] = git
+	projects[$1][download][url] = http://git.drupal.org/project/$1.git
+	projects[$1][download][tag] = ${3:}
+	${4}
+snippet pg revision
+	projects[${1:}][subdir] = ${2:contrib}
+	projects[$1][download][type] = git
+	projects[$1][download][url] = http://git.drupal.org/project/$1.git
+	projects[$1][download][revision] = ${3:}
+	${4}
+#custom Module from Git
+snippet cmg branch
+	projects[${1:}][subdir] = ${2:custom}
+	projects[$1][type] = module
+	projects[$1][download][type] = git
+	projects[$1][download][url] = ${3}/$1.git
+	projects[$1][download][branch] = ${4:master}
+	${5}
+snippet cmg tag
+	projects[${1:}][subdir] = ${2:custom}
+	projects[$1][type] = module
+	projects[$1][download][type] = git
+	projects[$1][download][url] = ${3}/$1.git
+	projects[$1][download][tag] = ${4:}
+	${5}
+snippet cmg revision
+	projects[${1:}][subdir] = ${2:custom}
+	projects[$1][type] = module
+	projects[$1][download][type] = git
+	projects[$1][download][url] = ${3}/$1.git
+	projects[$1][download][revision] = ${4:}
+	${5}
+#custom Theme from Git
+snippet ctg branch
+	projects[${1:}][subdir] = ${2:custom}
+	projects[$1][type] = theme
+	projects[$1][download][type] = git
+	projects[$1][download][url] = ${3}/$1.git
+	projects[$1][download][branch] = ${4:master}
+	${5}
+snippet ctg tag
+	projects[${1:}][subdir] = ${2:custom}
+	projects[$1][type] = theme
+	projects[$1][download][type] = git
+	projects[$1][download][url] = ${3}/$1.git
+	projects[$1][download][tag] = ${4:}
+	${5}
+snippet ctg revision
+	projects[${1:}][subdir] = ${2:custom}
+	projects[$1][type] = theme
+	projects[$1][download][type] = git
+	projects[$1][download][url] = ${3}/$1.git
+	projects[$1][download][revision] = ${4:}
+	${5}
+#custom Profile from Git
+snippet cpg branch
+	projects[${1:}][subdir] = ${2:custom}
+	projects[$1][type] = profile
+	projects[$1][download][type] = git
+	projects[$1][download][url] = ${3}/$1.git
+	projects[$1][download][branch] = ${4:master}
+	${5}
+snippet cpg tag
+	projects[${1:}][subdir] = ${2:custom}
+	projects[$1][type] = profile
+	projects[$1][download][type] = git
+	projects[$1][download][url] = ${3}/$1.git
+	projects[$1][download][tag] = ${4:}
+	${5}
+snippet cpg revision
+	projects[${1:}][subdir] = ${2:custom}
+	projects[$1][type] = profile
+	projects[$1][download][type] = git
+	projects[$1][download][url] = ${3}/$1.git
+	projects[$1][download][revision] = ${4:}
+	${5}
+#custom Feature from Git
+snippet cfg branch
+	projects[${1:}][subdir] = ${2:features}
+	projects[$1][type] = module
+	projects[$1][download][type] = git
+	projects[$1][download][url] = ${3}/$1.git
+	projects[$1][download][branch] = ${4:master}
+	${5}
+snippet cfg tag
+	projects[${1:}][subdir] = ${2:features}
+	projects[$1][type] = module
+	projects[$1][download][type] = git
+	projects[$1][download][url] = ${3}/$1.git
+	projects[$1][download][tag] = ${4:}
+	${5}
+snippet cfg revision
+	projects[${1:}][subdir] = ${2:features}
+	projects[$1][type] = module
+	projects[$1][download][type] = git
+	projects[$1][download][url] = ${3}/$1.git
+	projects[$1][download][revision] = ${4:}
+	${5}
+#Libraries
+snippet l file
+	libraries[${1:}][download][type] = file
+	libraries[$1][download][url] = ${2}
+	libraries[$1][download][md5] = ${3}
+	${4}
