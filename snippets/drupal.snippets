@@ -1,3 +1,21 @@
+# DRUPAL shortcuts
+# menu item
+snippet mi
+	$items['${1}'] = array(
+		'title' => '${2}',
+		'page callback' => '${3}',
+		'page arguments' => array('${4}'),
+		'access arguments' => array('${5}'),
+		'type' => ${6},
+		'file' => ${7},${8}
+	);
+# form item
+snippet fi
+	$form['${1}']${2} = array(
+		'#type' => '${3}',
+		'#title' => t('${4}'),
+		'#default_value' => ${5},${6}
+	);
 # DRUPAL 7 Hooks
 snippet form_id_alter
 	/**
