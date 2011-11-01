@@ -2,11 +2,25 @@
  * Vim snippets for Drupal 7
  */
 
- - REQUIRED: snipMate for vim: http://www.vim.org/scripts/script.php?script_id=2540
- - Included: All 330+ Drupal 7 hooks
- - Missing: Other functions
+REQUIRED
 
- - Replace the php.snippets file in the ~/.vim/snippets directory with the one included.
+  pathogen https://github.com/tpope/vim-pathogen
+  snipMate fork made by garbas https://github.com/garbas/vim-snipmate
+
+INSTALL
+
+  clone repo in to the ~/.vim/bundle directory
+
+     cd ~/.vim/bundle
+     git clone git://github.com/tanarurkerem/drupal-snippets.git
+
+USAGE
+
  - Type hook_HOOKNAME<tab> for annotated snippets, and h_HOOKNAME<tab> for the non-annotated versions.
  - Most snippets include multiple <tab> placemarks.
+
+INFO
+
+ - Included: All 330+ Drupal 7 hooks
+ - Missing: Other functions
 
