@@ -1,9 +1,0 @@
-name = Snippets
-description = "Snippet files and instructions for installing them on vim"
-package = Other
-
-version = 7.x-1.x-dev
-core = 7.x
-project = snippets
-
-files[] = snippets.module
