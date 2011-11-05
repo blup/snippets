@@ -3044,6 +3044,17 @@ snippet h_language_fallback_candidates_alter
 	function `Filename()`_language_fallback_candidates_alter(array &$fallback_candidates) {
 	  ${1:/* Your code here */}
 	}
+snippet h_update_N
+	/**
+	 * Implements hook_update_N().
+	 */
+	function `Filename()`_update_${1:/* Update number */}(&$sandbox = NULL) {
+	  $ret = t('${2:/* Message */}');
+
+	  ${3:/* Your code here */}
+
+	  return $ret;
+	}
 snippet hook_simpletest_alter
 	/**
 	 * Implements hook_simpletest_alter().
@@ -9199,4 +9210,18 @@ snippet hook_language_fallback_candidates_alter
 	   *$fallback_candidates = array_reverse($fallback_candidates);
 	   */
 	  ${1:/* Your code here */}
+	}
+snippet hook_update_N
+	/**
+	 * Implements hook_update_N().
+	 */
+	function `Filename()`_update_${1:/* Update number */}(&$sandbox = NULL) {
+	  /*
+	   * Message shown when the update is successful
+	   */
+	  $ret = t('${2:/* Message */}');
+
+	  ${3:/* Your code here */}
+
+	  return $ret;
 	}
