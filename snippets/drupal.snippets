@@ -1,258 +1,74 @@
-snippet php
-	<?php
-	${1}
-	?>
-snippet ec
-	echo "${1:string}"${2};
-snippet inc
-	include '${1:file}';${2}
-snippet inc1
-	include_once '${1:file}';${2}
-snippet req
-	require '${1:file}';${2}
-snippet req1
-	require_once '${1:file}';${2}
-# $GLOBALS['...']
-snippet globals
-	$GLOBALS['${1:variable}']${2: = }${3:something}${4:;}${5}
-snippet $_ COOKIE['...']
-	$_COOKIE['${1:variable}']${2}
-snippet $_ ENV['...']
-	$_ENV['${1:variable}']${2}
-snippet $_ FILES['...']
-	$_FILES['${1:variable}']${2}
-snippet $_ Get['...']
-	$_GET['${1:variable}']${2}
-snippet $_ POST['...']
-	$_POST['${1:variable}']${2}
-snippet $_ REQUEST['...']
-	$_REQUEST['${1:variable}']${2}
-snippet $_ SERVER['...']
-	$_SERVER['${1:variable}']${2}
-snippet $_ SESSION['...']
-	$_SESSION['${1:variable}']${2}
-# Start Docblock
-snippet /*
-	/**
-	 * ${1}
-	 **/
-# Class - post doc
-snippet doc_cp
-	/**
-	 * ${1:undocumented class}
-	 *
-	 * @package ${2:default}
-	 * @author ${3:`g:snips_author`}
-	**/${4}
-# Class Variable - post doc
-snippet doc_vp
-	/**
-	 * ${1:undocumented class variable}
-	 *
-	 * @var ${2:string}
-	 **/${3}
-# Class Variable
-snippet doc_v
-	/**
-	 * ${3:undocumented class variable}
-	 *
-	 * @var ${4:string}
-	 **/
-	${1:var} $${2};${5}
-# Class
-snippet doc_c
-	/**
-	 * ${3:undocumented class}
-	 *
-	 * @packaged ${4:default}
-	 * @author ${5:`g:snips_author`}
-	 **/
-	${1:}class ${2:}
-	{${6}
-	} // END $1class $2
-# Constant Definition - post doc
-snippet doc_dp
-	/**
-	 * ${1:undocumented constant}
-	 **/${2}
-# Constant Definition
-snippet doc_d
-	/**
-	 * ${3:undocumented constant}
-	 **/
-	define(${1}, ${2});${4}
-# Function - post doc
-snippet doc_fp
-	/**
-	 * ${1:undocumented function}
-	 *
-	 * @return ${2:void}
-	 * @author ${3:`g:snips_author`}
-	 **/${4}
-# Function signature
-snippet doc_s
-	/**
-	 * ${4:undocumented function}
-	 *
-	 * @return ${5:void}
-	 * @author ${6:`g:snips_author`}
-	 **/
-	${1}function ${2}(${3});${7}
-# Function
-snippet doc_f
-	/**
-	 * ${4:undocumented function}
-	 *
-	 * @return ${5:void}
-	 * @author ${6:`g:snips_author`}
-	 **/
-	${1}function ${2}(${3})
-	{${7}
-	}
-# Header
-snippet doc_h
-	/**
-	 * ${1}
-	 *
-	 * @author ${2:`g:snips_author`}
-	 * @version ${3:$Id$}
-	 * @copyright ${4:$2}, `strftime('%d %B, %Y')`
-	 * @package ${5:default}
-	 **/
-	
-	/**
-	 * Define DocBlock
-	 *//
-# Interface
-snippet doc_i
-	/**
-	 * ${2:undocumented class}
-	 *
-	 * @package ${3:default}
-	 * @author ${4:`g:snips_author`}
-	 **/
-	interface ${1:}
-	{${5}
-	} // END interface $1
-# class ...
-snippet class
-	/**
-	 * ${1}
-	 **/
-	class ${2:ClassName}
-	{
-		${3}
-		function ${4:__construct}(${5:argument})
-		{
-			${6:// code...}
-		}
-	}
-# define(...)
-snippet def
-	define('${1}'${2});${3}
-# defined(...)
-snippet def?
-	${1}defined('${2}')${3}
-snippet wh
-	while (${1:/* condition */}) {
-		${2:// code...}
-	}
-# do ... while
-snippet do
-	do {
-		${2:// code... }
-	} while (${1:/* condition */});
-snippet if
-	if (${1:/* condition */}) {
-		${2:// code...}
-	}
-snippet ife
-	if (${1:/* condition */}) {
-		${2:// code...}
-	} else {
-		${3:// code...}
-	}
-	${4}
-snippet else
-	else {
-		${1:// code...}
-	}
-snippet elseif
-	elseif (${1:/* condition */}) {
-		${2:// code...}
-	}
-# Tertiary conditional
-snippet t
-	$${1:retVal} = (${2:condition}) ? ${3:a} : ${4:b};${5}
-snippet switch
-	switch ($${1:variable}) {
-		case '${2:value}':
-			${3:// code...}
-			break;
-		${5}
-		default:
-			${4:// code...}
-			break;
-	}
-snippet case
-	case '${1:value}':
-		${2:// code...}
-		break;${3}
-snippet for
-	for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++}) {
-		${4: // code...}
-	}
-snippet foreach
-	foreach ($${1:variable} as $${2:key}) {
-		${3:// code...}
-	}
-snippet fun
-	${1:public }function ${2:FunctionName}(${3})
-	{
-		${4:// code...}
-	}
-# $... = array (...)
-snippet array
-	$${1:arrayName} = array('${2}' => ${3});${4}
+# DRUPAL shortcuts
+# menu item
+snippet mi
+	$items['${1}'] = array(
+		'title' => '${2}',
+		'page callback' => '${3}',
+		'page arguments' => array('${4}'),
+		'access arguments' => array('${5}'),
+		'type' => ${6},
+		'file' => ${7},${8}
+	);
+# form item
+snippet fi
+	$form['${1}']${2} = array(
+		'#type' => '${3}',
+		'#title' => t('${4}'),
+		'#default_value' => ${5},${6}
+	);
 # DRUPAL 7 Hooks
+snippet form_id_alter
+	/**
+	 * Implements hook_form_FORM_ID_alter().
+	 */
+	function `Filename()`_form_${1:/*FORM_ID*/}_alter(&$form, $form_state) {
+	  $form['${2}']${3} = array(
+	    '#type' => '${4}',
+	    '#title' => t('${5}'),
+	    '#default_value' => $settings['${6}'],
+	    '#required' => ${7},
+	    '#element_validate' => array('${8}'),
+	    '#description' => t('${9}'),${10}
+	  );
+	}
 snippet h_simpletest_alter
 	/**
-	 * Implements hook_simpletest_alter()
+	 * Implements hook_simpletest_alter().
 	 */
 	function `Filename()`_simpletest_alter(&$groups) {
 	  ${1:/* Your code here */}
 	}
 snippet h_test_group_started
 	/**
-	 * Implements hook_test_group_started()
+	 * Implements hook_test_group_started().
 	 */
 	function `Filename()`_test_group_started() {
 	  ${1:/* Your code here */}
 	}
 snippet h_test_group_finished
 	/**
-	 * Implements hook_test_group_finished()
+	 * Implements hook_test_group_finished().
 	 */
 	function `Filename()`_test_group_finished() {
 	  ${1:/* Your code here */}
 	}
 snippet h_test_finished
 	/**
-	 * Implements hook_test_finished()
+	 * Implements hook_test_finished().
 	 */
 	function `Filename()`_test_finished($results) {
 	  ${1:/* Your code here */}
 	}
 snippet h_aggregator_fetch
 	/**
-	 * Implements hook_aggregator_fetch()
+	 * Implements hook_aggregator_fetch().
 	 */
 	function `Filename()`_aggregator_fetch($feed) {
 	  ${1:/* Your code here */}
 	}
 snippet h_aggregator_fetch_info
 	/**
-	 * Implements hook_aggregator_fetch_info()
+	 * Implements hook_aggregator_fetch_info().
 	 */
 	function `Filename()`_aggregator_fetch_info() {
 	  return array(
@@ -262,14 +78,14 @@ snippet h_aggregator_fetch_info
 	}
 snippet h_aggregator_parse
 	/**
-	 * Implements hook_aggregator_parse()
+	 * Implements hook_aggregator_parse().
 	 */
 	function `Filename()`_aggregator_parse($feed) {
 	  ${1:/* Your code here */}
 	}
 snippet h_aggregator_parse_info
 	/**
-	 * Implements hook_aggregator_parse_info()
+	 * Implements hook_aggregator_parse_info().
 	 */
 	function `Filename()`_aggregator_parse_info() {
 	  return array(
@@ -279,14 +95,14 @@ snippet h_aggregator_parse_info
 	}
 snippet h_aggregator_process
 	/**
-	 * Implements hook_aggregator_process()
+	 * Implements hook_aggregator_process().
 	 */
 	function `Filename()`_aggregator_process($feed) {
 	  ${1:/* Your code here */}
 	}
 snippet h_aggregator_process_info
 	/**
-	 * Implements hook_aggregator_process_info()
+	 * Implements hook_aggregator_process_info().
 	 */
 	function `Filename()`_aggregator_process_info($feed) {
 	  return array(
@@ -296,53 +112,53 @@ snippet h_aggregator_process_info
 	}
 snippet h_aggregator_remove
 	/**
-	 * Implements hook_aggregator_remove()
+	 * Implements hook_aggregator_remove().
 	 */
 	function `Filename()`_aggregator_remove($feed) {
 	  ${1:/* Your code here */}
 	}
 snippet h_overlay_parent_initialize
 	/**
-	 * Implements hook_overlay_parent_initialize()
+	 * Implements hook_overlay_parent_initialize().
 	 */
 	function `Filename()`_overlay_parent_initialize() {
 	  ${1:/* Your code here */}
 	}
 snippet h_overlay_child_initialize
 	/**
-	 * Implements hook_overlay_child_initialize()
+	 * Implements hook_overlay_child_initialize().
 	 */
 	function `Filename()`_overlay_child_initialize() {
 	  ${1:/* Your code here */}
 	}
 snippet h_entity_info
 	/**
-	 * Implements hook_entity_info()
+	 * Implements hook_entity_info().
 	 */
 	function `Filename()`_entity_info() {
-	    'node' => array(
-	      'label' => t('${1}'),
-	      'controller class' => '${2}',
-	      'base table' => '${3}',
-	      'revision table' => '${4}',
-	      'uri callback' => '${5}',
-	      'fieldable' => ${6},
+	    '${1}' => array(
+	      'label' => t('${2}'),
+	      'controller class' => '${3}',
+	      'base table' => '${4}',
+	      'revision table' => '${5}',
+	      'uri callback' => '${6}',
+	      'fieldable' => ${7},
 	      'translation' => array(
-	        'locale' => ${7},
+	        'locale' => ${8},
 	      ),
 	      'entity keys' => array(
-	        'id' => '${8}',
-	        'revision' => '${9}',
-	        'bundle' => '${10}',
+	        'id' => '${9}',
+	        'revision' => '${10}',
+	        'bundle' => '${11}',
 	      ),
 	      'bundle keys' => array(
-	        'bundle' => '${11}',
+	        'bundle' => '${12}',
 	      ),
 	      'bundles' => array(),
 	      'view modes' => array(
-	        '${12}' => array(
-	          'label' => t('${13}'),
-	          'custom settings' => ${14},
+	        '${13}' => array(
+	          'label' => t('${14}'),
+	          'custom settings' => ${15},
 	        ),
 	      ),
 	    ),
@@ -351,14 +167,14 @@ snippet h_entity_info
 	}
 snippet h_entity_info_alter
 	/**
-	 * Implements hook_entity_info_alter()
+	 * Implements hook_entity_info_alter().
 	 */
 	function `Filename()`_entity_info_alter(&$entity_info) {
 	  ${1:/* Your code here */}
 	}
 snippet h_entity_load
 	/**
-	 * Implements hook_entity_load()
+	 * Implements hook_entity_load().
 	 */
 	function `Filename()`_entity_load($entities, $type) {
 	  foreach ($entities as $entity) {
@@ -367,28 +183,28 @@ snippet h_entity_load
 	}
 snippet h_entity_insert
 	/**
-	 * Implements hook_entity_insert()
+	 * Implements hook_entity_insert().
 	 */
 	function `Filename()`_entity_insert($entity, $type) {
 	  ${1:/* Your code here */}
 	}
 snippet h_entity_update
 	/**
-	 * Implements hook_entity_update()
+	 * Implements hook_entity_update().
 	 */
 	function `Filename()`_entity_update($entity, $type) {
 	  ${1:/* Your code here */}
 	}
 snippet h_entity_query_alter
 	/**
-	 * Implements hook_entity_query_alter()
+	 * Implements hook_entity_query_alter().
 	 */
 	function `Filename()`_entity_query_alter($query) {
-	  $query->${1} = 'my_module_query_callback';
+	  $query->${1} = '`Filename()`_query_callback';
 	}
 snippet h_admin_paths
 	/**
-	 * Implements hook_admin_paths()
+	 * Implements hook_admin_paths().
 	 */
 	function `Filename()`_admin_paths() {
 	  $paths = array(
@@ -398,28 +214,28 @@ snippet h_admin_paths
 	}
 snippet h_admin_paths_alter
 	/**
-	 * Implements hook_admin_paths_alter()
+	 * Implements hook_admin_paths_alter().
 	 */
 	function `Filename()`_admin_paths_alter(&$paths) {
 	  $paths['${1}'] = ${2};
 	}
 snippet h_entity_prepare_view
 	/**
-	 * Implements hook_entity_prepare_view()
+	 * Implements hook_entity_prepare_view().
 	 */
 	function `Filename()`_entity_prepare_view($entities, $type) {
 	  ${1:/* Your code here */}
 	}
 snippet h_cron
 	/**
-	 * Implements hook_cron()
+	 * Implements hook_cron().
 	 */
 	function `Filename()`_cron() {
 	   ${1:/* Your code here */}
 	}
 snippet h_cron_queue_info
 	/**
-	 * Implements hook_cron_queue_info()
+	 * Implements hook_cron_queue_info().
 	 */
 	function `Filename()`_cron_queue_info() {
 	  $queues['${1}'] = array(
@@ -430,14 +246,14 @@ snippet h_cron_queue_info
 	}
 snippet h_cron_queue_info_alter
 	/**
-	 * Implements hook_cron_queue_info_alter()
+	 * Implements hook_cron_queue_info_alter().
 	 */
 	function `Filename()`_cron_queue_info_alter(&$queues) {
 	  $queues['${1}']['time'] = ${2};
 	}
 snippet h_element_info
 	/**
-	 * Implements hook_element_info()
+	 * Implements hook_element_info().
 	 */
 	function `Filename()`_element_info() {
 	  $types['${1}'] = array(
@@ -447,7 +263,7 @@ snippet h_element_info
 	}
 snippet h_element_info_alter
 	/**
-	 * Implements hook_element_info_alter()
+	 * Implements hook_element_info_alter().
 	 */
 	function `Filename()`_element_info_alter(&$type) {
 	  if (isset($type['${1}'])) {
@@ -456,21 +272,21 @@ snippet h_element_info_alter
 	}
 snippet h_exit
 	/**
-	 * Implements hook_exit()
+	 * Implements hook_exit().
 	 */
 	function `Filename()`_exit($destination = NULL) {
 	  ${1:/* Your code here */}
 	}
 snippet h_js_alter
 	/**
-	 * Implements hook_js_alter()
+	 * Implements hook_js_alter().
 	 */
 	function `Filename()`_js_alter(&$javascript) {
 	  ${1:/* Your code here */}
 	}
 snippet h_library
 	/**
-	 * Implements hook_library()
+	 * Implements hook_library().
 	 */
 	function `Filename()`_library() {
 	  $libraries['${1}'] = array(
@@ -478,10 +294,10 @@ snippet h_library
 	    'website' => '${3}',
 	    'version' => '${4}',
 	    'js' => array(
-	      drupal_get_path('module', 'my_module') . '/${5}' => array(),
+	      drupal_get_path('module', '`Filename()`') . '/${5}' => array(),
 	    ),
 	    'css' => array(
-	      drupal_get_path('module', 'my_module') . '/${6}' => array(
+	      drupal_get_path('module', '`Filename()`') . '/${6}' => array(
 	        'type' => 'file',
 	        'media' => '${7}',
 	      ),
@@ -494,28 +310,28 @@ snippet h_library
 	}
 snippet h_library_alter
 	/**
-	 * Implements hook_library_alter()
+	 * Implements hook_library_alter().
 	 */
 	function `Filename()`_library_alter(&$libraries, $module) {
 	  ${1:/* Your code here */}
 	}
 snippet h_css_alter
 	/**
-	 * Implements hook_css_alter()
+	 * Implements hook_css_alter().
 	 */
 	function `Filename()`_css_alter(&$css) {
 	  ${1:/* Your code here */}
 	}
 snippet h_ajax_render_alter
 	/**
-	 * Implements hook_ajax_render_alter()
+	 * Implements hook_ajax_render_alter().
 	 */
 	function `Filename()`_ajax_render_alter($commands) {
 	  $commands[] = ${1}
 	}
 snippet h_page_build
 	/**
-	 * Implements hook_page_build()
+	 * Implements hook_page_build().
 	 */
 	function `Filename()`_page_build(&$page) {
 	  $page['${1}']['${2}'] = array(
@@ -525,58 +341,58 @@ snippet h_page_build
 	}
 snippet h_menu
 	/**
-	 * Implements hook_menu()
+	 * Implements hook_menu().
 	 */
 	function `Filename()`_menu() {
 	  $items['${1}'] = array(
 	    'title' => '${2}',
 	    'page callback' => '${3}',
-	    'page arguments' => array('${4}'),
+	    'page arguments' => array(${4}),
 	    'access arguments' => array('${5}'),
 	    'type' => ${6},
-	    'file' => ${7},
+	    'file' => ${7},${8}
 	  );
 	
 	  return $items;
 	}
 snippet h_menu_alter
 	/**
-	 * Implements hook_menu_alter()
+	 * Implements hook_menu_alter().
 	 */
 	function `Filename()`_menu_alter(&$items) {
 	  ${1:/* Your code here */}
 	}
 snippet h_menu_link_alter
 	/**
-	 * Implements hook_menu_link_alter()
+	 * Implements hook_menu_link_alter().
 	 */
 	function `Filename()`_menu_link_alter(&$item) {
 	  ${1:/* Your code here */}
 	}
 snippet h_translated_menu_link_alter
 	/**
-	 * Implements hook_translated_menu_link_alter()
+	 * Implements hook_translated_menu_link_alter().
 	 */
 	function `Filename()`_translated_menu_link_alter(&$item, $map) {
 	  ${1:/* Your code here */}
 	}
 snippet h_menu_link_insert
 	/**
-	 * Implements hook_menu_link_insert()
+	 * Implements hook_menu_link_insert().
 	 */
 	function `Filename()`_menu_link_insert($link) {
 	  ${1:/* Your code here */}
 	}
 snippet h_menu_link_update
 	/**
-	 * Implements hook_menu_link_update()
+	 * Implements hook_menu_link_update().
 	 */
 	function `Filename()`_menu_link_update($link) {
 	  ${1:/* Your code here */}
 	}
 snippet h_menu_link_delete
 	/**
-	 * Implements hook_menu_link_delete()
+	 * Implements hook_menu_link_delete().
 	 */
 	function `Filename()`_menu_link_delete($link) {
 	  db_delete('${1}')
@@ -585,21 +401,21 @@ snippet h_menu_link_delete
 	}
 snippet h_menu_local_tasks_alter
 	/**
-	 * Implements hook_menu_local_tasks_alter()
+	 * Implements hook_menu_local_tasks_alter().
 	 */
 	function `Filename()`_menu_local_tasks_alter(&$data, $router_item, $root_path) {
 	  ${1:/* Your code here */}
 	}
 snippet h_menu_breadcrumb_alter
 	/**
-	 * Implements hook_menu_breadcrumb_alter()
+	 * Implements hook_menu_breadcrumb_alter().
 	 */
 	function `Filename()`_menu_breadcrumb_alter(&$active_trail, $item) {
 	  ${1:/* Your code here */}
 	}
 snippet h_menu_contextual_links_alter
 	/**
-	 * Implements hook_menu_contextual_links_alter()
+	 * Implements hook_menu_contextual_links_alter().
 	 */
 	function `Filename()`_menu_contextual_links_alter(&$links, $router_item, $root_path) {
 	  if ($root_path == '${1}') {
@@ -616,29 +432,28 @@ snippet h_menu_contextual_links_alter
 	}
 snippet h_page_alter
 	/**
-	 * Implements hook_page_alter()
+	 * Implements hook_page_alter().
 	 */
 	function `Filename()`_page_alter(&$page) {
 	  ${1:/* Your code here */}
 	}
 snippet h_form_alter
 	/**
-	 * Implements hook_form_alter()
+	 * Implements hook_form_alter().
 	 */
 	function `Filename()`_form_alter(&$form, &$form_state, $form_id) {
-	  $form['${1}'] = array(
-	    '#type' => '${2}',
-	    '#title' => t('${3}'),
-	    '#default_value' => $settings['${4}'],
-	    '#required' => ${5},
-	    '#element_validate' => array('${6}'),
-	    '#description' => t('${7}'),
-	    '#${8}' => ${9}
+	  $form['${1}']${2} = array(
+	    '#type' => '${3}',
+	    '#title' => t('${4}'),
+	    '#default_value' => $settings['${5}'],
+	    '#required' => ${6},
+	    '#element_validate' => array('${7}'),
+	    '#description' => t('${8}'),${9}
 	  );
 	}
 snippet h_forms
 	/**
-	 * Implements hook_forms()
+	 * Implements hook_forms().
 	 */
 	function `Filename()`_forms($form_id, $args) {
 	  $forms['${1}'] = array(
@@ -650,21 +465,21 @@ snippet h_forms
 	}
 snippet h_boot
 	/**
-	 * Implements hook_boot()
+	 * Implements hook_boot().
 	 */
 	function `Filename()`_boot() {
 	   ${1:/* Your code here */}
 	}
 snippet h_init
 	/**
-	 * Implements hook_init()
+	 * Implements hook_init().
 	 */
 	function `Filename()`_init() {
 	  ${1:/* Your code here */}
 	}
 snippet h_image_toolkits
 	/**
-	 * Implements hook_image_toolkits()
+	 * Implements hook_image_toolkits().
 	 */
 	function `Filename()`_image_toolkits() {
 	  return array(
@@ -676,7 +491,7 @@ snippet h_image_toolkits
 	}
 snippet h_mail_alter
 	/**
-	 * Implements hook_mail_alter()
+	 * Implements hook_mail_alter().
 	 */
 	function `Filename()`_mail_alter(&$message) {
 	  if ($message['id'] == '${1}') {
@@ -685,7 +500,7 @@ snippet h_mail_alter
 	}
 snippet h_module_implements_alter
 	/**
-	 * Implements hook_module_implements_alter()
+	 * Implements hook_module_implements_alter().
 	 */
 	function `Filename()`_module_implements_alter(&$implementations, $hook) {
 	  if ($hook == '${1}') {
@@ -694,14 +509,14 @@ snippet h_module_implements_alter
 	}
 snippet h_system_info_alter
 	/**
-	 * Implements hook_system_info_alter()
+	 * Implements hook_system_info_alter().
 	 */
 	function `Filename()`_system_info_alter(&$info, $file, $type) {
 	  ${1:/* Your code here */}
 	}
 snippet h_permission
 	/**
-	 * Implements hook_permission()
+	 * Implements hook_permission().
 	 */
 	function `Filename()`_permission() {
 	  return array(
@@ -713,7 +528,7 @@ snippet h_permission
 	}
 snippet h_theme
 	/**
-	 * Implements hook_theme()
+	 * Implements hook_theme().
 	 */
 	function `Filename()`_theme($existing, $type, $theme, $path) {
 	  return array(
@@ -726,77 +541,77 @@ snippet h_theme
 	}
 snippet h_theme_registry_alter
 	/**
-	 * Implements hook_theme_registry_alter()
+	 * Implements hook_theme_registry_alter().
 	 */
 	function `Filename()`_theme_registry_alter(&$theme_registry) {
 	  ${1:/* Your code here */}
 	}
 snippet h_custom_theme
 	/**
-	 * Implements hook_custom_theme()
+	 * Implements hook_custom_theme().
 	 */
 	function `Filename()`_custom_theme() {
 	  ${1:/* Your code here */}
 	}
 snippet h_xmlrpc
 	/**
-	 * Implements hook_xmlrpc()
+	 * Implements hook_xmlrpc().
 	 */
 	function `Filename()`_xmlrpc() {
 	  ${1:/* Your code here */}
 	}
 snippet h_xmlrpc_alter
 	/**
-	 * Implements hook_xmlrpc_alter()
+	 * Implements hook_xmlrpc_alter().
 	 */
 	function `Filename()`_xmlrpc_alter(&$methods) {
 	  ${1:/* Your code here */}
 	}
 snippet h_watchdog
 	/**
-	 * Implements hook_watchdog()
+	 * Implements hook_watchdog().
 	 */
 	function `Filename()`_watchdog(array $log_entry) {
 	  ${1:/* Your code here */}
 	}
 snippet h_mail
 	/**
-	 * Implements hook_mail()
+	 * Implements hook_mail().
 	 */
 	function `Filename()`_mail($key, &$message, $params) {
 	   ${1:/* Your code here */}
 	}
 snippet h_flush_caches
 	/**
-	 * Implements hook_flush_caches()
+	 * Implements hook_flush_caches().
 	 */
 	function `Filename()`_flush_caches() {
 	  return array('${1}');
 	}
 snippet h_modules_installed
 	/**
-	 * Implements hook_modules_installed()
+	 * Implements hook_modules_installed().
 	 */
 	function `Filename()`_modules_installed($modules) {
 	  ${1:/* Your code here */}
 	}
 snippet h_modules_enabled
 	/**
-	 * Implements hook_modules_enabled()
+	 * Implements hook_modules_enabled().
 	 */
 	function `Filename()`_modules_enabled($modules) {
 	  ${1:/* Your code here */}
 	}
 snippet h_modules_disabled
 	/**
-	 * Implements hook_modules_disabled()
+	 * Implements hook_modules_disabled().
 	 */
 	function `Filename()`_modules_disabled($modules) {
 	  ${1:/* Your code here */}
 	}
 snippet h_modules_uninstalled
 	/**
-	 * Implements hook_modules_uninstalled()
+	 * Implements hook_modules_uninstalled().
 	 */
 	function `Filename()`_modules_uninstalled($modules) {
 	  foreach ($modules as $module) {
@@ -808,7 +623,7 @@ snippet h_modules_uninstalled
 	}
 snippet h_stream_wrappers
 	/**
-	 * Implements hook_stream_wrappers()
+	 * Implements hook_stream_wrappers().
 	 */
 	function `Filename()`_stream_wrappers() {
 	  return array(
@@ -822,21 +637,21 @@ snippet h_stream_wrappers
 	}
 snippet h_stream_wrappers_alter
 	/**
-	 * Implements hook_stream_wrappers_alter()
+	 * Implements hook_stream_wrappers_alter().
 	 */
 	function `Filename()`_stream_wrappers_alter(&$wrappers) {
 	  ${1:/* Your code here */}
 	}
 snippet h_file_load
 	/**
-	 * Implements hook_file_load()
+	 * Implements hook_file_load().
 	 */
 	function `Filename()`_file_load($files) {
 	  ${1:/* Your code here */}
 	}
 snippet h_file_validate
 	/**
-	 * Implements hook_file_validate()
+	 * Implements hook_file_validate().
 	 */
 	function `Filename()`_file_validate(&$file) {
 	  $errors = array();
@@ -848,56 +663,56 @@ snippet h_file_validate
 	}
 snippet h_file_insert
 	/**
-	 * Implements hook_file_insert()
+	 * Implements hook_file_insert().
 	 */
 	function `Filename()`_file_insert($file) {
 	  ${1:/* Your code here */}
 	}
 snippet h_file_update
 	/**
-	 * Implements hook_file_update()
+	 * Implements hook_file_update().
 	 */
 	function `Filename()`_file_update($file) {
 	  ${1:/* Your code here */}
 	}
 snippet h_file_copy
 	/**
-	 * Implements hook_file_copy()
+	 * Implements hook_file_copy().
 	 */
 	function `Filename()`_file_copy($file, $source) {
 	  ${1:/* Your code here */}
 	}
 snippet h_file_move
 	/**
-	 * Implements hook_file_move()
+	 * Implements hook_file_move().
 	 */
 	function `Filename()`_file_move($file, $source) {
 	  ${1:/* Your code here */}
 	}
 snippet h_file_delete
 	/**
-	 * Implements hook_file_delete()
+	 * Implements hook_file_delete().
 	 */
 	function `Filename()`_file_delete($file) {
 	   ${1:/* Your code here */}
 	}
 snippet h_file_download
 	/**
-	 * Implements hook_file_download()
+	 * Implements hook_file_download().
 	 */
 	function `Filename()`_file_download($uri) {
 	  ${1:/* Your code here */}
 	}
 snippet h_file_url_alter
 	/**
-	 * Implements hook_file_url_alter()
+	 * Implements hook_file_url_alter().
 	 */
 	function `Filename()`_file_url_alter(&$uri) {
 	  ${1:/* Your code here */}
 	}
 snippet h_requirements
 	/**
-	 * Implements hook_requirements()
+	 * Implements hook_requirements().
 	 */
 	function `Filename()`_requirements($phase) {
 	  $requirements = array();
@@ -907,7 +722,7 @@ snippet h_requirements
 	}
 snippet h_schema
 	/**
-	 * Implements hook_schema()
+	 * Implements hook_schema().
 	 */
 	function `Filename()`_schema() {
 	  $schema['${1}'] = array(
@@ -918,34 +733,35 @@ snippet h_schema
 	        'type' => '${5}',
 	        'unsigned' => ${6},
 	        'not null' => ${7},
-	        'default' => ${8}),
-	      ),
+	        'default' => ${8},
+				),
+			),
 	    'indexes' => array(
 	      '${9}' => array('${10}'),
-	      ),
+			),
 	    'unique keys' => array(
 	      '${11}' => array('${12}')
-	      ),
+			),
 	    'foreign keys' => array(
 	      '${13}' => array(
 	        'table' => '${14}',
 	        'columns' => array('${15}' => '${16}'),
-	        ),
-	       ),
+				),
+			),
 	    'primary key' => array('${17}'),
 	  );
 	  return $schema;
 	}
 snippet h_schema_alter
 	/**
-	 * Implements hook_schema_alter()
+	 * Implements hook_schema_alter().
 	 */
 	function `Filename()`_schema_alter(&$schema) {
 	  ${1:/* Your code here */}
 	}
 snippet h_query_alter
 	/**
-	 * Implements hook_query_alter()
+	 * Implements hook_query_alter().
 	 */
 	function `Filename()`_query_alter(QueryAlterableInterface $query) {
 	  if ($query->hasTag('${1}')) {
@@ -954,14 +770,14 @@ snippet h_query_alter
 	}
 snippet h_install
 	/**
-	 * Implements hook_install()
+	 * Implements hook_install().
 	 */
 	function `Filename()`_install() {
 	  ${1:/* Your code here */}
 	}
 snippet h_update_dependencies
 	/**
-	 * Implements hook_update_dependencies()
+	 * Implements hook_update_dependencies().
 	 */
 	function `Filename()`_update_dependencies() {
 	  $dependencies['${1}']['${2}'] = array(
@@ -972,42 +788,42 @@ snippet h_update_dependencies
 	}
 snippet h_update_last_removed
 	/**
-	 * Implements hook_update_last_removed()
+	 * Implements hook_update_last_removed().
 	 */
 	function `Filename()`_update_last_removed() {
 	  ${1:/* Your code here */}
 	}
 snippet h_uninstall
 	/**
-	 * Implements hook_uninstall()
+	 * Implements hook_uninstall().
 	 */
 	function `Filename()`_uninstall() {
 	  variable_del('${1}');
 	}
 snippet h_enable
 	/**
-	 * Implements hook_enable()
+	 * Implements hook_enable().
 	 */
 	function `Filename()`_enable() {
 	  ${1:/* Your code here */}
 	}
 snippet h_disable
 	/**
-	 * Implements hook_disable()
+	 * Implements hook_disable().
 	 */
 	function `Filename()`_disable() {
 	  ${1:/* Your code here */}
 	}
 snippet h_registry_files_alter
 	/**
-	 * Implements hook_registry_files_alter()
+	 * Implements hook_registry_files_alter().
 	 */
 	function `Filename()`_registry_files_alter(&$files, $modules) {
 	  ${1:/* Your code here */}
 	}
 snippet h_install_tasks
 	/**
-	 * Implements hook_install_tasks()
+	 * Implements hook_install_tasks().
 	 */
 	function `Filename()`_install_tasks() {
 	  $tasks = array(
@@ -1017,14 +833,14 @@ snippet h_install_tasks
 	}
 snippet h_drupal_goto_alter
 	/**
-	 * Implements hook_drupal_goto_alter()
+	 * Implements hook_drupal_goto_alter().
 	 */
 	function `Filename()`_drupal_goto_alter(&$path, &$options, &$http_response_code) {
 	  ${1:/* Your code here */}
 	}
 snippet h_html_head_alter
 	/**
-	 * Implements hook_html_head_alter()
+	 * Implements hook_html_head_alter().
 	 */
 	function `Filename()`_html_head_alter(&$head_elements) {
 	  foreach ($head_elements as $key => $element) {
@@ -1033,21 +849,21 @@ snippet h_html_head_alter
 	}
 snippet h_install_tasks_alter
 	/**
-	 * Implements hook_install_tasks_alter()
+	 * Implements hook_install_tasks_alter().
 	 */
 	function `Filename()`_install_tasks_alter(&$tasks, $install_state) {
 	  $tasks['${1}']['${2}'] = '${3}';
 	}
 snippet h_file_mimetype_mapping_alter
 	/**
-	 * Implements hook_file_mimetype_mapping_alter()
+	 * Implements hook_file_mimetype_mapping_alter().
 	 */
 	function `Filename()`_file_mimetype_mapping_alter(&$mapping) {
 	  $mapping['${1}']['${2}'] = '${3}';
 	}
 snippet h_action_info
 	/**
-	 * Implements hook_action_info()
+	 * Implements hook_action_info().
 	 */
 	function `Filename()`_action_info() {
 	  return array(
@@ -1062,7 +878,7 @@ snippet h_action_info
 	}
 snippet h_actions_delete
 	/**
-	 * Implements hook_actions_delete()
+	 * Implements hook_actions_delete().
 	 */
 	function `Filename()`_actions_delete($aid) {
 	  db_delete('${1}')
@@ -1071,14 +887,14 @@ snippet h_actions_delete
 	}
 snippet h_action_info_alter
 	/**
-	 * Implements hook_action_info_alter()
+	 * Implements hook_action_info_alter().
 	 */
 	function `Filename()`_action_info_alter(&$actions) {
 	  $actions['${1}']['${2}'] = t('${3}');
 	}
 snippet h_archiver_info
 	/**
-	 * Implements hook_archiver_info()
+	 * Implements hook_archiver_info().
 	 */
 	function `Filename()`_archiver_info() {
 	  return array(
@@ -1090,14 +906,14 @@ snippet h_archiver_info
 	}
 snippet h_archiver_info_alter
 	/**
-	 * Implements hook_archiver_info_alter()
+	 * Implements hook_archiver_info_alter().
 	 */
 	function `Filename()`_archiver_info_alter(&$info) {
 	  $info['${1}']['${2}'][] = '${3}';
 	}
 snippet h_date_format_types
 	/**
-	 * Implements hook_date_format_types()
+	 * Implements hook_date_format_types().
 	 */
 	function `Filename()`_date_format_types() {
 	  return array(
@@ -1106,7 +922,7 @@ snippet h_date_format_types
 	}
 snippet h_date_format_types_alter
 	/**
-	 * Implements hook_date_format_types_alter()
+	 * Implements hook_date_format_types_alter().
 	 */
 	function `Filename()`_date_format_types_alter(&$types) {
 	  foreach ($types as $type_name => $type) {
@@ -1115,7 +931,7 @@ snippet h_date_format_types_alter
 	}
 snippet h_date_formats
 	/**
-	 * Implements hook_date_formats()
+	 * Implements hook_date_formats().
 	 */
 	function `Filename()`_date_formats() {
 	  return array(
@@ -1128,7 +944,7 @@ snippet h_date_formats
 	}
 snippet h_date_formats_alter
 	/**
-	 * Implements hook_date_formats_alter()
+	 * Implements hook_date_formats_alter().
 	 */
 	function `Filename()`_date_formats_alter(&$formats) {
 	  foreach ($formats as $id => $format) {
@@ -1137,14 +953,14 @@ snippet h_date_formats_alter
 	}
 snippet h_page_delivery_callback_alter
 	/**
-	 * Implements hook_page_delivery_callback_alter()
+	 * Implements hook_page_delivery_callback_alter().
 	 */
 	function `Filename()`_page_delivery_callback_alter(&$callback) {
 	  ${1:/* Your code here */}
 	}
 snippet h_system_themes_page_alter
 	/**
-	 * Implements hook_system_themes_page_alter()
+	 * Implements hook_system_themes_page_alter().
 	 */
 	function `Filename()`_system_themes_page_alter(&$theme_groups) {
 	  foreach ($theme_groups as $state => &$group) {
@@ -1155,28 +971,28 @@ snippet h_system_themes_page_alter
 	}
 snippet h_url_inbound_alter
 	/**
-	 * Implements hook_url_inbound_alter()
+	 * Implements hook_url_inbound_alter().
 	 */
 	function `Filename()`_url_inbound_alter(&$path, $original_path, $path_language) {
 	  ${1:/* Your code here */}
 	}
 snippet h_url_outbound_alter
 	/**
-	 * Implements hook_url_outbound_alter()
+	 * Implements hook_url_outbound_alter().
 	 */
 	function `Filename()`_url_outbound_alter(&$path, &$options, $original_path) {
 	  ${1:/* Your code here */}
 	}
 snippet h_username_alter
 	/**
-	 * Implements hook_username_alter()
+	 * Implements hook_username_alter().
 	 */
 	function `Filename()`_username_alter(&$name, $account) {
 	  ${1:/* Your code here */}
 	}
 snippet h_tokens($type, $tokens, array $data = array(), array $options = array
 	/**
-	 * Implements hook_tokens($type, $tokens, array $data = array(), array $options = array()
+	 * Implements hook_tokens($type, $tokens, array $data = array(), array $options = array().
 	 */
 	function `Filename()`_tokens($type, $tokens, array $data = array(), array $options = array()) {
 	  $replacements = array();
@@ -1186,7 +1002,7 @@ snippet h_tokens($type, $tokens, array $data = array(), array $options = array
 	}
 snippet h_token_info
 	/**
-	 * Implements hook_token_info()
+	 * Implements hook_token_info().
 	 */
 	function `Filename()`_token_info() {
 	  $type = array(
@@ -1205,14 +1021,14 @@ snippet h_token_info
 	}
 snippet h_batch_alter
 	/**
-	 * Implements hook_batch_alter()
+	 * Implements hook_batch_alter().
 	 */
 	function `Filename()`_batch_alter(&$batch) {
 	  ${1:/* Your code here */}
 	}
 snippet h_token_info_alter
 	/**
-	 * Implements hook_token_info_alter()
+	 * Implements hook_token_info_alter().
 	 */
 	function `Filename()`_token_info_alter(&$data) {
 	  $data['tokens']['${1}']['${2}'] = array(
@@ -1222,7 +1038,7 @@ snippet h_token_info_alter
 	}
 snippet h_updater_info
 	/**
-	 * Implements hook_updater_info()
+	 * Implements hook_updater_info().
 	 */
 	function `Filename()`_updater_info() {
 	  return array(
@@ -1235,21 +1051,21 @@ snippet h_updater_info
 	}
 snippet h_updater_info_alter
 	/**
-	 * Implements hook_updater_info_alter()
+	 * Implements hook_updater_info_alter().
 	 */
 	function `Filename()`_updater_info_alter(&$updaters) {
 	  ${1:/* Your code here */}
 	}
 snippet h_countries_alter
 	/**
-	 * Implements hook_countries_alter()
+	 * Implements hook_countries_alter().
 	 */
 	function `Filename()`_countries_alter(&$countries) {
 	  ${1:/* Your code here */}
 	}
 snippet h_filetransfer_backends
 	/**
-	 * Implements hook_filetransfer_backends()
+	 * Implements hook_filetransfer_backends().
 	 */
 	function `Filename()`_filetransfer_backends() {
 	  $backends = array();
@@ -1258,26 +1074,26 @@ snippet h_filetransfer_backends
 	}
 snippet h_menu_site_status_alter
 	/**
-	 * Implements hook_menu_site_status_alter()
+	 * Implements hook_menu_site_status_alter().
 	 */
 	function `Filename()`_menu_site_status_alter(&$menu_site_status, $path) {
 	  ${1:/* Your code here */}
 	}
 snippet h_form_system_theme_settings_alter
 	/**
-	 * Implements hook_form_system_theme_settings_alter()
+	 * Implements hook_form_system_theme_settings_alter().
 	 */
 	function `Filename()`_form_system_theme_settings_alter(&$form, &$form_state) {
-	  $form['${1}'] = array(
-	    '#type' => '${2}',
-	    '#title' => t('${3}'),
-	    '#default_value' => theme_get_setting('${4}'),
-	    '#description'   => t('${5}'),
+	  $form['${1}']${2} = array(
+	    '#type' => '${3}',
+	    '#title' => t('${4}'),
+	    '#default_value' => theme_get_setting('${5}'),
+	    '#description'   => t('${6}'),
 	  );
 	}
 snippet h_preprocess
 	/**
-	 * Implements hook_preprocess()
+	 * Implements hook_preprocess().
 	 */
 	function `Filename()`_preprocess(&$variables, $hook) {
 	  static $hooks;
@@ -1285,14 +1101,14 @@ snippet h_preprocess
 	}
 snippet h_process
 	/**
-	 * Implements hook_process()
+	 * Implements hook_process().
 	 */
 	function `Filename()`_process(&$variables, $hook) {
 	  ${1:/* Your code here */}
 	}
 snippet h_themes_enabled
 	/**
-	 * Implements hook_themes_enabled()
+	 * Implements hook_themes_enabled().
 	 */
 	function `Filename()`_themes_enabled($theme_list) {
 	  foreach ($theme_list as $theme) {
@@ -1301,28 +1117,28 @@ snippet h_themes_enabled
 	}
 snippet h_themes_disabled
 	/**
-	 * Implements hook_themes_disabled()
+	 * Implements hook_themes_disabled().
 	 */
 	function `Filename()`_themes_disabled($theme_list) {
 	  ${1:/* Your code here */}
 	}
 snippet h_file_download_access
 	/**
-	 * Implements hook_file_download_access()
+	 * Implements hook_file_download_access().
 	 */
 	function `Filename()`_file_download_access($field, $entity_type, $entity) {
 	  ${1:/* Your code here */}
 	}
 snippet h_file_download_access_alter
 	/**
-	 * Implements hook_file_download_access_alter()
+	 * Implements hook_file_download_access_alter().
 	 */
 	function `Filename()`_file_download_access_alter(&$grants, $field, $entity_type, $entity) {
 	  ${1:/* Your code here */}
 	}
 snippet h_help
 	/**
-	 * Implements hook_help()
+	 * Implements hook_help().
 	 */
 	function `Filename()`_help($path, $arg) {
 	  switch ($path) {
@@ -1332,84 +1148,84 @@ snippet h_help
 	}
 snippet h_comment_presave
 	/**
-	 * Implements hook_comment_presave()
+	 * Implements hook_comment_presave().
 	 */
 	function `Filename()`_comment_presave($comment) {
 	  ${1:/* Your code here */}
 	}
 snippet h_comment_insert
 	/**
-	 * Implements hook_comment_insert()
+	 * Implements hook_comment_insert().
 	 */
 	function `Filename()`_comment_insert($comment) {
 	  ${1:/* Your code here */}
 	}
 snippet h_comment_update
 	/**
-	 * Implements hook_comment_update()
+	 * Implements hook_comment_update().
 	 */
 	function `Filename()`_comment_update($comment) {
 	  ${1:/* Your code here */}
 	}
 snippet h_comment_load
 	/**
-	 * Implements hook_comment_load()
+	 * Implements hook_comment_load().
 	 */
 	function `Filename()`_comment_load($comments) {
 	  ${1:/* Your code here */}
 	}
 snippet h_comment_view
 	/**
-	 * Implements hook_comment_view()
+	 * Implements hook_comment_view().
 	 */
 	function `Filename()`_comment_view($comment, $view_mode, $langcode) {
 	  ${1:/* Your code here */}
 	}
 snippet h_comment_view_alter
 	/**
-	 * Implements hook_comment_view_alter()
+	 * Implements hook_comment_view_alter().
 	 */
 	function `Filename()`_comment_view_alter(&$build) {
 	  ${1:/* Your code here */}
 	}
 snippet h_comment_publish
 	/**
-	 * Implements hook_comment_publish()
+	 * Implements hook_comment_publish().
 	 */
 	function `Filename()`_comment_publish($comment) {
 	  ${1:/* Your code here */}
 	}
 snippet h_comment_unpublish
 	/**
-	 * Implements hook_comment_unpublish()
+	 * Implements hook_comment_unpublish().
 	 */
 	function `Filename()`_comment_unpublish($comment) {
 	  ${1:/* Your code here */}
 	}
 snippet h_comment_delete
 	/**
-	 * Implements hook_comment_delete()
+	 * Implements hook_comment_delete().
 	 */
 	function `Filename()`_comment_delete($comment) {
 	  ${1:/* Your code here */}
 	}
 snippet h_update_projects_alter
 	/**
-	 * Implements hook_update_projects_alter()
+	 * Implements hook_update_projects_alter().
 	 */
 	function `Filename()`_update_projects_alter(&$projects) {
 	  ${1:/* Your code here */}
 	}
 snippet h_update_status_alter
 	/**
-	 * Implements hook_update_status_alter()
+	 * Implements hook_update_status_alter().
 	 */
 	function `Filename()`_update_status_alter(&$projects) {
 	  ${1:/* Your code here */}
 	}
 snippet h_verify_update_archive
 	/**
-	 * Implements hook_verify_update_archive()
+	 * Implements hook_verify_update_archive().
 	 */
 	function `Filename()`_verify_update_archive($project, $archive_file, $directory) {
 	  if (!file_exists($directory)) {
@@ -1419,7 +1235,7 @@ snippet h_verify_update_archive
 	}
 snippet h_node_grants
 	/**
-	 * Implements hook_node_grants()
+	 * Implements hook_node_grants().
 	 */
 	function `Filename()`_node_grants($account, $op) {
 	  ${1:/* Your code here */}
@@ -1428,7 +1244,7 @@ snippet h_node_grants
 	}
 snippet h_node_access_records
 	/**
-	 * Implements hook_node_access_records()
+	 * Implements hook_node_access_records().
 	 */
 	function `Filename()`_node_access_records($node) {
 	    $grants[] = array(
@@ -1445,21 +1261,21 @@ snippet h_node_access_records
 	}
 snippet h_node_access_records_alter
 	/**
-	 * Implements hook_node_access_records_alter()
+	 * Implements hook_node_access_records_alter().
 	 */
 	function `Filename()`_node_access_records_alter(&$grants, $node) {
 	  ${1:/* Your code here */}
 	}
 snippet h_node_grants_alter
 	/**
-	 * Implements hook_node_grants_alter()
+	 * Implements hook_node_grants_alter().
 	 */
 	function `Filename()`_node_grants_alter(&$grants, $account, $op) {
 	   ${1:/* Your code here */}
 	}
 snippet h_node_operations
 	/**
-	 * Implements hook_node_operations()
+	 * Implements hook_node_operations().
 	 */
 	function `Filename()`_node_operations() {
 	  $operations = array(
@@ -1473,7 +1289,7 @@ snippet h_node_operations
 	}
 snippet h_node_delete
 	/**
-	 * Implements hook_node_delete()
+	 * Implements hook_node_delete().
 	 */
 	function `Filename()`_node_delete($node) {
 	  db_delete('${1}')
@@ -1482,7 +1298,7 @@ snippet h_node_delete
 	}
 snippet h_node_revision_delete
 	/**
-	 * Implements hook_node_revision_delete()
+	 * Implements hook_node_revision_delete().
 	 */
 	function `Filename()`_node_revision_delete($node) {
 	  db_delete('${1}')
@@ -1491,7 +1307,7 @@ snippet h_node_revision_delete
 	}
 snippet h_node_insert
 	/**
-	 * Implements hook_node_insert()
+	 * Implements hook_node_insert().
 	 */
 	function `Filename()`_node_insert($node) {
 	  db_insert('${1}')
@@ -1503,14 +1319,14 @@ snippet h_node_insert
 	}
 snippet h_node_load
 	/**
-	 * Implements hook_node_load()
+	 * Implements hook_node_load().
 	 */
 	function `Filename()`_node_load($nodes, $types) {
 	  ${1:/* Your code here */}
 	}
 snippet h_node_access
 	/**
-	 * Implements hook_node_access()
+	 * Implements hook_node_access().
 	 */
 	function `Filename()`_node_access($node, $op, $account) {
 	  $type = is_string($node) ? $node : $node->type;
@@ -1519,28 +1335,28 @@ snippet h_node_access
 	}
 snippet h_node_prepare
 	/**
-	 * Implements hook_node_prepare()
+	 * Implements hook_node_prepare().
 	 */
 	function `Filename()`_node_prepare($node) {
 	  ${1:/* Your code here */}
 	}
 snippet h_node_search_result
 	/**
-	 * Implements hook_node_search_result()
+	 * Implements hook_node_search_result().
 	 */
 	function `Filename()`_node_search_result($node) {
 	  ${1:/* Your code here */}
 	}
 snippet h_node_presave
 	/**
-	 * Implements hook_node_presave()
+	 * Implements hook_node_presave().
 	 */
 	function `Filename()`_node_presave($node) {
 	  ${1:/* Your code here */}
 	}
 snippet h_node_update
 	/**
-	 * Implements hook_node_update()
+	 * Implements hook_node_update().
 	 */
 	function `Filename()`_node_update($node) {
 	  db_update('${1}')
@@ -1550,41 +1366,41 @@ snippet h_node_update
 	}
 snippet h_node_update_index
 	/**
-	 * Implements hook_node_update_index()
+	 * Implements hook_node_update_index().
 	 */
 	function `Filename()`_node_update_index($node) {
 	  ${1:/* Your code here */}
 	}
 snippet h_node_validate
 	/**
-	 * Implements hook_node_validate()
+	 * Implements hook_node_validate().
 	 */
 	function `Filename()`_node_validate($node, $form, &$form_state) {
 	  ${1:/* Your code here */}
 	}
 snippet h_node_submit
 	/**
-	 * Implements hook_node_submit()
+	 * Implements hook_node_submit().
 	 */
 	function `Filename()`_node_submit($node, $form, &$form_state) {
 	  ${1:/* Your code here */}
 	}
 snippet h_node_view
 	/**
-	 * Implements hook_node_view()
+	 * Implements hook_node_view().
 	 */
 	function `Filename()`_node_view($node, $view_mode, $langcode) {
 	  ${1:/* Your code here */}
 	}
 snippet h_node_view_alter
 	/**
-	 * Implements hook_node_view_alter()
+	 * Implements hook_node_view_alter().
 	 */
 	function `Filename()`_node_view_alter(&$build) {
 	}
 snippet h_node_info
 	/**
-	 * Implements hook_node_info()
+	 * Implements hook_node_info().
 	 */
 	function `Filename()`_node_info() {
 	  return array(
@@ -1597,35 +1413,35 @@ snippet h_node_info
 	}
 snippet h_ranking
 	/**
-	 * Implements hook_ranking()
+	 * Implements hook_ranking().
 	 */
 	function `Filename()`_ranking() {
 	  ${1:/* Your code here */}
 	}
 snippet h_node_type_insert
 	/**
-	 * Implements hook_node_type_insert()
+	 * Implements hook_node_type_insert().
 	 */
 	function `Filename()`_node_type_insert($info) {
 	  ${1:/* Your code here */}
 	}
 snippet h_node_type_update
 	/**
-	 * Implements hook_node_type_update()
+	 * Implements hook_node_type_update().
 	 */
 	function `Filename()`_node_type_update($info) {
 	  ${1:/* Your code here */}
 	}
 snippet h_node_type_delete
 	/**
-	 * Implements hook_node_type_delete()
+	 * Implements hook_node_type_delete().
 	 */
 	function `Filename()`_node_type_delete($info) {
 	  ${1:/* Your code here */}
 	}
 snippet h_delete
 	/**
-	 * Implements hook_delete()
+	 * Implements hook_delete().
 	 */
 	function `Filename()`_delete($node) {
 	  db_delete('${1}')
@@ -1634,30 +1450,29 @@ snippet h_delete
 	}
 snippet h_prepare
 	/**
-	 * Implements hook_prepare()
+	 * Implements hook_prepare().
 	 */
 	function `Filename()`_prepare($node) {
 	  ${1:/* Your code here */}
 	}
 snippet h_form
 	/**
-	 * Implements hook_form()
+	 * Implements hook_form().
 	 */
 	function `Filename()`_form($node, &$form_state) {
 	  $type = node_type_get_type($node);
 	
-	  $form['${1}'] = array(
-	    '#type' => '${2}',
-	    '#title' => t('${3}'),
-	    '#default_value' => $node->${4},
-	    '#${5}' => ${6},
+	  $form['${1}']${2} = array(
+	    '#type' => '${3}',
+	    '#title' => t('${4}'),
+	    '#default_value' => ${5},${6}
 	  );
 	
 	  return $form;
 	}
 snippet h_insert
 	/**
-	 * Implements hook_insert()
+	 * Implements hook_insert().
 	 */
 	function `Filename()`_insert($node) {
 	  db_insert('${1}')
@@ -1669,14 +1484,14 @@ snippet h_insert
 	}
 snippet h_load
 	/**
-	 * Implements hook_load()
+	 * Implements hook_load().
 	 */
 	function `Filename()`_load($nodes) {
 	  ${1:/* Your code here */}
 	}
 snippet h_update
 	/**
-	 * Implements hook_update()
+	 * Implements hook_update().
 	 */
 	function `Filename()`_update($node) {
 	  db_update('${1}')
@@ -1686,14 +1501,14 @@ snippet h_update
 	}
 snippet h_validate
 	/**
-	 * Implements hook_validate()
+	 * Implements hook_validate().
 	 */
 	function `Filename()`_validate($node, $form, &$form_state) {
 	  ${1:/* Your code here */}
 	}
 snippet h_view
 	/**
-	 * Implements hook_view()
+	 * Implements hook_view().
 	 */
 	function `Filename()`_view($node, $view_mode) {
 	  ${1:/* Your code here */}
@@ -1702,7 +1517,7 @@ snippet h_view
 	}
 snippet h_block_info
 	/**
-	 * Implements hook_block_info()
+	 * Implements hook_block_info().
 	 */
 	function `Filename()`_block_info() {
 	  $blocks['${1}'] = array(
@@ -1714,37 +1529,36 @@ snippet h_block_info
 	}
 snippet h_block_info_alter
 	/**
-	 * Implements hook_block_info_alter()
+	 * Implements hook_block_info_alter().
 	 */
 	function `Filename()`_block_info_alter(&$blocks, $theme, $code_blocks) {
 	  ${1:/* Your code here */}
 	}
 snippet h_block_configure
 	/**
-	 * Implements hook_block_configure()
+	 * Implements hook_block_configure().
 	 */
 	function `Filename()`_block_configure($delta = '') {
 	  $form = array();
 	  if ($delta == '${1}') {
-	    $form['${2}'] = array(
-	      '#type' => '${3}',
-	      '#title' => t('${4}'),
-	      '#default_value' => variable_get('${5}', ${6}),
-	      '#${7}' => ${8},
+	    $form['${2}']${3} = array(
+	      '#type' => '${4}',
+	      '#title' => t('${5}'),
+	      '#default_value' => variable_get('${6}', ${7}),${8}
 	    );
 	  }
 	  return $form;
 	}
-snippet h_block_save($delta = '', $edit = array
+snippet h_block_save
 	/**
-	 * Implements hook_block_save($delta = '', $edit = array()
+	 * Implements hook_block_save($delta = '', $edit = array().
 	 */
 	function `Filename()`_block_save($delta = '', $edit = array()) {
 	  ${1:/* Your code here */}
 	}
 snippet h_block_view
 	/**
-	 * Implements hook_block_view()
+	 * Implements hook_block_view().
 	 */
 	function `Filename()`_block_view($delta = '') {
 	  $block = array();
@@ -1760,28 +1574,28 @@ snippet h_block_view
 	}
 snippet h_block_view_alter
 	/**
-	 * Implements hook_block_view_alter()
+	 * Implements hook_block_view_alter().
 	 */
 	function `Filename()`_block_view_alter(&$data, $block) {
 	  ${1:/* Your code here */}
 	}
 snippet h_block_list_alter
 	/**
-	 * Implements hook_block_list_alter()
+	 * Implements hook_block_list_alter().
 	 */
 	function `Filename()`_block_list_alter(&$blocks) {
 	  ${1:/* Your code here */}
 	}
 snippet h_user_load
 	/**
-	 * Implements hook_user_load()
+	 * Implements hook_user_load().
 	 */
 	function `Filename()`_user_load($users) {
 	  ${1:/* Your code here */}
 	}
 snippet h_user_delete
 	/**
-	 * Implements hook_user_delete()
+	 * Implements hook_user_delete().
 	 */
 	function `Filename()`_user_delete($account) {
 	  db_delete('${1}')
@@ -1790,7 +1604,7 @@ snippet h_user_delete
 	}
 snippet h_user_cancel
 	/**
-	 * Implements hook_user_cancel()
+	 * Implements hook_user_cancel().
 	 */
 	function `Filename()`_user_cancel($edit, $account, $method) {
 	  switch ($method) {
@@ -1801,14 +1615,14 @@ snippet h_user_cancel
 	}
 snippet h_user_cancel_methods_alter
 	/**
-	 * Implements hook_user_cancel_methods_alter()
+	 * Implements hook_user_cancel_methods_alter().
 	 */
 	function `Filename()`_user_cancel_methods_alter(&$methods) {
 	   $methods['${1}']${2}
 	}
 snippet h_user_operations
 	/**
-	 * Implements hook_user_operations()
+	 * Implements hook_user_operations().
 	 */
 	function `Filename()`_user_operations() {
 	  $operations = array(
@@ -1821,7 +1635,7 @@ snippet h_user_operations
 	}
 snippet h_user_categories
 	/**
-	 * Implements hook_user_categories()
+	 * Implements hook_user_categories().
 	 */
 	function `Filename()`_user_categories() {
 	  return array(array(
@@ -1832,14 +1646,14 @@ snippet h_user_categories
 	}
 snippet h_user_presave
 	/**
-	 * Implements hook_user_presave()
+	 * Implements hook_user_presave().
 	 */
 	function `Filename()`_user_presave(&$edit, $account, $category) {
 	  ${1:/* your code here */}
 	}
 snippet h_user_insert
 	/**
-	 * Implements hook_user_insert()
+	 * Implements hook_user_insert().
 	 */
 	function `Filename()`_user_insert(&$edit, $account, $category) {
 	  db_insert('${1}')
@@ -1851,7 +1665,7 @@ snippet h_user_insert
 	}
 snippet h_user_update
 	/**
-	 * Implements hook_user_update()
+	 * Implements hook_user_update().
 	 */
 	function `Filename()`_user_update(&$edit, $account, $category) {
 	  db_insert('${1}')
@@ -1863,14 +1677,14 @@ snippet h_user_update
 	}
 snippet h_user_login
 	/**
-	 * Implements hook_user_login()
+	 * Implements hook_user_login().
 	 */
 	function `Filename()`_user_login(&$edit, $account) {
 	  ${1:/* Your code here */}
 	}
 snippet h_user_logout
 	/**
-	 * Implements hook_user_logout()
+	 * Implements hook_user_logout().
 	 */
 	function `Filename()`_user_logout($account) {
 	  db_insert('${1}')
@@ -1882,21 +1696,21 @@ snippet h_user_logout
 	}
 snippet h_user_view
 	/**
-	 * Implements hook_user_view()
+	 * Implements hook_user_view().
 	 */
 	function `Filename()`_user_view($account, $view_mode, $langcode) {
 	  ${1:/* Your code here */}
 	}
 snippet h_user_view_alter
 	/**
-	 * Implements hook_user_view_alter()
+	 * Implements hook_user_view_alter().
 	 */
 	function `Filename()`_user_view_alter(&$build) {
 	  ${1:/* Your code here */}
 	}
 snippet h_user_role_insert
 	/**
-	 * Implements hook_user_role_insert()
+	 * Implements hook_user_role_insert().
 	 */
 	function `Filename()`_user_role_insert($role) {
 	  db_insert('${1}')
@@ -1908,7 +1722,7 @@ snippet h_user_role_insert
 	}
 snippet h_user_role_update
 	/**
-	 * Implements hook_user_role_update()
+	 * Implements hook_user_role_update().
 	 */
 	function `Filename()`_user_role_update($role) {
 	  db_merge('${1}')
@@ -1920,7 +1734,7 @@ snippet h_user_role_update
 	}
 snippet h_user_role_delete
 	/**
-	 * Implements hook_user_role_delete()
+	 * Implements hook_user_role_delete().
 	 */
 	function `Filename()`_user_role_delete($role) {
 	  db_delete('${1}')
@@ -1929,7 +1743,7 @@ snippet h_user_role_delete
 	}
 snippet h_taxonomy_vocabulary_load
 	/**
-	 * Implements hook_taxonomy_vocabulary_load()
+	 * Implements hook_taxonomy_vocabulary_load().
 	 */
 	function `Filename()`_taxonomy_vocabulary_load($vocabularies) {
 	  foreach ($vocabularies as $vocabulary) {
@@ -1938,70 +1752,70 @@ snippet h_taxonomy_vocabulary_load
 	}
 snippet h_taxonomy_vocabulary_presave
 	/**
-	 * Implements hook_taxonomy_vocabulary_presave()
+	 * Implements hook_taxonomy_vocabulary_presave().
 	 */
 	function `Filename()`_taxonomy_vocabulary_presave($vocabulary) {
 	  ${1:/* Your code here */}
 	}
 snippet h_taxonomy_vocabulary_insert
 	/**
-	 * Implements hook_taxonomy_vocabulary_insert()
+	 * Implements hook_taxonomy_vocabulary_insert().
 	 */
 	function `Filename()`_taxonomy_vocabulary_insert($vocabulary) {
 	  ${1:/* Your code here */}
 	}
 snippet h_taxonomy_vocabulary_update
 	/**
-	 * Implements hook_taxonomy_vocabulary_update()
+	 * Implements hook_taxonomy_vocabulary_update().
 	 */
 	function `Filename()`_taxonomy_vocabulary_update($vocabulary) {
 	  ${1:/* Your code here */}
 	}
 snippet h_taxonomy_vocabulary_delete
 	/**
-	 * Implements hook_taxonomy_vocabulary_delete()
+	 * Implements hook_taxonomy_vocabulary_delete().
 	 */
 	function `Filename()`_taxonomy_vocabulary_delete($vocabulary) {
 	  ${1:/* Your code here */}
 	}
 snippet h_taxonomy_term_load
 	/**
-	 * Implements hook_taxonomy_term_load()
+	 * Implements hook_taxonomy_term_load().
 	 */
 	function `Filename()`_taxonomy_term_load($terms) {
 	  ${1:/* Your code here */}
 	}
 snippet h_taxonomy_term_presave
 	/**
-	 * Implements hook_taxonomy_term_presave()
+	 * Implements hook_taxonomy_term_presave().
 	 */
 	function `Filename()`_taxonomy_term_presave($term) {
 	  ${1:/* Your code here */}
 	}
 snippet h_taxonomy_term_insert
 	/**
-	 * Implements hook_taxonomy_term_insert()
+	 * Implements hook_taxonomy_term_insert().
 	 */
 	function `Filename()`_taxonomy_term_insert($term) {
 	  ${1:/* Your code here */}
 	}
 snippet h_taxonomy_term_update
 	/**
-	 * Implements hook_taxonomy_term_update()
+	 * Implements hook_taxonomy_term_update().
 	 */
 	function `Filename()`_taxonomy_term_update($term) {
 	  ${1:/* Your code here */}
 	}
 snippet h_taxonomy_term_delete
 	/**
-	 * Implements hook_taxonomy_term_delete()
+	 * Implements hook_taxonomy_term_delete().
 	 */
 	function `Filename()`_taxonomy_term_delete($term) {
 	  ${1:/* Your code here */}
 	}
 snippet h_openid
 	/**
-	 * Implements hook_openid()
+	 * Implements hook_openid().
 	 */
 	function `Filename()`_openid($op, $request) {
 	  ${1:/* Your code here */}
@@ -2010,14 +1824,14 @@ snippet h_openid
 	}
 snippet h_openid_response
 	/**
-	 * Implements hook_openid_response()
+	 * Implements hook_openid_response().
 	 */
 	function `Filename()`_openid_response($response, $account) {
 	  ${1:/* Your code here */}
 	}
 snippet h_openid_discovery_method_info
 	/**
-	 * Implements hook_openid_discovery_method_info()
+	 * Implements hook_openid_discovery_method_info().
 	 */
 	function `Filename()`_openid_discovery_method_info() {
 	  return array(
@@ -2026,14 +1840,14 @@ snippet h_openid_discovery_method_info
 	}
 snippet h_openid_discovery_method_info_alter
 	/**
-	 * Implements hook_openid_discovery_method_info_alter()
+	 * Implements hook_openid_discovery_method_info_alter().
 	 */
 	function `Filename()`_openid_discovery_method_info_alter(&$methods) {
 	  ${1:/* Your code here */}
 	}
 snippet h_openid_normalization_method_info
 	/**
-	 * Implements hook_openid_normalization_method_info()
+	 * Implements hook_openid_normalization_method_info().
 	 */
 	function `Filename()`_openid_normalization_method_info() {
 	  return array(
@@ -2042,14 +1856,14 @@ snippet h_openid_normalization_method_info
 	}
 snippet h_openid_normalization_method_info_alter
 	/**
-	 * Implements hook_openid_normalization_method_info_alter()
+	 * Implements hook_openid_normalization_method_info_alter().
 	 */
 	function `Filename()`_openid_normalization_method_info_alter(&$methods) {
 	  ${1:/* Your code here */}
 	}
 snippet h_filter_info
 	/**
-	 * Implements hook_filter_info()
+	 * Implements hook_filter_info().
 	 */
 	function `Filename()`_filter_info() {
 	  $filters['${1}'] = array(
@@ -2068,35 +1882,35 @@ snippet h_filter_info
 	}
 snippet h_filter_info_alter
 	/**
-	 * Implements hook_filter_info_alter()
+	 * Implements hook_filter_info_alter().
 	 */
 	function `Filename()`_filter_info_alter(&$info) {
 	  ${1:/* Your code here */}
 	}
 snippet h_filter_format_insert
 	/**
-	 * Implements hook_filter_format_insert()
+	 * Implements hook_filter_format_insert().
 	 */
 	function `Filename()`_filter_format_insert($format) {
 	  ${1:/* Your code here */}
 	}
 snippet h_filter_format_update
 	/**
-	 * Implements hook_filter_format_update()
+	 * Implements hook_filter_format_update().
 	 */
 	function `Filename()`_filter_format_update($format) {
 	  ${1:/* Your code here */}
 	}
 snippet h_filter_format_disable
 	/**
-	 * Implements hook_filter_format_disable()
+	 * Implements hook_filter_format_disable().
 	 */
 	function `Filename()`_filter_format_disable($format) {
 	  ${1:/* Your code here */}
 	}
 snippet h_rdf_mapping
 	/**
-	 * Implements hook_rdf_mapping()
+	 * Implements hook_rdf_mapping().
 	 */
 	function `Filename()`_rdf_mapping() {
 	  return array(
@@ -2129,7 +1943,7 @@ snippet h_rdf_mapping
 	}
 snippet h_rdf_namespaces
 	/**
-	 * Implements hook_rdf_namespaces()
+	 * Implements hook_rdf_namespaces().
 	 */
 	function `Filename()`_rdf_namespaces() {
 	  return array(
@@ -2138,59 +1952,56 @@ snippet h_rdf_namespaces
 	}
 snippet h_field_settings_form
 	/**
-	 * Implements hook_field_settings_form()
+	 * Implements hook_field_settings_form().
 	 */
 	function `Filename()`_field_settings_form($field, $instance, $has_data) {
 	  $settings = $field['settings'];
-	  $form['${1}'] = array(
-	    '#type' => '${2}',
-	    '#title' => t('${3}'),
-	    '#default_value' => $settings['${4}'],
-	    '#required' => ${5},
-	    '#element_validate' => array('${6}'),
-	    '#description' => t('${7}'),
-	    '#${8}' => ${9}
+	  $form['${1}']${2} = array(
+	    '#type' => '${3}',
+	    '#title' => t('${4}'),
+	    '#default_value' => $settings['${5}'],
+	    '#required' => ${6},
+	    '#element_validate' => array('${7}'),
+	    '#description' => t('${8}'),${9}
 	  );
 	  return $form;
 	}
 snippet h_field_instance_settings_form
 	/**
-	 * Implements hook_field_instance_settings_form()
+	 * Implements hook_field_instance_settings_form().
 	 */
 	function `Filename()`_field_instance_settings_form($field, $instance) {
 	  $settings = $instance['settings'];
-	  $form['${1}'] = array(
-	    '#type' => '${2}',
-	    '#title' => t('${3}'),
-	    '#default_value' => $settings['${4}'],
-	    '#required' => ${5},
-	    '#element_validate' => array('${6}'),
-	    '#description' => t('${7}'),
-	    '#${8}' => ${9}
+	  $form['${1}']${2} = array(
+	    '#type' => '${3}',
+	    '#title' => t('${4}'),
+	    '#default_value' => $settings['${5}'],
+	    '#required' => ${6},
+	    '#element_validate' => array('${7}'),
+	    '#description' => t('${8}'),${9}
 	  );
 	  return $form;
 	}
 snippet h_field_widget_settings_form
 	/**
-	 * Implements hook_field_widget_settings_form()
+	 * Implements hook_field_widget_settings_form().
 	 */
 	function `Filename()`_field_widget_settings_form($field, $instance) {
 	  $widget = $instance['widget'];
 	  $settings = $widget['settings'];
-	  $form['${1}'] = array(
-	    '#type' => '${2}',
-	    '#title' => t('${3}'),
-	    '#default_value' => $settings['${4}'],
-	    '#required' => ${5},
-	    '#element_validate' => array('${6}'),
-	    '#description' => t('${7}'),
-	    '#${8}' => ${9}
+	  $form['${1}']${2} = array(
+	    '#type' => '${3}',
+	    '#title' => t('${4}'),
+	    '#default_value' => $settings['${5}'],
+	    '#required' => ${6},
+	    '#element_validate' => array('${7}'),
+	    '#description' => t('${8}'),${9}
 	  );
 	  return $form;
 	}
 snippet h_field_formatter_settings_form
 	/**
-	 * Implements hook_field_formatter_settings_form()
+	 * Implements hook_field_formatter_settings_form().
 	 */
 	function `Filename()`_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
 	  $display = $instance['display'][$view_mode];
@@ -2210,7 +2021,7 @@ snippet h_field_formatter_settings_form
 	}
 snippet h_field_formatter_settings_summary
 	/**
-	 * Implements hook_field_formatter_settings_summary()
+	 * Implements hook_field_formatter_settings_summary().
 	 */
 	function `Filename()`_field_formatter_settings_summary($field, $instance, $view_mode) {
 	  ${1:/* Your code here */}
@@ -2219,7 +2030,7 @@ snippet h_field_formatter_settings_summary
 	}
 snippet h_field_extra_fields
 	/**
-	 * Implements hook_field_extra_fields()
+	 * Implements hook_field_extra_fields().
 	 */
 	function `Filename()`_field_extra_fields() {
 	  $extra['${1}']['${2}'] = array(
@@ -2243,14 +2054,14 @@ snippet h_field_extra_fields
 	}
 snippet h_field_extra_fields_alter
 	/**
-	 * Implements hook_field_extra_fields_alter()
+	 * Implements hook_field_extra_fields_alter().
 	 */
 	function `Filename()`_field_extra_fields_alter(&$info) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_info
 	/**
-	 * Implements hook_field_info()
+	 * Implements hook_field_info().
 	 */
 	function `Filename()`_field_info() {
 	  return array(
@@ -2266,14 +2077,14 @@ snippet h_field_info
 	}
 snippet h_field_info_alter
 	/**
-	 * Implements hook_field_info_alter()
+	 * Implements hook_field_info_alter().
 	 */
 	function `Filename()`_field_info_alter(&$info) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_schema
 	/**
-	 * Implements hook_field_schema()
+	 * Implements hook_field_schema().
 	 */
 	function `Filename()`_field_schema($field) {
 	  $columns = array(
@@ -2301,21 +2112,21 @@ snippet h_field_schema
 	}
 snippet h_field_load
 	/**
-	 * Implements hook_field_load()
+	 * Implements hook_field_load().
 	 */
 	function `Filename()`_field_load($entity_type, $entities, $field, $instances, $langcode, &$items, $age) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_prepare_view
 	/**
-	 * Implements hook_field_prepare_view()
+	 * Implements hook_field_prepare_view().
 	 */
 	function `Filename()`_field_prepare_view($entity_type, $entities, $field, $instances, $langcode, &$items) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_validate
 	/**
-	 * Implements hook_field_validate()
+	 * Implements hook_field_validate().
 	 */
 	function `Filename()`_field_validate($entity_type, $entity, $field, $instance, $langcode, $items, &$errors) {
 	  foreach ($items as $delta => $item) {
@@ -2326,7 +2137,7 @@ snippet h_field_validate
 	}
 snippet h_field_presave
 	/**
-	 * Implements hook_field_presave()
+	 * Implements hook_field_presave().
 	 */
 	function `Filename()`_field_presave($entity_type, $entity, $field, $instance, $langcode, &$items) {
 	  if ($field['type'] == '${1}') {
@@ -2337,21 +2148,21 @@ snippet h_field_presave
 	}
 snippet h_field_insert
 	/**
-	 * Implements hook_field_insert()
+	 * Implements hook_field_insert().
 	 */
 	function `Filename()`_field_insert($entity_type, $entity, $field, $instance, $langcode, &$items) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_update
 	/**
-	 * Implements hook_field_update()
+	 * Implements hook_field_update().
 	 */
 	function `Filename()`_field_update($entity_type, $entity, $field, $instance, $langcode, &$items) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_storage_update_field
 	/**
-	 * Implements hook_field_storage_update_field()
+	 * Implements hook_field_storage_update_field().
 	 */
 	function `Filename()`_field_storage_update_field($field, $prior_field, $has_data) {
 	  if (!$has_data) {
@@ -2364,7 +2175,7 @@ snippet h_field_storage_update_field
 	}
 snippet h_field_delete
 	/**
-	 * Implements hook_field_delete()
+	 * Implements hook_field_delete().
 	 */
 	function `Filename()`_field_delete($entity_type, $entity, $field, $instance, $langcode, &$items) {
 	  list($id, $vid, $bundle) = entity_extract_ids($entity_type, $entity);
@@ -2374,7 +2185,7 @@ snippet h_field_delete
 	}
 snippet h_field_delete_revision
 	/**
-	 * Implements hook_field_delete_revision()
+	 * Implements hook_field_delete_revision().
 	 */
 	function `Filename()`_field_delete_revision($entity_type, $entity, $field, $instance, $langcode, &$items) {
 	  foreach ($items as $delta => $item) {
@@ -2383,21 +2194,21 @@ snippet h_field_delete_revision
 	}
 snippet h_field_prepare_translation
 	/**
-	 * Implements hook_field_prepare_translation()
+	 * Implements hook_field_prepare_translation().
 	 */
 	function `Filename()`_field_prepare_translation($entity_type, $entity, $field, $instance, $langcode, &$items, $source_entity, $source_langcode) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_is_empty
 	/**
-	 * Implements hook_field_is_empty()
+	 * Implements hook_field_is_empty().
 	 */
 	function `Filename()`_field_is_empty($item, $field) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_widget_info
 	/**
-	 * Implements hook_field_widget_info()
+	 * Implements hook_field_widget_info().
 	 */
 	function `Filename()`_field_widget_info() {
 	    return array(
@@ -2414,14 +2225,14 @@ snippet h_field_widget_info
 	}
 snippet h_field_widget_info_alter
 	/**
-	 * Implements hook_field_widget_info_alter()
+	 * Implements hook_field_widget_info_alter().
 	 */
 	function `Filename()`_field_widget_info_alter(&$info) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_widget_form
 	/**
-	 * Implements hook_field_widget_form()
+	 * Implements hook_field_widget_form().
 	 */
 	function `Filename()`_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
 	  $element += array(
@@ -2432,14 +2243,14 @@ snippet h_field_widget_form
 	}
 snippet h_field_widget_error
 	/**
-	 * Implements hook_field_widget_error()
+	 * Implements hook_field_widget_error().
 	 */
 	function `Filename()`_field_widget_error($element, $error, $form, &$form_state) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_formatter_info
 	/**
-	 * Implements hook_field_formatter_info()
+	 * Implements hook_field_formatter_info().
 	 */
 	function `Filename()`_field_formatter_info() {
 	  return array(
@@ -2451,21 +2262,21 @@ snippet h_field_formatter_info
 	}
 snippet h_field_formatter_info_alter
 	/**
-	 * Implements hook_field_formatter_info_alter()
+	 * Implements hook_field_formatter_info_alter().
 	 */
 	function `Filename()`_field_formatter_info_alter(&$info) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_formatter_prepare_view
 	/**
-	 * Implements hook_field_formatter_prepare_view()
+	 * Implements hook_field_formatter_prepare_view().
 	 */
 	function `Filename()`_field_formatter_prepare_view($entity_type, $entities, $field, $instances, $langcode, &$items, $displays) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_formatter_view
 	/**
-	 * Implements hook_field_formatter_view()
+	 * Implements hook_field_formatter_view().
 	 */
 	function `Filename()`_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
 	  $element = array();
@@ -2488,133 +2299,133 @@ snippet h_field_formatter_view
 	}
 snippet h_field_attach_form
 	/**
-	 * Implements hook_field_attach_form()
+	 * Implements hook_field_attach_form().
 	 */
 	function `Filename()`_field_attach_form($entity_type, $entity, &$form, &$form_state, $langcode) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_attach_load
 	/**
-	 * Implements hook_field_attach_load()
+	 * Implements hook_field_attach_load().
 	 */
 	function `Filename()`_field_attach_load($entity_type, &$entities, $age, $options) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_attach_validate
 	/**
-	 * Implements hook_field_attach_validate()
+	 * Implements hook_field_attach_validate().
 	 */
 	function `Filename()`_field_attach_validate($entity_type, $entity, &$errors) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_attach_submit
 	/**
-	 * Implements hook_field_attach_submit()
+	 * Implements hook_field_attach_submit().
 	 */
 	function `Filename()`_field_attach_submit($entity_type, $entity, $form, &$form_state) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_attach_presave
 	/**
-	 * Implements hook_field_attach_presave()
+	 * Implements hook_field_attach_presave().
 	 */
 	function `Filename()`_field_attach_presave($entity_type, $entity) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_attach_insert
 	/**
-	 * Implements hook_field_attach_insert()
+	 * Implements hook_field_attach_insert().
 	 */
 	function `Filename()`_field_attach_insert($entity_type, $entity) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_attach_update
 	/**
-	 * Implements hook_field_attach_update()
+	 * Implements hook_field_attach_update().
 	 */
 	function `Filename()`_field_attach_update($entity_type, $entity) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_attach_preprocess_alter
 	/**
-	 * Implements hook_field_attach_preprocess_alter()
+	 * Implements hook_field_attach_preprocess_alter().
 	 */
 	function `Filename()`_field_attach_preprocess_alter(&$variables, $context) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_attach_delete
 	/**
-	 * Implements hook_field_attach_delete()
+	 * Implements hook_field_attach_delete().
 	 */
 	function `Filename()`_field_attach_delete($entity_type, $entity) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_attach_delete_revision
 	/**
-	 * Implements hook_field_attach_delete_revision()
+	 * Implements hook_field_attach_delete_revision().
 	 */
 	function `Filename()`_field_attach_delete_revision($entity_type, $entity) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_attach_purge
 	/**
-	 * Implements hook_field_attach_purge()
+	 * Implements hook_field_attach_purge().
 	 */
 	function `Filename()`_field_attach_purge($entity_type, $entity, $field, $instance) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_attach_view_alter
 	/**
-	 * Implements hook_field_attach_view_alter()
+	 * Implements hook_field_attach_view_alter().
 	 */
 	function `Filename()`_field_attach_view_alter(&$output, $context) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_attach_prepare_translation_alter
 	/**
-	 * Implements hook_field_attach_prepare_translation_alter()
+	 * Implements hook_field_attach_prepare_translation_alter().
 	 */
 	function `Filename()`_field_attach_prepare_translation_alter(&$entity, $context) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_language_alter
 	/**
-	 * Implements hook_field_language_alter()
+	 * Implements hook_field_language_alter().
 	 */
 	function `Filename()`_field_language_alter(&$display_language, $context) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_available_languages_alter
 	/**
-	 * Implements hook_field_available_languages_alter()
+	 * Implements hook_field_available_languages_alter().
 	 */
 	function `Filename()`_field_available_languages_alter(&$languages, $context) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_attach_create_bundle
 	/**
-	 * Implements hook_field_attach_create_bundle()
+	 * Implements hook_field_attach_create_bundle().
 	 */
 	function `Filename()`_field_attach_create_bundle($entity_type, $bundle) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_attach_rename_bundle
 	/**
-	 * Implements hook_field_attach_rename_bundle()
+	 * Implements hook_field_attach_rename_bundle().
 	 */
 	function `Filename()`_field_attach_rename_bundle($entity_type, $bundle_old, $bundle_new) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_attach_delete_bundle
 	/**
-	 * Implements hook_field_attach_delete_bundle()
+	 * Implements hook_field_attach_delete_bundle().
 	 */
 	function `Filename()`_field_attach_delete_bundle($entity_type, $bundle, $instances) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_storage_info
 	/**
-	 * Implements hook_field_storage_info()
+	 * Implements hook_field_storage_info().
 	 */
 	function `Filename()`_field_storage_info() {
 	  return array(
@@ -2627,14 +2438,14 @@ snippet h_field_storage_info
 	}
 snippet h_field_storage_info_alter
 	/**
-	 * Implements hook_field_storage_info_alter()
+	 * Implements hook_field_storage_info_alter().
 	 */
 	function `Filename()`_field_storage_info_alter(&$info) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_storage_details
 	/**
-	 * Implements hook_field_storage_details()
+	 * Implements hook_field_storage_details().
 	 */
 	function `Filename()`_field_storage_details($field) {
 	  $details = array();
@@ -2642,21 +2453,21 @@ snippet h_field_storage_details
 	}
 snippet h_field_storage_details_alter
 	/**
-	 * Implements hook_field_storage_details_alter()
+	 * Implements hook_field_storage_details_alter().
 	 */
 	function `Filename()`_field_storage_details_alter(&$details, $field) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_storage_load
 	/**
-	 * Implements hook_field_storage_load()
+	 * Implements hook_field_storage_load().
 	 */
 	function `Filename()`_field_storage_load($entity_type, &$entities, $age, $fields, $options) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_storage_write
 	/**
-	 * Implements hook_field_storage_write()
+	 * Implements hook_field_storage_write().
 	 */
 	function `Filename()`_field_storage_write($entity_type, $entity, $op, $fields) {
 	  list($id, $vid, $bundle) = entity_extract_ids($entity_type, $entity);
@@ -2668,7 +2479,7 @@ snippet h_field_storage_write
 	}
 snippet h_field_storage_delete
 	/**
-	 * Implements hook_field_storage_delete()
+	 * Implements hook_field_storage_delete().
 	 */
 	function `Filename()`_field_storage_delete($entity_type, $entity, $fields) {
 	  list($id, $vid, $bundle) = entity_extract_ids($entity_type, $entity);
@@ -2680,7 +2491,7 @@ snippet h_field_storage_delete
 	}
 snippet h_field_storage_delete_revision
 	/**
-	 * Implements hook_field_storage_delete_revision()
+	 * Implements hook_field_storage_delete_revision().
 	 */
 	function `Filename()`_field_storage_delete_revision($entity_type, $entity, $fields) {
 	  list($id, $vid, $bundle) = entity_extract_ids($entity_type, $entity);
@@ -2694,56 +2505,56 @@ snippet h_field_storage_delete_revision
 	}
 snippet h_field_storage_query
 	/**
-	 * Implements hook_field_storage_query()
+	 * Implements hook_field_storage_query().
 	 */
 	function `Filename()`_field_storage_query($query) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_storage_create_field
 	/**
-	 * Implements hook_field_storage_create_field()
+	 * Implements hook_field_storage_create_field().
 	 */
 	function `Filename()`_field_storage_create_field($field) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_storage_delete_field
 	/**
-	 * Implements hook_field_storage_delete_field()
+	 * Implements hook_field_storage_delete_field().
 	 */
 	function `Filename()`_field_storage_delete_field($field) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_storage_delete_instance
 	/**
-	 * Implements hook_field_storage_delete_instance()
+	 * Implements hook_field_storage_delete_instance().
 	 */
 	function `Filename()`_field_storage_delete_instance($instance) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_storage_pre_load
 	/**
-	 * Implements hook_field_storage_pre_load()
+	 * Implements hook_field_storage_pre_load().
 	 */
 	function `Filename()`_field_storage_pre_load($entity_type, $entities, $age, &$skip_fields, $options) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_storage_pre_insert
 	/**
-	 * Implements hook_field_storage_pre_insert()
+	 * Implements hook_field_storage_pre_insert().
 	 */
 	function `Filename()`_field_storage_pre_insert($entity_type, $entity, &$skip_fields) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_storage_pre_update
 	/**
-	 * Implements hook_field_storage_pre_update()
+	 * Implements hook_field_storage_pre_update().
 	 */
 	function `Filename()`_field_storage_pre_update($entity_type, $entity, &$skip_fields) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_info_max_weight
 	/**
-	 * Implements hook_field_info_max_weight()
+	 * Implements hook_field_info_max_weight().
 	 */
 	function `Filename()`_field_info_max_weight($entity_type, $bundle, $context) {
 	  $weights = array();
@@ -2753,91 +2564,91 @@ snippet h_field_info_max_weight
 	}
 snippet h_field_display_alter
 	/**
-	 * Implements hook_field_display_alter()
+	 * Implements hook_field_display_alter().
 	 */
 	function `Filename()`_field_display_alter(&$display, $context) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_display_ENTITY_TYPE_alter
 	/**
-	 * Implements hook_field_display_ENTITY_TYPE_alter()
+	 * Implements hook_field_display_ENTITY_TYPE_alter().
 	 */
 	function `Filename()`_field_display_ENTITY_TYPE_alter(&$display, $context) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_extra_fields_display_alter
 	/**
-	 * Implements hook_field_extra_fields_display_alter()
+	 * Implements hook_field_extra_fields_display_alter().
 	 */
 	function `Filename()`_field_extra_fields_display_alter(&$displays, $context) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_create_field
 	/**
-	 * Implements hook_field_create_field()
+	 * Implements hook_field_create_field().
 	 */
 	function `Filename()`_field_create_field($field) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_create_instance
 	/**
-	 * Implements hook_field_create_instance()
+	 * Implements hook_field_create_instance().
 	 */
 	function `Filename()`_field_create_instance($instance) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_update_forbid
 	/**
-	 * Implements hook_field_update_forbid()
+	 * Implements hook_field_update_forbid().
 	 */
 	function `Filename()`_field_update_forbid($field, $prior_field, $has_data) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_update_field
 	/**
-	 * Implements hook_field_update_field()
+	 * Implements hook_field_update_field().
 	 */
 	function `Filename()`_field_update_field($field, $prior_field, $has_data) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_delete_field
 	/**
-	 * Implements hook_field_delete_field()
+	 * Implements hook_field_delete_field().
 	 */
 	function `Filename()`_field_delete_field($field) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_update_instance
 	/**
-	 * Implements hook_field_update_instance()
+	 * Implements hook_field_update_instance().
 	 */
 	function `Filename()`_field_update_instance($instance, $prior_instance) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_delete_instance
 	/**
-	 * Implements hook_field_delete_instance()
+	 * Implements hook_field_delete_instance().
 	 */
 	function `Filename()`_field_delete_instance($instance) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_read_field
 	/**
-	 * Implements hook_field_read_field()
+	 * Implements hook_field_read_field().
 	 */
 	function `Filename()`_field_read_field(&$field) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_read_instance
 	/**
-	 * Implements hook_field_read_instance()
+	 * Implements hook_field_read_instance().
 	 */
 	function `Filename()`_field_read_instance($instance) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_purge_field
 	/**
-	 * Implements hook_field_purge_field()
+	 * Implements hook_field_purge_field().
 	 */
 	function `Filename()`_field_purge_field($field) {
 	  db_delete('${1}')
@@ -2846,7 +2657,7 @@ snippet h_field_purge_field
 	}
 snippet h_field_purge_field_instance
 	/**
-	 * Implements hook_field_purge_field_instance()
+	 * Implements hook_field_purge_field_instance().
 	 */
 	function `Filename()`_field_purge_field_instance($instance) {
 	  db_delete('${1}')
@@ -2855,14 +2666,14 @@ snippet h_field_purge_field_instance
 	}
 snippet h_field_storage_purge_field
 	/**
-	 * Implements hook_field_storage_purge_field()
+	 * Implements hook_field_storage_purge_field().
 	 */
 	function `Filename()`_field_storage_purge_field($field) {
 	  ${1:/* Your code here */}
 	}
 snippet h_field_storage_purge_field_instance
 	/**
-	 * Implements hook_field_storage_purge_field_instance()
+	 * Implements hook_field_storage_purge_field_instance().
 	 */
 	function `Filename()`_field_storage_purge_field_instance($instance) {
 	  db_delete('${1}')
@@ -2871,7 +2682,7 @@ snippet h_field_storage_purge_field_instance
 	}
 snippet h_field_storage_purge
 	/**
-	 * Implements hook_field_storage_purge()
+	 * Implements hook_field_storage_purge().
 	 */
 	function `Filename()`_field_storage_purge($entity_type, $entity, $field, $instance) {
 	  list($id, $vid, $bundle) = entity_extract_ids($entity_type, $entity);
@@ -2879,7 +2690,7 @@ snippet h_field_storage_purge
 	}
 snippet h_field_access
 	/**
-	 * Implements hook_field_access()
+	 * Implements hook_field_access().
 	 */
 	function `Filename()`_field_access($op, $field, $entity_type, $entity, $account) {
 	  ${1:/* Your code here */}
@@ -2887,7 +2698,7 @@ snippet h_field_access
 	}
 snippet h_options_list
 	/**
-	 * Implements hook_options_list()
+	 * Implements hook_options_list().
 	 */
 	function `Filename()`_options_list($field) {
 	   $options = array(
@@ -2898,77 +2709,77 @@ snippet h_options_list
 	}
 snippet h_contextual_links_view_alter
 	/**
-	 * Implements hook_contextual_links_view_alter()
+	 * Implements hook_contextual_links_view_alter().
 	 */
 	function `Filename()`_contextual_links_view_alter(&$element, $items) {
 	  ${1:/* Your code here */}
 	}
 snippet h_dashboard_regions
 	/**
-	 * Implements hook_dashboard_regions()
+	 * Implements hook_dashboard_regions().
 	 */
 	function `Filename()`_dashboard_regions() {
 	  ${1:/* Your code here */}
 	}
 snippet h_dashboard_regions_alter
 	/**
-	 * Implements hook_dashboard_regions_alter()
+	 * Implements hook_dashboard_regions_alter().
 	 */
 	function `Filename()`_dashboard_regions_alter($regions) {
 	  ${1:/* Your code here */}
 	}
 snippet h_menu_insert
 	/**
-	 * Implements hook_menu_insert()
+	 * Implements hook_menu_insert().
 	 */
 	function `Filename()`_menu_insert($menu) {
 	  ${1:/* Your code here */}
 	}
 snippet h_menu_update
 	/**
-	 * Implements hook_menu_update()
+	 * Implements hook_menu_update().
 	 */
 	function `Filename()`_menu_update($menu) {
 	  ${1:/* Your code here */}
 	}
 snippet h_menu_delete
 	/**
-	 * Implements hook_menu_delete()
+	 * Implements hook_menu_delete().
 	 */
 	function `Filename()`_menu_delete($menu) {
 	  ${1:/* Your code here */}
 	}
 snippet h_path_insert
 	/**
-	 * Implements hook_path_insert()
+	 * Implements hook_path_insert().
 	 */
 	function `Filename()`_path_insert($path) {
 	  ${1:/* Your code here */}
 	}
 snippet h_path_update
 	/**
-	 * Implements hook_path_update()
+	 * Implements hook_path_update().
 	 */
 	function `Filename()`_path_update($path) {
 	  ${1:/* Your code here */}
 	}
 snippet h_path_delete
 	/**
-	 * Implements hook_path_delete()
+	 * Implements hook_path_delete().
 	 */
 	function `Filename()`_path_delete($path) {
 	  ${1:/* Your code here */}
 	}
 snippet h_shortcut_default_set
 	/**
-	 * Implements hook_shortcut_default_set()
+	 * Implements hook_shortcut_default_set().
 	 */
 	function `Filename()`_shortcut_default_set($account) {
 	  ${1:/* Your code here */}
 	}
 snippet h_image_effect_info
 	/**
-	 * Implements hook_image_effect_info()
+	 * Implements hook_image_effect_info().
 	 */
 	function `Filename()`_image_effect_info() {
 	  $effects = array();
@@ -2985,42 +2796,42 @@ snippet h_image_effect_info
 	}
 snippet h_image_effect_info_alter
 	/**
-	 * Implements hook_image_effect_info_alter()
+	 * Implements hook_image_effect_info_alter().
 	 */
 	function `Filename()`_image_effect_info_alter(&$effects) {
 	  ${1:/* Your code here */}
 	}
 snippet h_image_style_save
 	/**
-	 * Implements hook_image_style_save()
+	 * Implements hook_image_style_save().
 	 */
 	function `Filename()`_image_style_save($style) {
 	  ${1:/* Your code here */}
 	}
 snippet h_image_style_delete
 	/**
-	 * Implements hook_image_style_delete()
+	 * Implements hook_image_style_delete().
 	 */
 	function `Filename()`_image_style_delete($style) {
 	   ${1:/* Your code here */}
 	}
 snippet h_image_style_flush
 	/**
-	 * Implements hook_image_style_flush()
+	 * Implements hook_image_style_flush().
 	 */
 	function `Filename()`_image_style_flush($style) {
 	  ${1:/* Your code here */}
 	}
 snippet h_image_styles_alter
 	/**
-	 * Implements hook_image_styles_alter()
+	 * Implements hook_image_styles_alter().
 	 */
 	function `Filename()`_image_styles_alter(&$styles) {
 	  ${1:/* Your code here */}
 	}
 snippet h_image_default_styles
 	/**
-	 * Implements hook_image_default_styles()
+	 * Implements hook_image_default_styles().
 	 */
 	function `Filename()`_image_default_styles() {
 	  $styles = array();
@@ -3039,7 +2850,7 @@ snippet h_image_default_styles
 	}
 snippet h_trigger_info
 	/**
-	 * Implements hook_trigger_info()
+	 * Implements hook_trigger_info().
 	 */
 	function `Filename()`_trigger_info() {
 	  return array(
@@ -3052,14 +2863,14 @@ snippet h_trigger_info
 	}
 snippet h_trigger_info_alter
 	/**
-	 * Implements hook_trigger_info_alter()
+	 * Implements hook_trigger_info_alter().
 	 */
 	function `Filename()`_trigger_info_alter(&$triggers) {
 	  ${1:/* Your code here */}
 	}
 snippet h_search_info
 	/**
-	 * Implements hook_search_info()
+	 * Implements hook_search_info().
 	 */
 	function `Filename()`_search_info() {
 	  return array(
@@ -3070,48 +2881,48 @@ snippet h_search_info
 	}
 snippet h_search_access
 	/**
-	 * Implements hook_search_access()
+	 * Implements hook_search_access().
 	 */
 	function `Filename()`_search_access() {
 	  ${1:/* Your code here */}
 	}
 snippet h_search_reset
 	/**
-	 * Implements hook_search_reset()
+	 * Implements hook_search_reset().
 	 */
 	function `Filename()`_search_reset() {
 	  ${1:/* Your code here */}
 	}
 snippet h_search_status
 	/**
-	 * Implements hook_search_status()
+	 * Implements hook_search_status().
 	 */
 	function `Filename()`_search_status() {
 	  ${1:/* Your code here */}
 	}
 snippet h_search_admin
 	/**
-	 * Implements hook_search_admin()
+	 * Implements hook_search_admin().
 	 */
 	function `Filename()`_search_admin() {
-	  $form['${1}'] = array(
-	    '#title' => t('${2}'),
-	    '#type' => '${3}',
-	    '#theme' => '${4}',
-	    '#default_value' => ${5},
+	  $form['${1}']${2} = array(
+	    '#title' => t('${3}'),
+	    '#type' => '${4}',
+	    '#theme' => '${5}',
+	    '#default_value' => ${6},${7}
 	
 	  return $form;
 	}
 snippet h_search_execute
 	/**
-	 * Implements hook_search_execute()
+	 * Implements hook_search_execute().
 	 */
 	function `Filename()`_search_execute($keys = NULL, $conditions = NULL) {
 	  ${1:/* Your code here */}
 	}
 snippet h_search_page
 	/**
-	 * Implements hook_search_page()
+	 * Implements hook_search_page().
 	 */
 	function `Filename()`_search_page($results) {
 	  $output['prefix']['#markup'] = '<ol class="search-results">';
@@ -3129,21 +2940,21 @@ snippet h_search_page
 	}
 snippet h_search_preprocess
 	/**
-	 * Implements hook_search_preprocess()
+	 * Implements hook_search_preprocess().
 	 */
 	function `Filename()`_search_preprocess($text) {
 	  ${1:/* Your code here */}
 	}
 snippet h_update_index
 	/**
-	 * Implements hook_update_index()
+	 * Implements hook_update_index().
 	 */
 	function `Filename()`_update_index() {
 	  ${1:/* Your code here */}
 	}
 snippet h_locale
 	/**
-	 * Implements hook_locale()
+	 * Implements hook_locale().
 	 */
 	function `Filename()`_locale($op = 'groups') {
 	  switch ($op) {
@@ -3153,7 +2964,7 @@ snippet h_locale
 	}
 snippet h_language_init
 	/**
-	 * Implements hook_language_init()
+	 * Implements hook_language_init().
 	 */
 	function `Filename()`_language_init() {
 	  global $language, $conf;
@@ -3166,7 +2977,7 @@ snippet h_language_init
 	}
 snippet h_language_switch_links_alter
 	/**
-	 * Implements hook_language_switch_links_alter()
+	 * Implements hook_language_switch_links_alter().
 	 */
 	function `Filename()`_language_switch_links_alter(array &$links, $type, $path) {
 	  global $language;
@@ -3174,7 +2985,7 @@ snippet h_language_switch_links_alter
 	}
 snippet h_language_types_info
 	/**
-	 * Implements hook_language_types_info()
+	 * Implements hook_language_types_info().
 	 */
 	function `Filename()`_language_types_info() {
 	  return array(
@@ -3186,14 +2997,14 @@ snippet h_language_types_info
 	}
 snippet h_language_types_info_alter
 	/**
-	 * Implements hook_language_types_info_alter()
+	 * Implements hook_language_types_info_alter().
 	 */
 	function `Filename()`_language_types_info_alter(array &$language_types) {
 	  ${1:/* Your code here */}
 	}
 snippet h_language_negotiation_info
 	/**
-	 * Implements hook_language_negotiation_info()
+	 * Implements hook_language_negotiation_info().
 	 */
 	function `Filename()`_language_negotiation_info() {
 	  return array(
@@ -3214,28 +3025,39 @@ snippet h_language_negotiation_info
 	}
 snippet h_language_negotiation_info_alter
 	/**
-	 * Implements hook_language_negotiation_info_alter()
+	 * Implements hook_language_negotiation_info_alter().
 	 */
 	function `Filename()`_language_negotiation_info_alter(array &$language_providers) {
 	  ${1:/* Your code here */}
 	}
 snippet h_multilingual_settings_changed
 	/**
-	 * Implements hook_multilingual_settings_changed()
+	 * Implements hook_multilingual_settings_changed().
 	 */
 	function `Filename()`_multilingual_settings_changed() {
 	  ${1:/* Your code here */}
 	}
 snippet h_language_fallback_candidates_alter
 	/**
-	 * Implements hook_language_fallback_candidates_alter()
+	 * Implements hook_language_fallback_candidates_alter().
 	 */
 	function `Filename()`_language_fallback_candidates_alter(array &$fallback_candidates) {
 	  ${1:/* Your code here */}
 	}
+snippet h_update_N
+	/**
+	 * Implements hook_update_N().
+	 */
+	function `Filename()`_update_${1:/* Update number */}(&$sandbox = NULL) {
+	  $ret = t('${2:/* Message */}');
+
+	  ${3:/* Your code here */}
+
+	  return $ret;
+	}
 snippet hook_simpletest_alter
 	/**
-	 * Implements hook_simpletest_alter()
+	 * Implements hook_simpletest_alter().
 	 */
 	function `Filename()`_simpletest_alter(&$groups) {
 	  // An alternative session handler module would not want to run the original
@@ -3248,28 +3070,28 @@ snippet hook_simpletest_alter
 	}
 snippet hook_test_group_started
 	/**
-	 * Implements hook_test_group_started()
+	 * Implements hook_test_group_started().
 	 */
 	function `Filename()`_test_group_started() {
 	  ${1:/* Your code here */}
 	}
 snippet hook_test_group_finished
 	/**
-	 * Implements hook_test_group_finished()
+	 * Implements hook_test_group_finished().
 	 */
 	function `Filename()`_test_group_finished() {
 	  ${1:/* Your code here */}
 	}
 snippet hook_test_finished
 	/**
-	 * Implements hook_test_finished()
+	 * Implements hook_test_finished().
 	 */
 	function `Filename()`_test_finished($results) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_aggregator_fetch
 	/**
-	 * Implements hook_aggregator_fetch()
+	 * Implements hook_aggregator_fetch().
 	 */
 	function `Filename()`_aggregator_fetch($feed) {
 	  /*
@@ -3279,7 +3101,7 @@ snippet hook_aggregator_fetch
 	}
 snippet hook_aggregator_fetch_info
 	/**
-	 * Implements hook_aggregator_fetch_info()
+	 * Implements hook_aggregator_fetch_info().
 	 */
 	function `Filename()`_aggregator_fetch_info() {
 	  return array(
@@ -3289,7 +3111,7 @@ snippet hook_aggregator_fetch_info
 	}
 snippet hook_aggregator_parse
 	/**
-	 * Implements hook_aggregator_parse()
+	 * Implements hook_aggregator_parse().
 	 */
 	function `Filename()`_aggregator_parse($feed) {
 	  /*
@@ -3303,7 +3125,7 @@ snippet hook_aggregator_parse
 	}
 snippet hook_aggregator_parse_info
 	/**
-	 * Implements hook_aggregator_parse_info()
+	 * Implements hook_aggregator_parse_info().
 	 */
 	function `Filename()`_aggregator_parse_info() {
 	  return array(
@@ -3313,7 +3135,7 @@ snippet hook_aggregator_parse_info
 	}
 snippet hook_aggregator_process
 	/**
-	 * Implements hook_aggregator_process()
+	 * Implements hook_aggregator_process().
 	 */
 	function `Filename()`_aggregator_process($feed) {
 	  /*
@@ -3325,7 +3147,7 @@ snippet hook_aggregator_process
 	}
 snippet hook_aggregator_process_info
 	/**
-	 * Implements hook_aggregator_process_info()
+	 * Implements hook_aggregator_process_info().
 	 */
 	function `Filename()`_aggregator_process_info($feed) {
 	  return array(
@@ -3335,7 +3157,7 @@ snippet hook_aggregator_process_info
 	}
 snippet hook_aggregator_remove
 	/**
-	 * Implements hook_aggregator_remove()
+	 * Implements hook_aggregator_remove().
 	 */
 	function `Filename()`_aggregator_remove($feed) {
 	  /*
@@ -3345,7 +3167,7 @@ snippet hook_aggregator_remove
 	}
 snippet hook_overlay_parent_initialize
 	/**
-	 * Implements hook_overlay_parent_initialize()
+	 * Implements hook_overlay_parent_initialize().
 	 */
 	function `Filename()`_overlay_parent_initialize() {
 	  // Add our custom JavaScript.
@@ -3356,7 +3178,7 @@ snippet hook_overlay_parent_initialize
 	}
 snippet hook_overlay_child_initialize
 	/**
-	 * Implements hook_overlay_child_initialize()
+	 * Implements hook_overlay_child_initialize().
 	 */
 	function `Filename()`_overlay_child_initialize() {
 	  // Add our custom JavaScript.
@@ -3367,7 +3189,7 @@ snippet hook_overlay_child_initialize
 	}
 snippet hook_entity_info
 	/**
-	 * Implements hook_entity_info()
+	 * Implements hook_entity_info().
 	 */
 	function `Filename()`_entity_info() {
 	  /*
@@ -3437,29 +3259,29 @@ snippet hook_entity_info
 	   *    );
 	   *  }
 	   */
-	    'node' => array(
-	      'label' => t('${1}'),
-	      'controller class' => '${2}',
-	      'base table' => '${3}',
-	      'revision table' => '${4}',
-	      'uri callback' => '${5}',
-	      'fieldable' => ${6},
+	    '${1}' => array(
+	      'label' => t('${2}'),
+	      'controller class' => '${3}',
+	      'base table' => '${4}',
+	      'revision table' => '${5}',
+	      'uri callback' => '${6}',
+	      'fieldable' => ${7},
 	      'translation' => array(
-	        'locale' => ${7},
+	        'locale' => ${8},
 	      ),
 	      'entity keys' => array(
-	        'id' => '${8}',
-	        'revision' => '${9}',
-	        'bundle' => '${10}',
+	        'id' => '${9}',
+	        'revision' => '${10}',
+	        'bundle' => '${11}',
 	      ),
 	      'bundle keys' => array(
-	        'bundle' => '${11}',
+	        'bundle' => '${12}',
 	      ),
 	      'bundles' => array(),
 	      'view modes' => array(
-	        '${12}' => array(
-	          'label' => t('${13}'),
-	          'custom settings' => ${14},
+	        '${13}' => array(
+	          'label' => t('${14}'),
+	          'custom settings' => ${15},
 	        ),
 	      ),
 	    ),
@@ -3468,7 +3290,7 @@ snippet hook_entity_info
 	}
 snippet hook_entity_info_alter
 	/**
-	 * Implements hook_entity_info_alter()
+	 * Implements hook_entity_info_alter().
 	 */
 	function `Filename()`_entity_info_alter(&$entity_info) {
 	  // Set the controller class for nodes to an alternate implementation of the
@@ -3480,7 +3302,7 @@ snippet hook_entity_info_alter
 	}
 snippet hook_entity_load
 	/**
-	 * Implements hook_entity_load()
+	 * Implements hook_entity_load().
 	 */
 	function `Filename()`_entity_load($entities, $type) {
 	  foreach ($entities as $entity) {
@@ -3489,28 +3311,28 @@ snippet hook_entity_load
 	}
 snippet hook_entity_insert
 	/**
-	 * Implements hook_entity_insert()
+	 * Implements hook_entity_insert().
 	 */
 	function `Filename()`_entity_insert($entity, $type) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_entity_update
 	/**
-	 * Implements hook_entity_update()
+	 * Implements hook_entity_update().
 	 */
 	function `Filename()`_entity_update($entity, $type) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_entity_query_alter
 	/**
-	 * Implements hook_entity_query_alter()
+	 * Implements hook_entity_query_alter().
 	 */
 	function `Filename()`_entity_query_alter($query) {
-	  $query->${1} = 'my_module_query_callback';
+	  $query->${1} = '`Filename()`_query_callback';
 	}
 snippet hook_admin_paths
 	/**
-	 * Implements hook_admin_paths()
+	 * Implements hook_admin_paths().
 	 */
 	function `Filename()`_admin_paths() {
 	  $paths = array(
@@ -3524,7 +3346,7 @@ snippet hook_admin_paths
 	}
 snippet hook_admin_paths_alter
 	/**
-	 * Implements hook_admin_paths_alter()
+	 * Implements hook_admin_paths_alter().
 	 */
 	function `Filename()`_admin_paths_alter(&$paths) {
 	  // Treat all user pages as administrative.
@@ -3540,7 +3362,7 @@ snippet hook_admin_paths_alter
 	}
 snippet hook_entity_prepare_view
 	/**
-	 * Implements hook_entity_prepare_view()
+	 * Implements hook_entity_prepare_view().
 	 */
 	function `Filename()`_entity_prepare_view($entities, $type) {
 	  // Load a specific node into the user object for later theming.
@@ -3556,7 +3378,7 @@ snippet hook_entity_prepare_view
 	}
 snippet hook_cron
 	/**
-	 * Implements hook_cron()
+	 * Implements hook_cron().
 	 */
 	function `Filename()`_cron() {
 	  /*
@@ -3583,7 +3405,7 @@ snippet hook_cron
 	}
 snippet hook_cron_queue_info
 	/**
-	 * Implements hook_cron_queue_info()
+	 * Implements hook_cron_queue_info().
 	 */
 	function `Filename()`_cron_queue_info() {
 	  /*
@@ -3600,7 +3422,7 @@ snippet hook_cron_queue_info
 	}
 snippet hook_cron_queue_info_alter
 	/**
-	 * Implements hook_cron_queue_info_alter()
+	 * Implements hook_cron_queue_info_alter().
 	 */
 	function `Filename()`_cron_queue_info_alter(&$queues) {
 	  // This site has many feeds so let's spend 90 seconds on each cron run
@@ -3612,7 +3434,7 @@ snippet hook_cron_queue_info_alter
 	}
 snippet hook_element_info
 	/**
-	 * Implements hook_element_info()
+	 * Implements hook_element_info().
 	 */
 	function `Filename()`_element_info() {
 	  $types['${1}'] = array(
@@ -3622,7 +3444,7 @@ snippet hook_element_info
 	}
 snippet hook_element_info_alter
 	/**
-	 * Implements hook_element_info_alter()
+	 * Implements hook_element_info_alter().
 	 */
 	function `Filename()`_element_info_alter(&$type) {
 	  // Decrease the default size of textfields.
@@ -3637,7 +3459,7 @@ snippet hook_element_info_alter
 	}
 snippet hook_exit
 	/**
-	 * Implements hook_exit()
+	 * Implements hook_exit().
 	 */
 	function `Filename()`_exit($destination = NULL) {
 	  /*
@@ -3650,7 +3472,7 @@ snippet hook_exit
 	}
 snippet hook_js_alter
 	/**
-	 * Implements hook_js_alter()
+	 * Implements hook_js_alter().
 	 */
 	function `Filename()`_js_alter(&$javascript) {
 	  // Swap out jQuery to use an updated version of the library.
@@ -3661,7 +3483,7 @@ snippet hook_js_alter
 	}
 snippet hook_library
 	/**
-	 * Implements hook_library()
+	 * Implements hook_library().
 	 */
 	function `Filename()`_library() {
 	  // Library One.
@@ -3709,10 +3531,10 @@ snippet hook_library
 	    'website' => '${3}',
 	    'version' => '${4}',
 	    'js' => array(
-	      drupal_get_path('module', 'my_module') . '/${5}' => array(),
+	      drupal_get_path('module', '`Filename()`') . '/${5}' => array(),
 	    ),
 	    'css' => array(
-	      drupal_get_path('module', 'my_module') . '/${6}' => array(
+	      drupal_get_path('module', '`Filename()`') . '/${6}' => array(
 	        'type' => 'file',
 	        'media' => '${7}',
 	      ),
@@ -3726,7 +3548,7 @@ snippet hook_library
 	}
 snippet hook_library_alter
 	/**
-	 * Implements hook_library_alter()
+	 * Implements hook_library_alter().
 	 */
 	function `Filename()`_library_alter(&$libraries, $module) {
 	  // Update Farbtastic to version 2.0.
@@ -3746,7 +3568,7 @@ snippet hook_library_alter
 	}
 snippet hook_css_alter
 	/**
-	 * Implements hook_css_alter()
+	 * Implements hook_css_alter().
 	 */
 	function `Filename()`_css_alter(&$css) {
 	  // Remove defaults.css file.
@@ -3757,7 +3579,7 @@ snippet hook_css_alter
 	}
 snippet hook_ajax_render_alter
 	/**
-	 * Implements hook_ajax_render_alter()
+	 * Implements hook_ajax_render_alter().
 	 */
 	function `Filename()`_ajax_render_alter($commands) {
 	  // Inject any new status messages into the content area.
@@ -3768,7 +3590,7 @@ snippet hook_ajax_render_alter
 	}
 snippet hook_page_build
 	/**
-	 * Implements hook_page_build()
+	 * Implements hook_page_build().
 	 */
 	function `Filename()`_page_build(&$page) {
 	  /*
@@ -3788,7 +3610,7 @@ snippet hook_page_build
 	}
 snippet hook_menu
 	/**
-	 * Implements hook_menu()
+	 * Implements hook_menu().
 	 */
 	function `Filename()`_menu() {
 	  /*
@@ -3802,7 +3624,7 @@ snippet hook_menu
 	  $items['${1}'] = array(
 	    'title' => '${2}',
 	    'page callback' => '${3}',
-	    'page arguments' => array('${4}'),
+	    'page arguments' => array(${4}),
 	    'access arguments' => array('${5}'),
 	    'type' => ${6},
 	    'file' => ${7},
@@ -3812,7 +3634,7 @@ snippet hook_menu
 	}
 snippet hook_menu_alter
 	/**
-	 * Implements hook_menu_alter()
+	 * Implements hook_menu_alter().
 	 */
 	function `Filename()`_menu_alter(&$items) {
 	  // Example - disable the page at node/add
@@ -3823,7 +3645,7 @@ snippet hook_menu_alter
 	}
 snippet hook_menu_link_alter
 	/**
-	 * Implements hook_menu_link_alter()
+	 * Implements hook_menu_link_alter().
 	 */
 	function `Filename()`_menu_link_alter(&$item) {
 	  // Example 1 - make all new admin links hidden (a.k.a disabled).
@@ -3842,7 +3664,7 @@ snippet hook_menu_link_alter
 	}
 snippet hook_translated_menu_link_alter
 	/**
-	 * Implements hook_translated_menu_link_alter()
+	 * Implements hook_translated_menu_link_alter().
 	 */
 	function `Filename()`_translated_menu_link_alter(&$item, $map) {
 	  /*
@@ -3854,7 +3676,7 @@ snippet hook_translated_menu_link_alter
 	}
 snippet hook_menu_link_insert
 	/**
-	 * Implements hook_menu_link_insert()
+	 * Implements hook_menu_link_insert().
 	 */
 	function `Filename()`_menu_link_insert($link) {
 	  // In our sample case, we track menu items as editing sections
@@ -3869,7 +3691,7 @@ snippet hook_menu_link_insert
 	}
 snippet hook_menu_link_update
 	/**
-	 * Implements hook_menu_link_update()
+	 * Implements hook_menu_link_update().
 	 */
 	function `Filename()`_menu_link_update($link) {
 	  // If the parent menu has changed, update our record.
@@ -3886,7 +3708,7 @@ snippet hook_menu_link_update
 	}
 snippet hook_menu_link_delete
 	/**
-	 * Implements hook_menu_link_delete()
+	 * Implements hook_menu_link_delete().
 	 */
 	function `Filename()`_menu_link_delete($link) {
 	  // Delete the record from our table.
@@ -3896,7 +3718,7 @@ snippet hook_menu_link_delete
 	}
 snippet hook_menu_local_tasks_alter
 	/**
-	 * Implements hook_menu_local_tasks_alter()
+	 * Implements hook_menu_local_tasks_alter().
 	 */
 	function `Filename()`_menu_local_tasks_alter(&$data, $router_item, $root_path) {
 	  // Add an action to all pages.
@@ -3925,7 +3747,7 @@ snippet hook_menu_local_tasks_alter
 	}
 snippet hook_menu_breadcrumb_alter
 	/**
-	 * Implements hook_menu_breadcrumb_alter()
+	 * Implements hook_menu_breadcrumb_alter().
 	 */
 	function `Filename()`_menu_breadcrumb_alter(&$active_trail, $item) {
 	  // Always display a link to the current page by duplicating the last link in
@@ -3944,7 +3766,7 @@ snippet hook_menu_breadcrumb_alter
 	}
 snippet hook_menu_contextual_links_alter
 	/**
-	 * Implements hook_menu_contextual_links_alter()
+	 * Implements hook_menu_contextual_links_alter().
 	 */
 	function `Filename()`_menu_contextual_links_alter(&$links, $router_item, $root_path) {
 	  // Add a link to all contextual links for nodes.
@@ -3975,7 +3797,7 @@ snippet hook_menu_contextual_links_alter
 	}
 snippet hook_page_alter
 	/**
-	 * Implements hook_page_alter()
+	 * Implements hook_page_alter().
 	 */
 	function `Filename()`_page_alter(&$page) {
 	  // Add help text to the user login block.
@@ -3989,7 +3811,7 @@ snippet hook_page_alter
 	}
 snippet hook_form_alter
 	/**
-	 * Implements hook_form_alter()
+	 * Implements hook_form_alter().
 	 */
 	function `Filename()`_form_alter(&$form, &$form_state, $form_id) {
 	  /*
@@ -4002,19 +3824,18 @@ snippet hook_form_alter
 	   * );
 	   *}
 	   */
-	  $form['${1}'] = array(
-	    '#type' => '${2}',
-	    '#title' => t('${3}'),
-	    '#default_value' => $settings['${4}'],
-	    '#required' => ${5},
-	    '#element_validate' => array('${6}'),
-	    '#description' => t('${7}'),
-	    '#${8}' => ${9}
+	  $form['${1}']${2} = array(
+	    '#type' => '${3}',
+	    '#title' => t('${4}'),
+	    '#default_value' => $settings['${5}'],
+	    '#required' => ${6},
+	    '#element_validate' => array('${7}'),
+	    '#description' => t('${8}'),${9}
 	  );
 	}
 snippet hook_forms
 	/**
-	 * Implements hook_forms()
+	 * Implements hook_forms().
 	 */
 	function `Filename()`_forms($form_id, $args) {
 	  // Simply reroute the (non-existing) $form_id 'mymodule_first_form' to
@@ -4050,7 +3871,7 @@ snippet hook_forms
 	}
 snippet hook_boot
 	/**
-	 * Implements hook_boot()
+	 * Implements hook_boot().
 	 */
 	function `Filename()`_boot() {
 	  // we need user_access() in the shutdown function. make sure it gets loaded
@@ -4062,7 +3883,7 @@ snippet hook_boot
 	}
 snippet hook_init
 	/**
-	 * Implements hook_init()
+	 * Implements hook_init().
 	 */
 	function `Filename()`_init() {
 	  /*
@@ -4072,7 +3893,7 @@ snippet hook_init
 	}
 snippet hook_image_toolkits
 	/**
-	 * Implements hook_image_toolkits()
+	 * Implements hook_image_toolkits().
 	 */
 	function `Filename()`_image_toolkits() {
 	  return array(
@@ -4084,7 +3905,7 @@ snippet hook_image_toolkits
 	}
 snippet hook_mail_alter
 	/**
-	 * Implements hook_mail_alter()
+	 * Implements hook_mail_alter().
 	 */
 	function `Filename()`_mail_alter(&$message) {
 	  /*
@@ -4098,7 +3919,7 @@ snippet hook_mail_alter
 	}
 snippet hook_module_implements_alter
 	/**
-	 * Implements hook_module_implements_alter()
+	 * Implements hook_module_implements_alter().
 	 */
 	function `Filename()`_module_implements_alter(&$implementations, $hook) {
 	  /*
@@ -4118,7 +3939,7 @@ snippet hook_module_implements_alter
 	}
 snippet hook_system_info_alter
 	/**
-	 * Implements hook_system_info_alter()
+	 * Implements hook_system_info_alter().
 	 */
 	function `Filename()`_system_info_alter(&$info, $file, $type) {
 	  // Only fill this in if the .info file does not define a 'datestamp'.
@@ -4131,7 +3952,7 @@ snippet hook_system_info_alter
 	}
 snippet hook_permission
 	/**
-	 * Implements hook_permission()
+	 * Implements hook_permission().
 	 */
 	function `Filename()`_permission() {
 	  return array(
@@ -4149,7 +3970,7 @@ snippet hook_permission
 	}
 snippet hook_theme
 	/**
-	 * Implements hook_theme()
+	 * Implements hook_theme().
 	 */
 	function `Filename()`_theme($existing, $type, $theme, $path) {
 	  return array(
@@ -4171,7 +3992,7 @@ snippet hook_theme
 	}
 snippet hook_theme_registry_alter
 	/**
-	 * Implements hook_theme_registry_alter()
+	 * Implements hook_theme_registry_alter().
 	 */
 	function `Filename()`_theme_registry_alter(&$theme_registry) {
 	  // Kill the next/previous forum topic navigation links.
@@ -4186,7 +4007,7 @@ snippet hook_theme_registry_alter
 	}
 snippet hook_custom_theme
 	/**
-	 * Implements hook_custom_theme()
+	 * Implements hook_custom_theme().
 	 */
 	function `Filename()`_custom_theme() {
 	  // Allow the user to request a particular theme via a query parameter.
@@ -4199,7 +4020,7 @@ snippet hook_custom_theme
 	}
 snippet hook_xmlrpc
 	/**
-	 * Implements hook_xmlrpc()
+	 * Implements hook_xmlrpc().
 	 */
 	function `Filename()`_xmlrpc() {
 	  /*
@@ -4216,7 +4037,7 @@ snippet hook_xmlrpc
 	}
 snippet hook_xmlrpc_alter
 	/**
-	 * Implements hook_xmlrpc_alter()
+	 * Implements hook_xmlrpc_alter().
 	 */
 	function `Filename()`_xmlrpc_alter(&$methods) {
 	  // Directly change a simple method.
@@ -4240,7 +4061,7 @@ snippet hook_xmlrpc_alter
 	}
 snippet hook_watchdog
 	/**
-	 * Implements hook_watchdog()
+	 * Implements hook_watchdog().
 	 */
 	function `Filename()`_watchdog(array $log_entry) {
 	  /*
@@ -4296,7 +4117,7 @@ snippet hook_watchdog
 	}
 snippet hook_mail
 	/**
-	 * Implements hook_mail()
+	 * Implements hook_mail().
 	 */
 	function `Filename()`_mail($key, &$message, $params) {
 	    /*
@@ -4340,7 +4161,7 @@ snippet hook_mail
 	}
 snippet hook_flush_caches
 	/**
-	 * Implements hook_flush_caches()
+	 * Implements hook_flush_caches().
 	 */
 	function `Filename()`_flush_caches() {
 	  /*
@@ -4350,7 +4171,7 @@ snippet hook_flush_caches
 	}
 snippet hook_modules_installed
 	/**
-	 * Implements hook_modules_installed()
+	 * Implements hook_modules_installed().
 	 */
 	function `Filename()`_modules_installed($modules) {
 	  /*
@@ -4362,7 +4183,7 @@ snippet hook_modules_installed
 	}
 snippet hook_modules_enabled
 	/**
-	 * Implements hook_modules_enabled()
+	 * Implements hook_modules_enabled().
 	 */
 	function `Filename()`_modules_enabled($modules) {
 	  /*
@@ -4375,7 +4196,7 @@ snippet hook_modules_enabled
 	}
 snippet hook_modules_disabled
 	/**
-	 * Implements hook_modules_disabled()
+	 * Implements hook_modules_disabled().
 	 */
 	function `Filename()`_modules_disabled($modules) {
 	  /*
@@ -4387,7 +4208,7 @@ snippet hook_modules_disabled
 	}
 snippet hook_modules_uninstalled
 	/**
-	 * Implements hook_modules_uninstalled()
+	 * Implements hook_modules_uninstalled().
 	 */
 	function `Filename()`_modules_uninstalled($modules) {
 	  foreach ($modules as $module) {
@@ -4399,7 +4220,7 @@ snippet hook_modules_uninstalled
 	}
 snippet hook_stream_wrappers
 	/**
-	 * Implements hook_stream_wrappers()
+	 * Implements hook_stream_wrappers().
 	 */
 	function `Filename()`_stream_wrappers() {
 	  return array(
@@ -4420,7 +4241,7 @@ snippet hook_stream_wrappers
 	}
 snippet hook_stream_wrappers_alter
 	/**
-	 * Implements hook_stream_wrappers_alter()
+	 * Implements hook_stream_wrappers_alter().
 	 */
 	function `Filename()`_stream_wrappers_alter(&$wrappers) {
 	  // Change the name of private files to reflect the performance.
@@ -4431,7 +4252,7 @@ snippet hook_stream_wrappers_alter
 	}
 snippet hook_file_load
 	/**
-	 * Implements hook_file_load()
+	 * Implements hook_file_load().
 	 */
 	function `Filename()`_file_load($files) {
 	  // Add the upload specific data into the file object.
@@ -4447,7 +4268,7 @@ snippet hook_file_load
 	}
 snippet hook_file_validate
 	/**
-	 * Implements hook_file_validate()
+	 * Implements hook_file_validate().
 	 */
 	function `Filename()`_file_validate(&$file) {
 	  $errors = array();
@@ -4468,35 +4289,35 @@ snippet hook_file_validate
 	}
 snippet hook_file_insert
 	/**
-	 * Implements hook_file_insert()
+	 * Implements hook_file_insert().
 	 */
 	function `Filename()`_file_insert($file) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_file_update
 	/**
-	 * Implements hook_file_update()
+	 * Implements hook_file_update().
 	 */
 	function `Filename()`_file_update($file) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_file_copy
 	/**
-	 * Implements hook_file_copy()
+	 * Implements hook_file_copy().
 	 */
 	function `Filename()`_file_copy($file, $source) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_file_move
 	/**
-	 * Implements hook_file_move()
+	 * Implements hook_file_move().
 	 */
 	function `Filename()`_file_move($file, $source) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_file_delete
 	/**
-	 * Implements hook_file_delete()
+	 * Implements hook_file_delete().
 	 */
 	function `Filename()`_file_delete($file) {
 	  // Delete all information associated with the file.
@@ -4507,7 +4328,7 @@ snippet hook_file_delete
 	}
 snippet hook_file_download
 	/**
-	 * Implements hook_file_download()
+	 * Implements hook_file_download().
 	 */
 	function `Filename()`_file_download($uri) {
 	  // Check if the file is controlled by the current module.
@@ -4530,7 +4351,7 @@ snippet hook_file_download
 	}
 snippet hook_file_url_alter
 	/**
-	 * Implements hook_file_url_alter()
+	 * Implements hook_file_url_alter().
 	 */
 	function `Filename()`_file_url_alter(&$uri) {
 	  /*
@@ -4581,7 +4402,7 @@ snippet hook_file_url_alter
 	}
 snippet hook_requirements
 	/**
-	 * Implements hook_requirements()
+	 * Implements hook_requirements().
 	 */
 	function `Filename()`_requirements($phase) {
 	  $requirements = array();
@@ -4635,7 +4456,7 @@ snippet hook_requirements
 	}
 snippet hook_schema
 	/**
-	 * Implements hook_schema()
+	 * Implements hook_schema().
 	 */
 	function `Filename()`_schema() {
 	  /*
@@ -4716,7 +4537,7 @@ snippet hook_schema
 	}
 snippet hook_schema_alter
 	/**
-	 * Implements hook_schema_alter()
+	 * Implements hook_schema_alter().
 	 */
 	function `Filename()`_schema_alter(&$schema) {
 	  // Add field to existing schema.
@@ -4732,7 +4553,7 @@ snippet hook_schema_alter
 	}
 snippet hook_query_alter
 	/**
-	 * Implements hook_query_alter()
+	 * Implements hook_query_alter().
 	 */
 	function `Filename()`_query_alter(QueryAlterableInterface $query) {
 	  if ($query->hasTag('${1}')) {
@@ -4744,7 +4565,7 @@ snippet hook_query_alter
 	}
 snippet hook_install
 	/**
-	 * Implements hook_install()
+	 * Implements hook_install().
 	 */
 	function `Filename()`_install() {
 	  // Populate the default {node_access} record.
@@ -4764,7 +4585,7 @@ snippet hook_install
 	}
 snippet hook_update_dependencies
 	/**
-	 * Implements hook_update_dependencies()
+	 * Implements hook_update_dependencies().
 	 */
 	function `Filename()`_update_dependencies() {
 	  // Indicate that the mymodule_update_7000() function provided by this module
@@ -4796,14 +4617,14 @@ snippet hook_update_dependencies
 	}
 snippet hook_update_last_removed
 	/**
-	 * Implements hook_update_last_removed()
+	 * Implements hook_update_last_removed().
 	 */
 	function `Filename()`_update_last_removed() {
 	  ${1:/* Your code here */}
 	}
 snippet hook_uninstall
 	/**
-	 * Implements hook_uninstall()
+	 * Implements hook_uninstall().
 	 */
 	function `Filename()`_uninstall() {
 	  /*
@@ -4813,7 +4634,7 @@ snippet hook_uninstall
 	}
 snippet hook_enable
 	/**
-	 * Implements hook_enable()
+	 * Implements hook_enable().
 	 */
 	function `Filename()`_enable() {
 	  /*
@@ -4823,7 +4644,7 @@ snippet hook_enable
 	}
 snippet hook_disable
 	/**
-	 * Implements hook_disable()
+	 * Implements hook_disable().
 	 */
 	function `Filename()`_disable() {
 	  /*
@@ -4833,7 +4654,7 @@ snippet hook_disable
 	}
 snippet hook_registry_files_alter
 	/**
-	 * Implements hook_registry_files_alter()
+	 * Implements hook_registry_files_alter().
 	 */
 	function `Filename()`_registry_files_alter(&$files, $modules) {
 	  /*
@@ -4854,7 +4675,7 @@ snippet hook_registry_files_alter
 	}
 snippet hook_install_tasks
 	/**
-	 * Implements hook_install_tasks()
+	 * Implements hook_install_tasks().
 	 */
 	function `Filename()`_install_tasks() {
 	  // Here, we define a variable to allow tasks to indicate that a particular,
@@ -4923,14 +4744,14 @@ snippet hook_install_tasks
 	}
 snippet hook_drupal_goto_alter
 	/**
-	 * Implements hook_drupal_goto_alter()
+	 * Implements hook_drupal_goto_alter().
 	 */
 	function `Filename()`_drupal_goto_alter(&$path, &$options, &$http_response_code) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_html_head_alter
 	/**
-	 * Implements hook_html_head_alter()
+	 * Implements hook_html_head_alter().
 	 */
 	function `Filename()`_html_head_alter(&$head_elements) {
 	  foreach ($head_elements as $key => $element) {
@@ -4945,7 +4766,7 @@ snippet hook_html_head_alter
 	}
 snippet hook_install_tasks_alter
 	/**
-	 * Implements hook_install_tasks_alter()
+	 * Implements hook_install_tasks_alter().
 	 */
 	function `Filename()`_install_tasks_alter(&$tasks, $install_state) {
 	  // Replace the "Choose language" installation task provided by Drupal core
@@ -4957,7 +4778,7 @@ snippet hook_install_tasks_alter
 	}
 snippet hook_file_mimetype_mapping_alter
 	/**
-	 * Implements hook_file_mimetype_mapping_alter()
+	 * Implements hook_file_mimetype_mapping_alter().
 	 */
 	function `Filename()`_file_mimetype_mapping_alter(&$mapping) {
 	  // Add new MIME type 'drupal/info'.
@@ -4976,7 +4797,7 @@ snippet hook_file_mimetype_mapping_alter
 	}
 snippet hook_action_info
 	/**
-	 * Implements hook_action_info()
+	 * Implements hook_action_info().
 	 */
 	function `Filename()`_action_info() {
 	  return array(
@@ -5000,7 +4821,7 @@ snippet hook_action_info
 	}
 snippet hook_actions_delete
 	/**
-	 * Implements hook_actions_delete()
+	 * Implements hook_actions_delete().
 	 */
 	function `Filename()`_actions_delete($aid) {
 	  db_delete('${1}')
@@ -5009,14 +4830,14 @@ snippet hook_actions_delete
 	}
 snippet hook_action_info_alter
 	/**
-	 * Implements hook_action_info_alter()
+	 * Implements hook_action_info_alter().
 	 */
 	function `Filename()`_action_info_alter(&$actions) {
 	  $actions['${1}']['${2}'] = t('${3}');
 	}
 snippet hook_archiver_info
 	/**
-	 * Implements hook_archiver_info()
+	 * Implements hook_archiver_info().
 	 */
 	function `Filename()`_archiver_info() {
 	  return array(
@@ -5033,7 +4854,7 @@ snippet hook_archiver_info
 	}
 snippet hook_archiver_info_alter
 	/**
-	 * Implements hook_archiver_info_alter()
+	 * Implements hook_archiver_info_alter().
 	 */
 	function `Filename()`_archiver_info_alter(&$info) {
 	  /*
@@ -5043,7 +4864,7 @@ snippet hook_archiver_info_alter
 	}
 snippet hook_date_format_types
 	/**
-	 * Implements hook_date_format_types()
+	 * Implements hook_date_format_types().
 	 */
 	function `Filename()`_date_format_types() {
 	  return array(
@@ -5057,7 +4878,7 @@ snippet hook_date_format_types
 	}
 snippet hook_date_format_types_alter
 	/**
-	 * Implements hook_date_format_types_alter()
+	 * Implements hook_date_format_types_alter().
 	 */
 	function `Filename()`_date_format_types_alter(&$types) {
 	  foreach ($types as $type_name => $type) {
@@ -5069,7 +4890,7 @@ snippet hook_date_format_types_alter
 	}
 snippet hook_date_formats
 	/**
-	 * Implements hook_date_formats()
+	 * Implements hook_date_formats().
 	 */
 	function `Filename()`_date_formats() {
 	  return array(
@@ -5089,7 +4910,7 @@ snippet hook_date_formats
 	}
 snippet hook_date_formats_alter
 	/**
-	 * Implements hook_date_formats_alter()
+	 * Implements hook_date_formats_alter().
 	 */
 	function `Filename()`_date_formats_alter(&$formats) {
 	  foreach ($formats as $id => $format) {
@@ -5101,7 +4922,7 @@ snippet hook_date_formats_alter
 	}
 snippet hook_page_delivery_callback_alter
 	/**
-	 * Implements hook_page_delivery_callback_alter()
+	 * Implements hook_page_delivery_callback_alter().
 	 */
 	function `Filename()`_page_delivery_callback_alter(&$callback) {
 	  // jQuery sets a HTTP_X_REQUESTED_WITH header of 'XMLHttpRequest'.
@@ -5116,7 +4937,7 @@ snippet hook_page_delivery_callback_alter
 	}
 snippet hook_system_themes_page_alter
 	/**
-	 * Implements hook_system_themes_page_alter()
+	 * Implements hook_system_themes_page_alter().
 	 */
 	function `Filename()`_system_themes_page_alter(&$theme_groups) {
 	  foreach ($theme_groups as $state => &$group) {
@@ -5131,7 +4952,7 @@ snippet hook_system_themes_page_alter
 	}
 snippet hook_url_inbound_alter
 	/**
-	 * Implements hook_url_inbound_alter()
+	 * Implements hook_url_inbound_alter().
 	 */
 	function `Filename()`_url_inbound_alter(&$path, $original_path, $path_language) {
 	  // Create the path user/me/edit, which allows a user to edit their account.
@@ -5145,7 +4966,7 @@ snippet hook_url_inbound_alter
 	}
 snippet hook_url_outbound_alter
 	/**
-	 * Implements hook_url_outbound_alter()
+	 * Implements hook_url_outbound_alter().
 	 */
 	function `Filename()`_url_outbound_alter(&$path, &$options, $original_path) {
 	  // Instead of pointing to user/[uid]/edit, point to user/me/edit.
@@ -5161,7 +4982,7 @@ snippet hook_url_outbound_alter
 	}
 snippet hook_username_alter
 	/**
-	 * Implements hook_username_alter()
+	 * Implements hook_username_alter().
 	 */
 	function `Filename()`_username_alter(&$name, $account) {
 	  // Display the user's uid instead of name.
@@ -5174,7 +4995,7 @@ snippet hook_username_alter
 	}
 snippet hook_tokens($type, $tokens, array $data = array(), array $options = array
 	/**
-	 * Implements hook_tokens($type, $tokens, array $data = array(), array $options = array()
+	 * Implements hook_tokens($type, $tokens, array $data = array(), array $options = array().
 	 */
 	function `Filename()`_tokens($type, $tokens, array $data = array(), array $options = array()) {
 	  $replacements = array();
@@ -5238,7 +5059,7 @@ snippet hook_tokens($type, $tokens, array $data = array(), array $options = arra
 	}
 snippet hook_token_info
 	/**
-	 * Implements hook_token_info()
+	 * Implements hook_token_info().
 	 */
 	function `Filename()`_token_info() {
 	  /*
@@ -5279,7 +5100,7 @@ snippet hook_token_info
 	}
 snippet hook_batch_alter
 	/**
-	 * Implements hook_batch_alter()
+	 * Implements hook_batch_alter().
 	 */
 	function `Filename()`_batch_alter(&$batch) {
 	  // If the current page request is inside the overlay, add ?render=overlay to
@@ -5298,7 +5119,7 @@ snippet hook_batch_alter
 	}
 snippet hook_token_info_alter
 	/**
-	 * Implements hook_token_info_alter()
+	 * Implements hook_token_info_alter().
 	 */
 	function `Filename()`_token_info_alter(&$data) {
 	  // Modify description of node tokens for our site.
@@ -5327,7 +5148,7 @@ snippet hook_token_info_alter
 	}
 snippet hook_updater_info
 	/**
-	 * Implements hook_updater_info()
+	 * Implements hook_updater_info().
 	 */
 	function `Filename()`_updater_info() {
 	  /*
@@ -5354,7 +5175,7 @@ snippet hook_updater_info
 	}
 snippet hook_updater_info_alter
 	/**
-	 * Implements hook_updater_info_alter()
+	 * Implements hook_updater_info_alter().
 	 */
 	function `Filename()`_updater_info_alter(&$updaters) {
 	  // Adjust weight so that the theme Updater gets a chance to handle a given
@@ -5366,7 +5187,7 @@ snippet hook_updater_info_alter
 	}
 snippet hook_countries_alter
 	/**
-	 * Implements hook_countries_alter()
+	 * Implements hook_countries_alter().
 	 */
 	function `Filename()`_countries_alter(&$countries) {
 	  // Elbonia is now independent, so add it to the country list.
@@ -5377,7 +5198,7 @@ snippet hook_countries_alter
 	}
 snippet hook_filetransfer_backends
 	/**
-	 * Implements hook_filetransfer_backends()
+	 * Implements hook_filetransfer_backends().
 	 */
 	function `Filename()`_filetransfer_backends() {
 	  $backends = array();
@@ -5398,7 +5219,7 @@ snippet hook_filetransfer_backends
 	}
 snippet hook_menu_site_status_alter
 	/**
-	 * Implements hook_menu_site_status_alter()
+	 * Implements hook_menu_site_status_alter().
 	 */
 	function `Filename()`_menu_site_status_alter(&$menu_site_status, $path) {
 	  // Allow access to my_module/authentication even if site is in offline mode.
@@ -5411,7 +5232,7 @@ snippet hook_menu_site_status_alter
 	}
 snippet hook_form_system_theme_settings_alter
 	/**
-	 * Implements hook_form_system_theme_settings_alter()
+	 * Implements hook_form_system_theme_settings_alter().
 	 */
 	function `Filename()`_form_system_theme_settings_alter(&$form, &$form_state) {
 	  // Add a checkbox to toggle the breadcrumb trail.
@@ -5423,16 +5244,16 @@ snippet hook_form_system_theme_settings_alter
 	   *  '#description'   => t('Show a trail of links from the homepage to the current page.'),
 	   *);
 	   */
-	  $form['${1}'] = array(
-	    '#type' => '${2}',
-	    '#title' => t('${3}'),
-	    '#default_value' => theme_get_setting('${4}'),
-	    '#description'   => t('${5}'),
+	  $form['${1}']${2} = array(
+	    '#type' => '${3}',
+	    '#title' => t('${4}'),
+	    '#default_value' => theme_get_setting('${5}'),
+	    '#description'   => t('${6}'),${7}
 	  );
 	}
 snippet hook_preprocess
 	/**
-	 * Implements hook_preprocess()
+	 * Implements hook_preprocess().
 	 */
 	function `Filename()`_preprocess(&$variables, $hook) {
 	  static $hooks;
@@ -5472,7 +5293,7 @@ snippet hook_preprocess
 	}
 snippet hook_process
 	/**
-	 * Implements hook_process()
+	 * Implements hook_process().
 	 */
 	function `Filename()`_process(&$variables, $hook) {
 	  // Wraps variables in RDF wrappers.
@@ -5492,7 +5313,7 @@ snippet hook_process
 	}
 snippet hook_themes_enabled
 	/**
-	 * Implements hook_themes_enabled()
+	 * Implements hook_themes_enabled().
 	 */
 	function `Filename()`_themes_enabled($theme_list) {
 	  foreach ($theme_list as $theme) {
@@ -5504,7 +5325,7 @@ snippet hook_themes_enabled
 	}
 snippet hook_themes_disabled
 	/**
-	 * Implements hook_themes_disabled()
+	 * Implements hook_themes_disabled().
 	 */
 	function `Filename()`_themes_disabled($theme_list) {
 	  // Clear all update module caches.
@@ -5515,7 +5336,7 @@ snippet hook_themes_disabled
 	}
 snippet hook_file_download_access
 	/**
-	 * Implements hook_file_download_access()
+	 * Implements hook_file_download_access().
 	 */
 	function `Filename()`_file_download_access($field, $entity_type, $entity) {
 	  /*
@@ -5527,7 +5348,7 @@ snippet hook_file_download_access
 	}
 snippet hook_file_download_access_alter
 	/**
-	 * Implements hook_file_download_access_alter()
+	 * Implements hook_file_download_access_alter().
 	 */
 	function `Filename()`_file_download_access_alter(&$grants, $field, $entity_type, $entity) {
 	  // For our example module, we always enforce the rules set by node module.
@@ -5540,7 +5361,7 @@ snippet hook_file_download_access_alter
 	}
 snippet hook_help
 	/**
-	 * Implements hook_help()
+	 * Implements hook_help().
 	 */
 	function `Filename()`_help($path, $arg) {
 	  switch ($path) {
@@ -5555,7 +5376,7 @@ snippet hook_help
 	}
 snippet hook_comment_presave
 	/**
-	 * Implements hook_comment_presave()
+	 * Implements hook_comment_presave().
 	 */
 	function `Filename()`_comment_presave($comment) {
 	  // Remove leading & trailing spaces from the comment subject.
@@ -5566,7 +5387,7 @@ snippet hook_comment_presave
 	}
 snippet hook_comment_insert
 	/**
-	 * Implements hook_comment_insert()
+	 * Implements hook_comment_insert().
 	 */
 	function `Filename()`_comment_insert($comment) {
 	  // Reindex the node when comments are added.
@@ -5577,7 +5398,7 @@ snippet hook_comment_insert
 	}
 snippet hook_comment_update
 	/**
-	 * Implements hook_comment_update()
+	 * Implements hook_comment_update().
 	 */
 	function `Filename()`_comment_update($comment) {
 	  // Reindex the node when comments are updated.
@@ -5588,7 +5409,7 @@ snippet hook_comment_update
 	}
 snippet hook_comment_load
 	/**
-	 * Implements hook_comment_load()
+	 * Implements hook_comment_load().
 	 */
 	function `Filename()`_comment_load($comments) {
 	  /*
@@ -5601,7 +5422,7 @@ snippet hook_comment_load
 	}
 snippet hook_comment_view
 	/**
-	 * Implements hook_comment_view()
+	 * Implements hook_comment_view().
 	 */
 	function `Filename()`_comment_view($comment, $view_mode, $langcode) {
 	  // how old is the comment
@@ -5612,7 +5433,7 @@ snippet hook_comment_view
 	}
 snippet hook_comment_view_alter
 	/**
-	 * Implements hook_comment_view_alter()
+	 * Implements hook_comment_view_alter().
 	 */
 	function `Filename()`_comment_view_alter(&$build) {
 	  // Check for the existence of a field added by another module.
@@ -5630,7 +5451,7 @@ snippet hook_comment_view_alter
 	}
 snippet hook_comment_publish
 	/**
-	 * Implements hook_comment_publish()
+	 * Implements hook_comment_publish().
 	 */
 	function `Filename()`_comment_publish($comment) {
 	  /*
@@ -5640,7 +5461,7 @@ snippet hook_comment_publish
 	}
 snippet hook_comment_unpublish
 	/**
-	 * Implements hook_comment_unpublish()
+	 * Implements hook_comment_unpublish().
 	 */
 	function `Filename()`_comment_unpublish($comment) {
 	  /*
@@ -5650,7 +5471,7 @@ snippet hook_comment_unpublish
 	}
 snippet hook_comment_delete
 	/**
-	 * Implements hook_comment_delete()
+	 * Implements hook_comment_delete().
 	 */
 	function `Filename()`_comment_delete($comment) {
 	  /*
@@ -5660,7 +5481,7 @@ snippet hook_comment_delete
 	}
 snippet hook_update_projects_alter
 	/**
-	 * Implements hook_update_projects_alter()
+	 * Implements hook_update_projects_alter().
 	 */
 	function `Filename()`_update_projects_alter(&$projects) {
 	  // Hide a site-specific module from the list.
@@ -5706,7 +5527,7 @@ snippet hook_update_projects_alter
 	}
 snippet hook_update_status_alter
 	/**
-	 * Implements hook_update_status_alter()
+	 * Implements hook_update_status_alter().
 	 */
 	function `Filename()`_update_status_alter(&$projects) {
 	  /*
@@ -5732,7 +5553,7 @@ snippet hook_update_status_alter
 	}
 snippet hook_verify_update_archive
 	/**
-	 * Implements hook_verify_update_archive()
+	 * Implements hook_verify_update_archive().
 	 */
 	function `Filename()`_verify_update_archive($project, $archive_file, $directory) {
 	  if (!file_exists($directory)) {
@@ -5742,7 +5563,7 @@ snippet hook_verify_update_archive
 	}
 snippet hook_node_grants
 	/**
-	 * Implements hook_node_grants()
+	 * Implements hook_node_grants().
 	 */
 	function `Filename()`_node_grants($account, $op) {
 	  /*
@@ -5757,7 +5578,7 @@ snippet hook_node_grants
 	}
 snippet hook_node_access_records
 	/**
-	 * Implements hook_node_access_records()
+	 * Implements hook_node_access_records().
 	 */
 	function `Filename()`_node_access_records($node) {
 	  // We only care about the node if it has been marked private. If not, it is
@@ -5807,7 +5628,7 @@ snippet hook_node_access_records
 	}
 snippet hook_node_access_records_alter
 	/**
-	 * Implements hook_node_access_records_alter()
+	 * Implements hook_node_access_records_alter().
 	 */
 	function `Filename()`_node_access_records_alter(&$grants, $node) {
 	  // Our module allows editors to mark specific articles with the 'is_preview'
@@ -5826,7 +5647,7 @@ snippet hook_node_access_records_alter
 	}
 snippet hook_node_grants_alter
 	/**
-	 * Implements hook_node_grants_alter()
+	 * Implements hook_node_grants_alter().
 	 */
 	function `Filename()`_node_grants_alter(&$grants, $account, $op) {
 	  // Our sample module never allows certain roles to edit or delete
@@ -5851,7 +5672,7 @@ snippet hook_node_grants_alter
 	}
 snippet hook_node_operations
 	/**
-	 * Implements hook_node_operations()
+	 * Implements hook_node_operations().
 	 */
 	function `Filename()`_node_operations() {
 	  $operations = array(
@@ -5872,7 +5693,7 @@ snippet hook_node_operations
 	}
 snippet hook_node_delete
 	/**
-	 * Implements hook_node_delete()
+	 * Implements hook_node_delete().
 	 */
 	function `Filename()`_node_delete($node) {
 	  db_delete('${1}')
@@ -5881,7 +5702,7 @@ snippet hook_node_delete
 	}
 snippet hook_node_revision_delete
 	/**
-	 * Implements hook_node_revision_delete()
+	 * Implements hook_node_revision_delete().
 	 */
 	function `Filename()`_node_revision_delete($node) {
 	  db_delete('${1}')
@@ -5890,7 +5711,7 @@ snippet hook_node_revision_delete
 	}
 snippet hook_node_insert
 	/**
-	 * Implements hook_node_insert()
+	 * Implements hook_node_insert().
 	 */
 	function `Filename()`_node_insert($node) {
 	  db_insert('${1}')
@@ -5902,7 +5723,7 @@ snippet hook_node_insert
 	}
 snippet hook_node_load
 	/**
-	 * Implements hook_node_load()
+	 * Implements hook_node_load().
 	 */
 	function `Filename()`_node_load($nodes, $types) {
 	  /*
@@ -5915,7 +5736,7 @@ snippet hook_node_load
 	}
 snippet hook_node_access
 	/**
-	 * Implements hook_node_access()
+	 * Implements hook_node_access().
 	 */
 	function `Filename()`_node_access($node, $op, $account) {
 	  $type = is_string($node) ? $node : $node->type;
@@ -5946,7 +5767,7 @@ snippet hook_node_access
 	}
 snippet hook_node_prepare
 	/**
-	 * Implements hook_node_prepare()
+	 * Implements hook_node_prepare().
 	 */
 	function `Filename()`_node_prepare($node) {
 	  /*
@@ -5958,7 +5779,7 @@ snippet hook_node_prepare
 	}
 snippet hook_node_search_result
 	/**
-	 * Implements hook_node_search_result()
+	 * Implements hook_node_search_result().
 	 */
 	function `Filename()`_node_search_result($node) {
 	  /*
@@ -5969,7 +5790,7 @@ snippet hook_node_search_result
 	}
 snippet hook_node_presave
 	/**
-	 * Implements hook_node_presave()
+	 * Implements hook_node_presave().
 	 */
 	function `Filename()`_node_presave($node) {
 	  /*
@@ -5984,7 +5805,7 @@ snippet hook_node_presave
 	}
 snippet hook_node_update
 	/**
-	 * Implements hook_node_update()
+	 * Implements hook_node_update().
 	 */
 	function `Filename()`_node_update($node) {
 	  db_update('${1}')
@@ -5994,7 +5815,7 @@ snippet hook_node_update
 	}
 snippet hook_node_update_index
 	/**
-	 * Implements hook_node_update_index()
+	 * Implements hook_node_update_index().
 	 */
 	function `Filename()`_node_update_index($node) {
 	  /*
@@ -6009,7 +5830,7 @@ snippet hook_node_update_index
 	}
 snippet hook_node_validate
 	/**
-	 * Implements hook_node_validate()
+	 * Implements hook_node_validate().
 	 */
 	function `Filename()`_node_validate($node, $form, &$form_state) {
 	  /*
@@ -6023,7 +5844,7 @@ snippet hook_node_validate
 	}
 snippet hook_node_submit
 	/**
-	 * Implements hook_node_submit()
+	 * Implements hook_node_submit().
 	 */
 	function `Filename()`_node_submit($node, $form, &$form_state) {
 	  // Decompose the selected menu parent option into 'menu_name' and 'plid', if
@@ -6037,7 +5858,7 @@ snippet hook_node_submit
 	}
 snippet hook_node_view
 	/**
-	 * Implements hook_node_view()
+	 * Implements hook_node_view().
 	 */
 	function `Filename()`_node_view($node, $view_mode, $langcode) {
 	  /*
@@ -6051,7 +5872,7 @@ snippet hook_node_view
 	}
 snippet hook_node_view_alter
 	/**
-	 * Implements hook_node_view_alter()
+	 * Implements hook_node_view_alter().
 	 */
 	function `Filename()`_node_view_alter(&$build) {
 	  /*
@@ -6066,7 +5887,7 @@ snippet hook_node_view_alter
 	}
 snippet hook_node_info
 	/**
-	 * Implements hook_node_info()
+	 * Implements hook_node_info().
 	 */
 	function `Filename()`_node_info() {
 	  return array(
@@ -6086,7 +5907,7 @@ snippet hook_node_info
 	}
 snippet hook_ranking
 	/**
-	 * Implements hook_ranking()
+	 * Implements hook_ranking().
 	 */
 	function `Filename()`_ranking() {
 	  // If voting is disabled, we can avoid returning the array, no hard feelings.
@@ -6111,14 +5932,14 @@ snippet hook_ranking
 	}
 snippet hook_node_type_insert
 	/**
-	 * Implements hook_node_type_insert()
+	 * Implements hook_node_type_insert().
 	 */
 	function `Filename()`_node_type_insert($info) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_node_type_update
 	/**
-	 * Implements hook_node_type_update()
+	 * Implements hook_node_type_update().
 	 */
 	function `Filename()`_node_type_update($info) {
 	  /*
@@ -6132,7 +5953,7 @@ snippet hook_node_type_update
 	}
 snippet hook_node_type_delete
 	/**
-	 * Implements hook_node_type_delete()
+	 * Implements hook_node_type_delete().
 	 */
 	function `Filename()`_node_type_delete($info) {
 	  /*
@@ -6142,7 +5963,7 @@ snippet hook_node_type_delete
 	}
 snippet hook_delete
 	/**
-	 * Implements hook_delete()
+	 * Implements hook_delete().
 	 */
 	function `Filename()`_delete($node) {
 	  db_delete('${1}')
@@ -6151,7 +5972,7 @@ snippet hook_delete
 	}
 snippet hook_prepare
 	/**
-	 * Implements hook_prepare()
+	 * Implements hook_prepare().
 	 */
 	function `Filename()`_prepare($node) {
 	  /*
@@ -6175,23 +5996,22 @@ snippet hook_prepare
 	}
 snippet hook_form
 	/**
-	 * Implements hook_form()
+	 * Implements hook_form().
 	 */
 	function `Filename()`_form($node, &$form_state) {
 	  $type = node_type_get_type($node);
 	
-	  $form['${1}'] = array(
-	    '#type' => '${2}',
-	    '#title' => t('${3}'),
-	    '#default_value' => $node->${4},
-	    '#${5}' => ${6},
+	  $form['${1}']${2} = array(
+	    '#type' => '${3}',
+	    '#title' => t('${4}'),
+	    '#default_value' => $node->${5},${6}
 	  );
 	
 	  return $form;
 	}
 snippet hook_insert
 	/**
-	 * Implements hook_insert()
+	 * Implements hook_insert().
 	 */
 	function `Filename()`_insert($node) {
 	  db_insert('${1}')
@@ -6203,7 +6023,7 @@ snippet hook_insert
 	}
 snippet hook_load
 	/**
-	 * Implements hook_load()
+	 * Implements hook_load().
 	 */
 	function `Filename()`_load($nodes) {
 	  /*
@@ -6216,7 +6036,7 @@ snippet hook_load
 	}
 snippet hook_update
 	/**
-	 * Implements hook_update()
+	 * Implements hook_update().
 	 */
 	function `Filename()`_update($node) {
 	  db_update('${1}')
@@ -6226,7 +6046,7 @@ snippet hook_update
 	}
 snippet hook_validate
 	/**
-	 * Implements hook_validate()
+	 * Implements hook_validate().
 	 */
 	function `Filename()`_validate($node, $form, &$form_state) {
 	  /*
@@ -6240,7 +6060,7 @@ snippet hook_validate
 	}
 snippet hook_view
 	/**
-	 * Implements hook_view()
+	 * Implements hook_view().
 	 */
 	function `Filename()`_view($node, $view_mode) {
 	  /*
@@ -6263,7 +6083,7 @@ snippet hook_view
 	}
 snippet hook_block_info
 	/**
-	 * Implements hook_block_info()
+	 * Implements hook_block_info().
 	 */
 	function `Filename()`_block_info() {
 	  // This example comes from node.module.
@@ -6282,7 +6102,7 @@ snippet hook_block_info
 	}
 snippet hook_block_info_alter
 	/**
-	 * Implements hook_block_info_alter()
+	 * Implements hook_block_info_alter().
 	 */
 	function `Filename()`_block_info_alter(&$blocks, $theme, $code_blocks) {
 	  // Disable the login block.
@@ -6293,7 +6113,7 @@ snippet hook_block_info_alter
 	}
 snippet hook_block_configure
 	/**
-	 * Implements hook_block_configure()
+	 * Implements hook_block_configure().
 	 */
 	function `Filename()`_block_configure($delta = '') {
 	  // This example comes from node.module.
@@ -6310,18 +6130,17 @@ snippet hook_block_configure
 	   */
 	  $form = array();
 	  if ($delta == '${1}') {
-	    $form['${2}'] = array(
-	      '#type' => '${3}',
-	      '#title' => t('${4}'),
-	      '#default_value' => variable_get('${5}', ${6}),
-	      '#${7}' => ${8},
+	    $form['${2}']${3} = array(
+	      '#type' => '${4}',
+	      '#title' => t('${5}'),
+	      '#default_value' => variable_get('${6}', ${7}),${8}
 	    );
 	  }
 	  return $form;
 	}
 snippet hook_block_save($delta = '', $edit = array
 	/**
-	 * Implements hook_block_save($delta = '', $edit = array()
+	 * Implements hook_block_save($delta = '', $edit = array().
 	 */
 	function `Filename()`_block_save($delta = '', $edit = array()) {
 	  // This example comes from node.module.
@@ -6334,7 +6153,7 @@ snippet hook_block_save($delta = '', $edit = array
 	}
 snippet hook_block_view
 	/**
-	 * Implements hook_block_view()
+	 * Implements hook_block_view().
 	 */
 	function `Filename()`_block_view($delta = '') {
 	  $block = array();
@@ -6369,7 +6188,7 @@ snippet hook_block_view
 	}
 snippet hook_block_view_alter
 	/**
-	 * Implements hook_block_view_alter()
+	 * Implements hook_block_view_alter().
 	 */
 	function `Filename()`_block_view_alter(&$data, $block) {
 	  // Remove the contextual links on all blocks that provide them.
@@ -6389,7 +6208,7 @@ snippet hook_block_view_alter
 	}
 snippet hook_block_list_alter
 	/**
-	 * Implements hook_block_list_alter()
+	 * Implements hook_block_list_alter().
 	 */
 	function `Filename()`_block_list_alter(&$blocks) {
 	  // This example shows how to achieve language specific visibility setting for
@@ -6426,7 +6245,7 @@ snippet hook_block_list_alter
 	}
 snippet hook_user_load
 	/**
-	 * Implements hook_user_load()
+	 * Implements hook_user_load().
 	 */
 	function `Filename()`_user_load($users) {
 	  /*
@@ -6439,7 +6258,7 @@ snippet hook_user_load
 	}
 snippet hook_user_delete
 	/**
-	 * Implements hook_user_delete()
+	 * Implements hook_user_delete().
 	 */
 	function `Filename()`_user_delete($account) {
 	  db_delete('${1}')
@@ -6448,7 +6267,7 @@ snippet hook_user_delete
 	}
 snippet hook_user_cancel
 	/**
-	 * Implements hook_user_cancel()
+	 * Implements hook_user_cancel().
 	 */
 	function `Filename()`_user_cancel($edit, $account, $method) {
 	  switch ($method) {
@@ -6471,7 +6290,7 @@ snippet hook_user_cancel
 	}
 snippet hook_user_cancel_methods_alter
 	/**
-	 * Implements hook_user_cancel_methods_alter()
+	 * Implements hook_user_cancel_methods_alter().
 	 */
 	function `Filename()`_user_cancel_methods_alter(&$methods) {
 	  // Limit access to disable account and unpublish content method.
@@ -6495,7 +6314,7 @@ snippet hook_user_cancel_methods_alter
 	}
 snippet hook_user_operations
 	/**
-	 * Implements hook_user_operations()
+	 * Implements hook_user_operations().
 	 */
 	function `Filename()`_user_operations() {
 	  $operations = array(
@@ -6514,7 +6333,7 @@ snippet hook_user_operations
 	}
 snippet hook_user_categories
 	/**
-	 * Implements hook_user_categories()
+	 * Implements hook_user_categories().
 	 */
 	function `Filename()`_user_categories() {
 	  return array(array(
@@ -6530,7 +6349,7 @@ snippet hook_user_categories
 	}
 snippet hook_user_presave
 	/**
-	 * Implements hook_user_presave()
+	 * Implements hook_user_presave().
 	 */
 	function `Filename()`_user_presave(&$edit, $account, $category) {
 	  // make sure that our form value 'mymodule_foo' is stored as 'mymodule_bar'.
@@ -6543,7 +6362,7 @@ snippet hook_user_presave
 	}
 snippet hook_user_insert
 	/**
-	 * Implements hook_user_insert()
+	 * Implements hook_user_insert().
 	 */
 	function `Filename()`_user_insert(&$edit, $account, $category) {
 	  db_insert('${1}')
@@ -6555,7 +6374,7 @@ snippet hook_user_insert
 	}
 snippet hook_user_update
 	/**
-	 * Implements hook_user_update()
+	 * Implements hook_user_update().
 	 */
 	function `Filename()`_user_update(&$edit, $account, $category) {
 	  db_insert('${1}')
@@ -6567,7 +6386,7 @@ snippet hook_user_update
 	}
 snippet hook_user_login
 	/**
-	 * Implements hook_user_login()
+	 * Implements hook_user_login().
 	 */
 	function `Filename()`_user_login(&$edit, $account) {
 	  // If the user has a NULL time zone, notify them to set a time zone.
@@ -6580,7 +6399,7 @@ snippet hook_user_login
 	}
 snippet hook_user_logout
 	/**
-	 * Implements hook_user_logout()
+	 * Implements hook_user_logout().
 	 */
 	function `Filename()`_user_logout($account) {
 	  db_insert('${1}')
@@ -6592,7 +6411,7 @@ snippet hook_user_logout
 	}
 snippet hook_user_view
 	/**
-	 * Implements hook_user_view()
+	 * Implements hook_user_view().
 	 */
 	function `Filename()`_user_view($account, $view_mode, $langcode) {
 	  /*
@@ -6609,7 +6428,7 @@ snippet hook_user_view
 	}
 snippet hook_user_view_alter
 	/**
-	 * Implements hook_user_view_alter()
+	 * Implements hook_user_view_alter().
 	 */
 	function `Filename()`_user_view_alter(&$build) {
 	  // Check for the existence of a field added by another module.
@@ -6627,7 +6446,7 @@ snippet hook_user_view_alter
 	}
 snippet hook_user_role_insert
 	/**
-	 * Implements hook_user_role_insert()
+	 * Implements hook_user_role_insert().
 	 */
 	function `Filename()`_user_role_insert($role) {
 	  // Save extra fields provided by the module to user roles.
@@ -6640,7 +6459,7 @@ snippet hook_user_role_insert
 	}
 snippet hook_user_role_update
 	/**
-	 * Implements hook_user_role_update()
+	 * Implements hook_user_role_update().
 	 */
 	function `Filename()`_user_role_update($role) {
 	  // Save extra fields provided by the module to user roles.
@@ -6653,7 +6472,7 @@ snippet hook_user_role_update
 	}
 snippet hook_user_role_delete
 	/**
-	 * Implements hook_user_role_delete()
+	 * Implements hook_user_role_delete().
 	 */
 	function `Filename()`_user_role_delete($role) {
 	  // Delete existing instances of the deleted role.
@@ -6663,7 +6482,7 @@ snippet hook_user_role_delete
 	}
 snippet hook_taxonomy_vocabulary_load
 	/**
-	 * Implements hook_taxonomy_vocabulary_load()
+	 * Implements hook_taxonomy_vocabulary_load().
 	 */
 	function `Filename()`_taxonomy_vocabulary_load($vocabularies) {
 	  foreach ($vocabularies as $vocabulary) {
@@ -6675,7 +6494,7 @@ snippet hook_taxonomy_vocabulary_load
 	}
 snippet hook_taxonomy_vocabulary_presave
 	/**
-	 * Implements hook_taxonomy_vocabulary_presave()
+	 * Implements hook_taxonomy_vocabulary_presave().
 	 */
 	function `Filename()`_taxonomy_vocabulary_presave($vocabulary) {
 	  /*
@@ -6685,7 +6504,7 @@ snippet hook_taxonomy_vocabulary_presave
 	}
 snippet hook_taxonomy_vocabulary_insert
 	/**
-	 * Implements hook_taxonomy_vocabulary_insert()
+	 * Implements hook_taxonomy_vocabulary_insert().
 	 */
 	function `Filename()`_taxonomy_vocabulary_insert($vocabulary) {
 	  /*
@@ -6697,7 +6516,7 @@ snippet hook_taxonomy_vocabulary_insert
 	}
 snippet hook_taxonomy_vocabulary_update
 	/**
-	 * Implements hook_taxonomy_vocabulary_update()
+	 * Implements hook_taxonomy_vocabulary_update().
 	 */
 	function `Filename()`_taxonomy_vocabulary_update($vocabulary) {
 	  /*
@@ -6710,7 +6529,7 @@ snippet hook_taxonomy_vocabulary_update
 	}
 snippet hook_taxonomy_vocabulary_delete
 	/**
-	 * Implements hook_taxonomy_vocabulary_delete()
+	 * Implements hook_taxonomy_vocabulary_delete().
 	 */
 	function `Filename()`_taxonomy_vocabulary_delete($vocabulary) {
 	  /*
@@ -6722,7 +6541,7 @@ snippet hook_taxonomy_vocabulary_delete
 	}
 snippet hook_taxonomy_term_load
 	/**
-	 * Implements hook_taxonomy_term_load()
+	 * Implements hook_taxonomy_term_load().
 	 */
 	function `Filename()`_taxonomy_term_load($terms) {
 	  /*
@@ -6735,7 +6554,7 @@ snippet hook_taxonomy_term_load
 	}
 snippet hook_taxonomy_term_presave
 	/**
-	 * Implements hook_taxonomy_term_presave()
+	 * Implements hook_taxonomy_term_presave().
 	 */
 	function `Filename()`_taxonomy_term_presave($term) {
 	  /*
@@ -6745,7 +6564,7 @@ snippet hook_taxonomy_term_presave
 	}
 snippet hook_taxonomy_term_insert
 	/**
-	 * Implements hook_taxonomy_term_insert()
+	 * Implements hook_taxonomy_term_insert().
 	 */
 	function `Filename()`_taxonomy_term_insert($term) {
 	  /*
@@ -6766,7 +6585,7 @@ snippet hook_taxonomy_term_insert
 	}
 snippet hook_taxonomy_term_update
 	/**
-	 * Implements hook_taxonomy_term_update()
+	 * Implements hook_taxonomy_term_update().
 	 */
 	function `Filename()`_taxonomy_term_update($term) {
 	  /*
@@ -6788,7 +6607,7 @@ snippet hook_taxonomy_term_update
 	}
 snippet hook_taxonomy_term_delete
 	/**
-	 * Implements hook_taxonomy_term_delete()
+	 * Implements hook_taxonomy_term_delete().
 	 */
 	function `Filename()`_taxonomy_term_delete($term) {
 	  /*
@@ -6798,7 +6617,7 @@ snippet hook_taxonomy_term_delete
 	}
 snippet hook_openid
 	/**
-	 * Implements hook_openid()
+	 * Implements hook_openid().
 	 */
 	function `Filename()`_openid($op, $request) {
 	  /*
@@ -6812,7 +6631,7 @@ snippet hook_openid
 	}
 snippet hook_openid_response
 	/**
-	 * Implements hook_openid_response()
+	 * Implements hook_openid_response().
 	 */
 	function `Filename()`_openid_response($response, $account) {
 	  /*
@@ -6824,7 +6643,7 @@ snippet hook_openid_response
 	}
 snippet hook_openid_discovery_method_info
 	/**
-	 * Implements hook_openid_discovery_method_info()
+	 * Implements hook_openid_discovery_method_info().
 	 */
 	function `Filename()`_openid_discovery_method_info() {
 	  return array(
@@ -6833,7 +6652,7 @@ snippet hook_openid_discovery_method_info
 	}
 snippet hook_openid_discovery_method_info_alter
 	/**
-	 * Implements hook_openid_discovery_method_info_alter()
+	 * Implements hook_openid_discovery_method_info_alter().
 	 */
 	function `Filename()`_openid_discovery_method_info_alter(&$methods) {
 	  // Remove XRI discovery scheme.
@@ -6844,7 +6663,7 @@ snippet hook_openid_discovery_method_info_alter
 	}
 snippet hook_openid_normalization_method_info
 	/**
-	 * Implements hook_openid_normalization_method_info()
+	 * Implements hook_openid_normalization_method_info().
 	 */
 	function `Filename()`_openid_normalization_method_info() {
 	  return array(
@@ -6856,7 +6675,7 @@ snippet hook_openid_normalization_method_info
 	}
 snippet hook_openid_normalization_method_info_alter
 	/**
-	 * Implements hook_openid_normalization_method_info_alter()
+	 * Implements hook_openid_normalization_method_info_alter().
 	 */
 	function `Filename()`_openid_normalization_method_info_alter(&$methods) {
 	  // Remove Google IDP normalization.
@@ -6867,7 +6686,7 @@ snippet hook_openid_normalization_method_info_alter
 	}
 snippet hook_filter_info
 	/**
-	 * Implements hook_filter_info()
+	 * Implements hook_filter_info().
 	 */
 	function `Filename()`_filter_info() {
 	  /*
@@ -6907,7 +6726,7 @@ snippet hook_filter_info
 	}
 snippet hook_filter_info_alter
 	/**
-	 * Implements hook_filter_info_alter()
+	 * Implements hook_filter_info_alter().
 	 */
 	function `Filename()`_filter_info_alter(&$info) {
 	  // Replace the PHP evaluator process callback with an improved
@@ -6925,7 +6744,7 @@ snippet hook_filter_info_alter
 	}
 snippet hook_filter_format_insert
 	/**
-	 * Implements hook_filter_format_insert()
+	 * Implements hook_filter_format_insert().
 	 */
 	function `Filename()`_filter_format_insert($format) {
 	  /*
@@ -6935,7 +6754,7 @@ snippet hook_filter_format_insert
 	}
 snippet hook_filter_format_update
 	/**
-	 * Implements hook_filter_format_update()
+	 * Implements hook_filter_format_update().
 	 */
 	function `Filename()`_filter_format_update($format) {
 	  /*
@@ -6945,7 +6764,7 @@ snippet hook_filter_format_update
 	}
 snippet hook_filter_format_disable
 	/**
-	 * Implements hook_filter_format_disable()
+	 * Implements hook_filter_format_disable().
 	 */
 	function `Filename()`_filter_format_disable($format) {
 	  /*
@@ -6955,7 +6774,7 @@ snippet hook_filter_format_disable
 	}
 snippet hook_rdf_mapping
 	/**
-	 * Implements hook_rdf_mapping()
+	 * Implements hook_rdf_mapping().
 	 */
 	function `Filename()`_rdf_mapping() {
 	  return array(
@@ -7012,7 +6831,7 @@ snippet hook_rdf_mapping
 	}
 snippet hook_rdf_namespaces
 	/**
-	 * Implements hook_rdf_namespaces()
+	 * Implements hook_rdf_namespaces().
 	 */
 	function `Filename()`_rdf_namespaces() {
 	  return array(
@@ -7032,7 +6851,7 @@ snippet hook_rdf_namespaces
 	}
 snippet hook_field_settings_form
 	/**
-	 * Implements hook_field_settings_form()
+	 * Implements hook_field_settings_form().
 	 */
 	function `Filename()`_field_settings_form($field, $instance, $has_data) {
 	  /*
@@ -7047,20 +6866,19 @@ snippet hook_field_settings_form
 	   *);
 	   */
 	  $settings = $field['settings'];
-	  $form['${1}'] = array(
-	    '#type' => '${2}',
-	    '#title' => t('${3}'),
-	    '#default_value' => $settings['${4}'],
-	    '#required' => ${5},
-	    '#element_validate' => array('${6}'),
-	    '#description' => t('${7}'),
-	    '#${8}' => ${9}
+	  $form['${1}']${2} = array(
+	    '#type' => '${3}',
+	    '#title' => t('${4}'),
+	    '#default_value' => $settings['${5}'],
+	    '#required' => ${6},
+	    '#element_validate' => array('${7}'),
+	    '#description' => t('${8}'),${9}
 	  );
 	  return $form;
 	}
 snippet hook_field_instance_settings_form
 	/**
-	 * Implements hook_field_instance_settings_form()
+	 * Implements hook_field_instance_settings_form().
 	 */
 	function `Filename()`_field_instance_settings_form($field, $instance) {
 	  /*
@@ -7089,20 +6907,19 @@ snippet hook_field_instance_settings_form
 	   *  }
 	   */
 	  $settings = $instance['settings'];
-	  $form['${1}'] = array(
-	    '#type' => '${2}',
-	    '#title' => t('${3}'),
-	    '#default_value' => $settings['${4}'],
-	    '#required' => ${5},
-	    '#element_validate' => array('${6}'),
-	    '#description' => t('${7}'),
-	    '#${8}' => ${9}
+	  $form['${1}']${2} = array(
+	    '#type' => '${3}',
+	    '#title' => t('${4}'),
+	    '#default_value' => $settings['${5}'],
+	    '#required' => ${6},
+	    '#element_validate' => array('${7}'),
+	    '#description' => t('${8}'),${9}
 	  );
 	  return $form;
 	}
 snippet hook_field_widget_settings_form
 	/**
-	 * Implements hook_field_widget_settings_form()
+	 * Implements hook_field_widget_settings_form().
 	 */
 	function `Filename()`_field_widget_settings_form($field, $instance) {
 	  $widget = $instance['widget'];
@@ -7128,20 +6945,19 @@ snippet hook_field_widget_settings_form
 	   *  );
 	   *}
 	   */
-	  $form['${1}'] = array(
-	    '#type' => '${2}',
-	    '#title' => t('${3}'),
-	    '#default_value' => $settings['${4}'],
-	    '#required' => ${5},
-	    '#element_validate' => array('${6}'),
-	    '#description' => t('${7}'),
-	    '#${8}' => ${9}
+	  $form['${1}']${2} = array(
+	    '#type' => '${3}',
+	    '#title' => t('${4}'),
+	    '#default_value' => $settings['${5}'],
+	    '#required' => ${6},
+	    '#element_validate' => array('${7}'),
+	    '#description' => t('${8}'),${9}
 	  );
 	  return $form;
 	}
 snippet hook_field_formatter_settings_form
 	/**
-	 * Implements hook_field_formatter_settings_form()
+	 * Implements hook_field_formatter_settings_form().
 	 */
 	function `Filename()`_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
 	  $display = $instance['display'][$view_mode];
@@ -7174,7 +6990,7 @@ snippet hook_field_formatter_settings_form
 	}
 snippet hook_field_formatter_settings_summary
 	/**
-	 * Implements hook_field_formatter_settings_summary()
+	 * Implements hook_field_formatter_settings_summary().
 	 */
 	function `Filename()`_field_formatter_settings_summary($field, $instance, $view_mode) {
 	  /*
@@ -7193,7 +7009,7 @@ snippet hook_field_formatter_settings_summary
 	}
 snippet hook_field_extra_fields
 	/**
-	 * Implements hook_field_extra_fields()
+	 * Implements hook_field_extra_fields().
 	 */
 	function `Filename()`_field_extra_fields() {
 	  /*
@@ -7245,7 +7061,7 @@ snippet hook_field_extra_fields
 	}
 snippet hook_field_extra_fields_alter
 	/**
-	 * Implements hook_field_extra_fields_alter()
+	 * Implements hook_field_extra_fields_alter().
 	 */
 	function `Filename()`_field_extra_fields_alter(&$info) {
 	  // Force node title to always be at the top of the list by default.
@@ -7260,7 +7076,7 @@ snippet hook_field_extra_fields_alter
 	}
 snippet hook_field_info
 	/**
-	 * Implements hook_field_info()
+	 * Implements hook_field_info().
 	 */
 	function `Filename()`_field_info() {
 	  return array(
@@ -7286,7 +7102,7 @@ snippet hook_field_info
 	}
 snippet hook_field_info_alter
 	/**
-	 * Implements hook_field_info_alter()
+	 * Implements hook_field_info_alter().
 	 */
 	function `Filename()`_field_info_alter(&$info) {
 	  // Add a setting to all field types.
@@ -7307,7 +7123,7 @@ snippet hook_field_info_alter
 	}
 snippet hook_field_schema
 	/**
-	 * Implements hook_field_schema()
+	 * Implements hook_field_schema().
 	 */
 	function `Filename()`_field_schema($field) {
 	  /*
@@ -7368,7 +7184,7 @@ snippet hook_field_schema
 	}
 snippet hook_field_load
 	/**
-	 * Implements hook_field_load()
+	 * Implements hook_field_load().
 	 */
 	function `Filename()`_field_load($entity_type, $entities, $field, $instances, $langcode, &$items, $age) {
 	  // Sample code from text.module: precompute sanitized strings so they are
@@ -7391,7 +7207,7 @@ snippet hook_field_load
 	}
 snippet hook_field_prepare_view
 	/**
-	 * Implements hook_field_prepare_view()
+	 * Implements hook_field_prepare_view().
 	 */
 	function `Filename()`_field_prepare_view($entity_type, $entities, $field, $instances, $langcode, &$items) {
 	  // Sample code from image.module: if there are no images specified at all,
@@ -7413,7 +7229,7 @@ snippet hook_field_prepare_view
 	}
 snippet hook_field_validate
 	/**
-	 * Implements hook_field_validate()
+	 * Implements hook_field_validate().
 	 */
 	function `Filename()`_field_validate($entity_type, $entity, $field, $instance, $langcode, $items, &$errors) {
 	  foreach ($items as $delta => $item) {
@@ -7432,7 +7248,7 @@ snippet hook_field_validate
 	}
 snippet hook_field_presave
 	/**
-	 * Implements hook_field_presave()
+	 * Implements hook_field_presave().
 	 */
 	function `Filename()`_field_presave($entity_type, $entity, $field, $instance, $langcode, &$items) {
 	  if ($field['type'] == '${1}') {
@@ -7450,7 +7266,7 @@ snippet hook_field_presave
 	}
 snippet hook_field_insert
 	/**
-	 * Implements hook_field_insert()
+	 * Implements hook_field_insert().
 	 */
 	function `Filename()`_field_insert($entity_type, $entity, $field, $instance, $langcode, &$items) {
 	  /*
@@ -7471,7 +7287,7 @@ snippet hook_field_insert
 	}
 snippet hook_field_update
 	/**
-	 * Implements hook_field_update()
+	 * Implements hook_field_update().
 	 */
 	function `Filename()`_field_update($entity_type, $entity, $field, $instance, $langcode, &$items) {
 	  /*
@@ -7504,7 +7320,7 @@ snippet hook_field_update
 	}
 snippet hook_field_storage_update_field
 	/**
-	 * Implements hook_field_storage_update_field()
+	 * Implements hook_field_storage_update_field().
 	 */
 	function `Filename()`_field_storage_update_field($field, $prior_field, $has_data) {
 	  if (!$has_data) {
@@ -7531,7 +7347,7 @@ snippet hook_field_storage_update_field
 	}
 snippet hook_field_delete
 	/**
-	 * Implements hook_field_delete()
+	 * Implements hook_field_delete().
 	 */
 	function `Filename()`_field_delete($entity_type, $entity, $field, $instance, $langcode, &$items) {
 	  list($id, $vid, $bundle) = entity_extract_ids($entity_type, $entity);
@@ -7552,7 +7368,7 @@ snippet hook_field_delete
 	}
 snippet hook_field_delete_revision
 	/**
-	 * Implements hook_field_delete_revision()
+	 * Implements hook_field_delete_revision().
 	 */
 	function `Filename()`_field_delete_revision($entity_type, $entity, $field, $instance, $langcode, &$items) {
 	  foreach ($items as $delta => $item) {
@@ -7568,7 +7384,7 @@ snippet hook_field_delete_revision
 	}
 snippet hook_field_prepare_translation
 	/**
-	 * Implements hook_field_prepare_translation()
+	 * Implements hook_field_prepare_translation().
 	 */
 	function `Filename()`_field_prepare_translation($entity_type, $entity, $field, $instance, $langcode, &$items, $source_entity, $source_langcode) {
 	  // If the translating user is not permitted to use the assigned text format,
@@ -7585,7 +7401,7 @@ snippet hook_field_prepare_translation
 	}
 snippet hook_field_is_empty
 	/**
-	 * Implements hook_field_is_empty()
+	 * Implements hook_field_is_empty().
 	 */
 	function `Filename()`_field_is_empty($item, $field) {
 	  /*
@@ -7598,7 +7414,7 @@ snippet hook_field_is_empty
 	}
 snippet hook_field_widget_info
 	/**
-	 * Implements hook_field_widget_info()
+	 * Implements hook_field_widget_info().
 	 */
 	function `Filename()`_field_widget_info() {
 	    return array(
@@ -7626,7 +7442,7 @@ snippet hook_field_widget_info
 	}
 snippet hook_field_widget_info_alter
 	/**
-	 * Implements hook_field_widget_info_alter()
+	 * Implements hook_field_widget_info_alter().
 	 */
 	function `Filename()`_field_widget_info_alter(&$info) {
 	  // Add a setting to a widget type.
@@ -7643,7 +7459,7 @@ snippet hook_field_widget_info_alter
 	}
 snippet hook_field_widget_form
 	/**
-	 * Implements hook_field_widget_form()
+	 * Implements hook_field_widget_form().
 	 */
 	function `Filename()`_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
 	  /*
@@ -7660,7 +7476,7 @@ snippet hook_field_widget_form
 	}
 snippet hook_field_widget_error
 	/**
-	 * Implements hook_field_widget_error()
+	 * Implements hook_field_widget_error().
 	 */
 	function `Filename()`_field_widget_error($element, $error, $form, &$form_state) {
 	  /*
@@ -7670,7 +7486,7 @@ snippet hook_field_widget_error
 	}
 snippet hook_field_formatter_info
 	/**
-	 * Implements hook_field_formatter_info()
+	 * Implements hook_field_formatter_info().
 	 */
 	function `Filename()`_field_formatter_info() {
 	  return array(
@@ -7688,7 +7504,7 @@ snippet hook_field_formatter_info
 	}
 snippet hook_field_formatter_info_alter
 	/**
-	 * Implements hook_field_formatter_info_alter()
+	 * Implements hook_field_formatter_info_alter().
 	 */
 	function `Filename()`_field_formatter_info_alter(&$info) {
 	  // Add a setting to a formatter type.
@@ -7705,7 +7521,7 @@ snippet hook_field_formatter_info_alter
 	}
 snippet hook_field_formatter_prepare_view
 	/**
-	 * Implements hook_field_formatter_prepare_view()
+	 * Implements hook_field_formatter_prepare_view().
 	 */
 	function `Filename()`_field_formatter_prepare_view($entity_type, $entities, $field, $instances, $langcode, &$items, $displays) {
 	  /*
@@ -7751,7 +7567,7 @@ snippet hook_field_formatter_prepare_view
 	}
 snippet hook_field_formatter_view
 	/**
-	 * Implements hook_field_formatter_view()
+	 * Implements hook_field_formatter_view().
 	 */
 	function `Filename()`_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
 	  $element = array();
@@ -7810,77 +7626,77 @@ snippet hook_field_formatter_view
 	}
 snippet hook_field_attach_form
 	/**
-	 * Implements hook_field_attach_form()
+	 * Implements hook_field_attach_form().
 	 */
 	function `Filename()`_field_attach_form($entity_type, $entity, &$form, &$form_state, $langcode) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_field_attach_load
 	/**
-	 * Implements hook_field_attach_load()
+	 * Implements hook_field_attach_load().
 	 */
 	function `Filename()`_field_attach_load($entity_type, &$entities, $age, $options) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_field_attach_validate
 	/**
-	 * Implements hook_field_attach_validate()
+	 * Implements hook_field_attach_validate().
 	 */
 	function `Filename()`_field_attach_validate($entity_type, $entity, &$errors) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_field_attach_submit
 	/**
-	 * Implements hook_field_attach_submit()
+	 * Implements hook_field_attach_submit().
 	 */
 	function `Filename()`_field_attach_submit($entity_type, $entity, $form, &$form_state) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_field_attach_presave
 	/**
-	 * Implements hook_field_attach_presave()
+	 * Implements hook_field_attach_presave().
 	 */
 	function `Filename()`_field_attach_presave($entity_type, $entity) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_field_attach_insert
 	/**
-	 * Implements hook_field_attach_insert()
+	 * Implements hook_field_attach_insert().
 	 */
 	function `Filename()`_field_attach_insert($entity_type, $entity) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_field_attach_update
 	/**
-	 * Implements hook_field_attach_update()
+	 * Implements hook_field_attach_update().
 	 */
 	function `Filename()`_field_attach_update($entity_type, $entity) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_field_attach_preprocess_alter
 	/**
-	 * Implements hook_field_attach_preprocess_alter()
+	 * Implements hook_field_attach_preprocess_alter().
 	 */
 	function `Filename()`_field_attach_preprocess_alter(&$variables, $context) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_field_attach_delete
 	/**
-	 * Implements hook_field_attach_delete()
+	 * Implements hook_field_attach_delete().
 	 */
 	function `Filename()`_field_attach_delete($entity_type, $entity) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_field_attach_delete_revision
 	/**
-	 * Implements hook_field_attach_delete_revision()
+	 * Implements hook_field_attach_delete_revision().
 	 */
 	function `Filename()`_field_attach_delete_revision($entity_type, $entity) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_field_attach_purge
 	/**
-	 * Implements hook_field_attach_purge()
+	 * Implements hook_field_attach_purge().
 	 */
 	function `Filename()`_field_attach_purge($entity_type, $entity, $field, $instance) {
 	  // find the corresponding data in mymodule and purge it
@@ -7893,7 +7709,7 @@ snippet hook_field_attach_purge
 	}
 snippet hook_field_attach_view_alter
 	/**
-	 * Implements hook_field_attach_view_alter()
+	 * Implements hook_field_attach_view_alter().
 	 */
 	function `Filename()`_field_attach_view_alter(&$output, $context) {
 	  // Append RDF term mappings on displayed taxonomy links.
@@ -7917,7 +7733,7 @@ snippet hook_field_attach_view_alter
 	}
 snippet hook_field_attach_prepare_translation_alter
 	/**
-	 * Implements hook_field_attach_prepare_translation_alter()
+	 * Implements hook_field_attach_prepare_translation_alter().
 	 */
 	function `Filename()`_field_attach_prepare_translation_alter(&$entity, $context) {
 	  /*
@@ -7929,7 +7745,7 @@ snippet hook_field_attach_prepare_translation_alter
 	}
 snippet hook_field_language_alter
 	/**
-	 * Implements hook_field_language_alter()
+	 * Implements hook_field_language_alter().
 	 */
 	function `Filename()`_field_language_alter(&$display_language, $context) {
 	  // Do not apply core language fallback rules if they are disabled or if Locale
@@ -7943,7 +7759,7 @@ snippet hook_field_language_alter
 	}
 snippet hook_field_available_languages_alter
 	/**
-	 * Implements hook_field_available_languages_alter()
+	 * Implements hook_field_available_languages_alter().
 	 */
 	function `Filename()`_field_available_languages_alter(&$languages, $context) {
 	  // Add an unavailable language.
@@ -7959,7 +7775,7 @@ snippet hook_field_available_languages_alter
 	}
 snippet hook_field_attach_create_bundle
 	/**
-	 * Implements hook_field_attach_create_bundle()
+	 * Implements hook_field_attach_create_bundle().
 	 */
 	function `Filename()`_field_attach_create_bundle($entity_type, $bundle) {
 	  // When a new bundle is created, the menu needs to be rebuilt to add the
@@ -7971,7 +7787,7 @@ snippet hook_field_attach_create_bundle
 	}
 snippet hook_field_attach_rename_bundle
 	/**
-	 * Implements hook_field_attach_rename_bundle()
+	 * Implements hook_field_attach_rename_bundle().
 	 */
 	function `Filename()`_field_attach_rename_bundle($entity_type, $bundle_old, $bundle_new) {
 	  // Update the extra weights variable with new information.
@@ -7989,7 +7805,7 @@ snippet hook_field_attach_rename_bundle
 	}
 snippet hook_field_attach_delete_bundle
 	/**
-	 * Implements hook_field_attach_delete_bundle()
+	 * Implements hook_field_attach_delete_bundle().
 	 */
 	function `Filename()`_field_attach_delete_bundle($entity_type, $bundle, $instances) {
 	  // Remove the extra weights variable information for this bundle.
@@ -8004,7 +7820,7 @@ snippet hook_field_attach_delete_bundle
 	}
 snippet hook_field_storage_info
 	/**
-	 * Implements hook_field_storage_info()
+	 * Implements hook_field_storage_info().
 	 */
 	function `Filename()`_field_storage_info() {
 	  return array(
@@ -8024,7 +7840,7 @@ snippet hook_field_storage_info
 	}
 snippet hook_field_storage_info_alter
 	/**
-	 * Implements hook_field_storage_info_alter()
+	 * Implements hook_field_storage_info_alter().
 	 */
 	function `Filename()`_field_storage_info_alter(&$info) {
 	  // Add a setting to a storage type.
@@ -8037,7 +7853,7 @@ snippet hook_field_storage_info_alter
 	}
 snippet hook_field_storage_details
 	/**
-	 * Implements hook_field_storage_details()
+	 * Implements hook_field_storage_details().
 	 */
 	function `Filename()`_field_storage_details($field) {
 	  $details = array();
@@ -8063,7 +7879,7 @@ snippet hook_field_storage_details
 	}
 snippet hook_field_storage_details_alter
 	/**
-	 * Implements hook_field_storage_details_alter()
+	 * Implements hook_field_storage_details_alter().
 	 */
 	function `Filename()`_field_storage_details_alter(&$details, $field) {
 	  /*
@@ -8086,7 +7902,7 @@ snippet hook_field_storage_details_alter
 	}
 snippet hook_field_storage_load
 	/**
-	 * Implements hook_field_storage_load()
+	 * Implements hook_field_storage_load().
 	 */
 	function `Filename()`_field_storage_load($entity_type, &$entities, $age, $fields, $options) {
 	  /*
@@ -8138,7 +7954,7 @@ snippet hook_field_storage_load
 	}
 snippet hook_field_storage_write
 	/**
-	 * Implements hook_field_storage_write()
+	 * Implements hook_field_storage_write().
 	 */
 	function `Filename()`_field_storage_write($entity_type, $entity, $op, $fields) {
 	  list($id, $vid, $bundle) = entity_extract_ids($entity_type, $entity);
@@ -8228,7 +8044,7 @@ snippet hook_field_storage_write
 	}
 snippet hook_field_storage_delete
 	/**
-	 * Implements hook_field_storage_delete()
+	 * Implements hook_field_storage_delete().
 	 */
 	function `Filename()`_field_storage_delete($entity_type, $entity, $fields) {
 	  list($id, $vid, $bundle) = entity_extract_ids($entity_type, $entity);
@@ -8246,7 +8062,7 @@ snippet hook_field_storage_delete
 	}
 snippet hook_field_storage_delete_revision
 	/**
-	 * Implements hook_field_storage_delete_revision()
+	 * Implements hook_field_storage_delete_revision().
 	 */
 	function `Filename()`_field_storage_delete_revision($entity_type, $entity, $fields) {
 	  list($id, $vid, $bundle) = entity_extract_ids($entity_type, $entity);
@@ -8269,7 +8085,7 @@ snippet hook_field_storage_delete_revision
 	}
 snippet hook_field_storage_query
 	/**
-	 * Implements hook_field_storage_query()
+	 * Implements hook_field_storage_query().
 	 */
 	function `Filename()`_field_storage_query($query) {
 	  /*
@@ -8398,7 +8214,7 @@ snippet hook_field_storage_query
 	}
 snippet hook_field_storage_create_field
 	/**
-	 * Implements hook_field_storage_create_field()
+	 * Implements hook_field_storage_create_field().
 	 */
 	function `Filename()`_field_storage_create_field($field) {
 	  /*
@@ -8412,7 +8228,7 @@ snippet hook_field_storage_create_field
 	}
 snippet hook_field_storage_delete_field
 	/**
-	 * Implements hook_field_storage_delete_field()
+	 * Implements hook_field_storage_delete_field().
 	 */
 	function `Filename()`_field_storage_delete_field($field) {
 	  // Mark all data associated with the field for deletion.
@@ -8437,7 +8253,7 @@ snippet hook_field_storage_delete_field
 	}
 snippet hook_field_storage_delete_instance
 	/**
-	 * Implements hook_field_storage_delete_instance()
+	 * Implements hook_field_storage_delete_instance().
 	 */
 	function `Filename()`_field_storage_delete_instance($instance) {
 	  /*
@@ -8460,14 +8276,14 @@ snippet hook_field_storage_delete_instance
 	}
 snippet hook_field_storage_pre_load
 	/**
-	 * Implements hook_field_storage_pre_load()
+	 * Implements hook_field_storage_pre_load().
 	 */
 	function `Filename()`_field_storage_pre_load($entity_type, $entities, $age, &$skip_fields, $options) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_field_storage_pre_insert
 	/**
-	 * Implements hook_field_storage_pre_insert()
+	 * Implements hook_field_storage_pre_insert().
 	 */
 	function `Filename()`_field_storage_pre_insert($entity_type, $entity, &$skip_fields) {
 	  /*
@@ -8493,7 +8309,7 @@ snippet hook_field_storage_pre_insert
 	}
 snippet hook_field_storage_pre_update
 	/**
-	 * Implements hook_field_storage_pre_update()
+	 * Implements hook_field_storage_pre_update().
 	 */
 	function `Filename()`_field_storage_pre_update($entity_type, $entity, &$skip_fields) {
 	  /*
@@ -8534,7 +8350,7 @@ snippet hook_field_storage_pre_update
 	}
 snippet hook_field_info_max_weight
 	/**
-	 * Implements hook_field_info_max_weight()
+	 * Implements hook_field_info_max_weight().
 	 */
 	function `Filename()`_field_info_max_weight($entity_type, $bundle, $context) {
 	  $weights = array();
@@ -8550,7 +8366,7 @@ snippet hook_field_info_max_weight
 	}
 snippet hook_field_display_alter
 	/**
-	 * Implements hook_field_display_alter()
+	 * Implements hook_field_display_alter().
 	 */
 	function `Filename()`_field_display_alter(&$display, $context) {
 	  // Leave field labels out of the search index.
@@ -8567,7 +8383,7 @@ snippet hook_field_display_alter
 	}
 snippet hook_field_display_ENTITY_TYPE_alter
 	/**
-	 * Implements hook_field_display_ENTITY_TYPE_alter()
+	 * Implements hook_field_display_ENTITY_TYPE_alter().
 	 */
 	function `Filename()`_field_display_ENTITY_TYPE_alter(&$display, $context) {
 	  // Leave field labels out of the search index.
@@ -8580,7 +8396,7 @@ snippet hook_field_display_ENTITY_TYPE_alter
 	}
 snippet hook_field_extra_fields_display_alter
 	/**
-	 * Implements hook_field_extra_fields_display_alter()
+	 * Implements hook_field_extra_fields_display_alter().
 	 */
 	function `Filename()`_field_extra_fields_display_alter(&$displays, $context) {
 	  /*
@@ -8592,21 +8408,21 @@ snippet hook_field_extra_fields_display_alter
 	}
 snippet hook_field_create_field
 	/**
-	 * Implements hook_field_create_field()
+	 * Implements hook_field_create_field().
 	 */
 	function `Filename()`_field_create_field($field) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_field_create_instance
 	/**
-	 * Implements hook_field_create_instance()
+	 * Implements hook_field_create_instance().
 	 */
 	function `Filename()`_field_create_instance($instance) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_field_update_forbid
 	/**
-	 * Implements hook_field_update_forbid()
+	 * Implements hook_field_update_forbid().
 	 */
 	function `Filename()`_field_update_forbid($field, $prior_field, $has_data) {
 	  // A 'list' field stores integer keys mapped to display values. If
@@ -8632,7 +8448,7 @@ snippet hook_field_update_forbid
 	}
 snippet hook_field_update_field
 	/**
-	 * Implements hook_field_update_field()
+	 * Implements hook_field_update_field().
 	 */
 	function `Filename()`_field_update_field($field, $prior_field, $has_data) {
 	  // Reset the static value that keeps track of allowed values for list fields.
@@ -8643,42 +8459,42 @@ snippet hook_field_update_field
 	}
 snippet hook_field_delete_field
 	/**
-	 * Implements hook_field_delete_field()
+	 * Implements hook_field_delete_field().
 	 */
 	function `Filename()`_field_delete_field($field) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_field_update_instance
 	/**
-	 * Implements hook_field_update_instance()
+	 * Implements hook_field_update_instance().
 	 */
 	function `Filename()`_field_update_instance($instance, $prior_instance) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_field_delete_instance
 	/**
-	 * Implements hook_field_delete_instance()
+	 * Implements hook_field_delete_instance().
 	 */
 	function `Filename()`_field_delete_instance($instance) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_field_read_field
 	/**
-	 * Implements hook_field_read_field()
+	 * Implements hook_field_read_field().
 	 */
 	function `Filename()`_field_read_field(&$field) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_field_read_instance
 	/**
-	 * Implements hook_field_read_instance()
+	 * Implements hook_field_read_instance().
 	 */
 	function `Filename()`_field_read_instance($instance) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_field_purge_field
 	/**
-	 * Implements hook_field_purge_field()
+	 * Implements hook_field_purge_field().
 	 */
 	function `Filename()`_field_purge_field($field) {
 	  db_delete('${1}')
@@ -8687,7 +8503,7 @@ snippet hook_field_purge_field
 	}
 snippet hook_field_purge_field_instance
 	/**
-	 * Implements hook_field_purge_field_instance()
+	 * Implements hook_field_purge_field_instance().
 	 */
 	function `Filename()`_field_purge_field_instance($instance) {
 	  db_delete('${1}')
@@ -8696,7 +8512,7 @@ snippet hook_field_purge_field_instance
 	}
 snippet hook_field_storage_purge_field
 	/**
-	 * Implements hook_field_storage_purge_field()
+	 * Implements hook_field_storage_purge_field().
 	 */
 	function `Filename()`_field_storage_purge_field($field) {
 	  /*
@@ -8709,7 +8525,7 @@ snippet hook_field_storage_purge_field
 	}
 snippet hook_field_storage_purge_field_instance
 	/**
-	 * Implements hook_field_storage_purge_field_instance()
+	 * Implements hook_field_storage_purge_field_instance().
 	 */
 	function `Filename()`_field_storage_purge_field_instance($instance) {
 	  db_delete('${1}')
@@ -8718,7 +8534,7 @@ snippet hook_field_storage_purge_field_instance
 	}
 snippet hook_field_storage_purge
 	/**
-	 * Implements hook_field_storage_purge()
+	 * Implements hook_field_storage_purge().
 	 */
 	function `Filename()`_field_storage_purge($entity_type, $entity, $field, $instance) {
 	  list($id, $vid, $bundle) = entity_extract_ids($entity_type, $entity);
@@ -8740,7 +8556,7 @@ snippet hook_field_storage_purge
 	}
 snippet hook_field_access
 	/**
-	 * Implements hook_field_access()
+	 * Implements hook_field_access().
 	 */
 	function `Filename()`_field_access($op, $field, $entity_type, $entity, $account) {
 	  /*
@@ -8753,7 +8569,7 @@ snippet hook_field_access
 	}
 snippet hook_options_list
 	/**
-	 * Implements hook_options_list()
+	 * Implements hook_options_list().
 	 */
 	function `Filename()`_options_list($field) {
 	  // Sample structure.
@@ -8801,7 +8617,7 @@ snippet hook_options_list
 	}
 snippet hook_contextual_links_view_alter
 	/**
-	 * Implements hook_contextual_links_view_alter()
+	 * Implements hook_contextual_links_view_alter().
 	 */
 	function `Filename()`_contextual_links_view_alter(&$element, $items) {
 	  // Add another class to all contextual link lists to facilitate custom
@@ -8813,7 +8629,7 @@ snippet hook_contextual_links_view_alter
 	}
 snippet hook_dashboard_regions
 	/**
-	 * Implements hook_dashboard_regions()
+	 * Implements hook_dashboard_regions().
 	 */
 	function `Filename()`_dashboard_regions() {
 	  // Define a new dashboard region. Your module can also then define
@@ -8826,7 +8642,7 @@ snippet hook_dashboard_regions
 	}
 snippet hook_dashboard_regions_alter
 	/**
-	 * Implements hook_dashboard_regions_alter()
+	 * Implements hook_dashboard_regions_alter().
 	 */
 	function `Filename()`_dashboard_regions_alter($regions) {
 	  // Remove the sidebar region defined by the core dashboard module.
@@ -8837,7 +8653,7 @@ snippet hook_dashboard_regions_alter
 	}
 snippet hook_menu_insert
 	/**
-	 * Implements hook_menu_insert()
+	 * Implements hook_menu_insert().
 	 */
 	function `Filename()`_menu_insert($menu) {
 	  // For example, we track available menus in a variable.
@@ -8850,7 +8666,7 @@ snippet hook_menu_insert
 	}
 snippet hook_menu_update
 	/**
-	 * Implements hook_menu_update()
+	 * Implements hook_menu_update().
 	 */
 	function `Filename()`_menu_update($menu) {
 	  // For example, we track available menus in a variable.
@@ -8863,7 +8679,7 @@ snippet hook_menu_update
 	}
 snippet hook_menu_delete
 	/**
-	 * Implements hook_menu_delete()
+	 * Implements hook_menu_delete().
 	 */
 	function `Filename()`_menu_delete($menu) {
 	  // Delete the record from our variable.
@@ -8876,28 +8692,28 @@ snippet hook_menu_delete
 	}
 snippet hook_path_insert
 	/**
-	 * Implements hook_path_insert()
+	 * Implements hook_path_insert().
 	 */
 	function `Filename()`_path_insert($path) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_path_update
 	/**
-	 * Implements hook_path_update()
+	 * Implements hook_path_update().
 	 */
 	function `Filename()`_path_update($path) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_path_delete
 	/**
-	 * Implements hook_path_delete()
+	 * Implements hook_path_delete().
 	 */
 	function `Filename()`_path_delete($path) {
 	  ${1:/* Your code here */}
 	}
 snippet hook_shortcut_default_set
 	/**
-	 * Implements hook_shortcut_default_set()
+	 * Implements hook_shortcut_default_set().
 	 */
 	function `Filename()`_shortcut_default_set($account) {
 	  // Use a special set of default shortcuts for administrators only.
@@ -8910,7 +8726,7 @@ snippet hook_shortcut_default_set
 	}
 snippet hook_image_effect_info
 	/**
-	 * Implements hook_image_effect_info()
+	 * Implements hook_image_effect_info().
 	 */
 	function `Filename()`_image_effect_info() {
 	  $effects = array();
@@ -8927,7 +8743,7 @@ snippet hook_image_effect_info
 	}
 snippet hook_image_effect_info_alter
 	/**
-	 * Implements hook_image_effect_info_alter()
+	 * Implements hook_image_effect_info_alter().
 	 */
 	function `Filename()`_image_effect_info_alter(&$effects) {
 	  // override the image module's crop effect with more options.
@@ -8939,7 +8755,7 @@ snippet hook_image_effect_info_alter
 	}
 snippet hook_image_style_save
 	/**
-	 * Implements hook_image_style_save()
+	 * Implements hook_image_style_save().
 	 */
 	function `Filename()`_image_style_save($style) {
 	  // if a module defines an image style and that style is renamed by the user
@@ -8953,7 +8769,7 @@ snippet hook_image_style_save
 	}
 snippet hook_image_style_delete
 	/**
-	 * Implements hook_image_style_delete()
+	 * Implements hook_image_style_delete().
 	 */
 	function `Filename()`_image_style_delete($style) {
 	  // Administrators can choose an optional replacement style when deleting.
@@ -8967,7 +8783,7 @@ snippet hook_image_style_delete
 	}
 snippet hook_image_style_flush
 	/**
-	 * Implements hook_image_style_flush()
+	 * Implements hook_image_style_flush().
 	 */
 	function `Filename()`_image_style_flush($style) {
 	  // Empty cached data that contains information about the style.
@@ -8978,7 +8794,7 @@ snippet hook_image_style_flush
 	}
 snippet hook_image_styles_alter
 	/**
-	 * Implements hook_image_styles_alter()
+	 * Implements hook_image_styles_alter().
 	 */
 	function `Filename()`_image_styles_alter(&$styles) {
 	  // Check that we only affect a default style.
@@ -8997,7 +8813,7 @@ snippet hook_image_styles_alter
 	}
 snippet hook_image_default_styles
 	/**
-	 * Implements hook_image_default_styles()
+	 * Implements hook_image_default_styles().
 	 */
 	function `Filename()`_image_default_styles() {
 	  $styles = array();
@@ -9016,7 +8832,7 @@ snippet hook_image_default_styles
 	}
 snippet hook_trigger_info
 	/**
-	 * Implements hook_trigger_info()
+	 * Implements hook_trigger_info().
 	 */
 	function `Filename()`_trigger_info() {
 	  return array(
@@ -9034,7 +8850,7 @@ snippet hook_trigger_info
 	}
 snippet hook_trigger_info_alter
 	/**
-	 * Implements hook_trigger_info_alter()
+	 * Implements hook_trigger_info_alter().
 	 */
 	function `Filename()`_trigger_info_alter(&$triggers) {
 	  /*
@@ -9044,7 +8860,7 @@ snippet hook_trigger_info_alter
 	}
 snippet hook_search_info
 	/**
-	 * Implements hook_search_info()
+	 * Implements hook_search_info().
 	 */
 	function `Filename()`_search_info() {
 	  return array(
@@ -9055,7 +8871,7 @@ snippet hook_search_info
 	}
 snippet hook_search_access
 	/**
-	 * Implements hook_search_access()
+	 * Implements hook_search_access().
 	 */
 	function `Filename()`_search_access() {
 	  /*
@@ -9065,7 +8881,7 @@ snippet hook_search_access
 	}
 snippet hook_search_reset
 	/**
-	 * Implements hook_search_reset()
+	 * Implements hook_search_reset().
 	 */
 	function `Filename()`_search_reset() {
 	  /*
@@ -9078,7 +8894,7 @@ snippet hook_search_reset
 	}
 snippet hook_search_status
 	/**
-	 * Implements hook_search_status()
+	 * Implements hook_search_status().
 	 */
 	function `Filename()`_search_status() {
 	  /*
@@ -9090,7 +8906,7 @@ snippet hook_search_status
 	}
 snippet hook_search_admin
 	/**
-	 * Implements hook_search_admin()
+	 * Implements hook_search_admin().
 	 */
 	function `Filename()`_search_admin() {
 	  // Output form for defining rank factor weights.
@@ -9116,17 +8932,17 @@ snippet hook_search_admin
 	   *  );
 	   *}
 	   */
-	  $form['${1}'] = array(
-	    '#title' => t('${2}'),
-	    '#type' => '${3}',
-	    '#theme' => '${4}',
-	    '#default_value' => ${5},
+	  $form['${1}']${2} = array(
+	    '#title' => t('${3}'),
+	    '#type' => '${4}',
+	    '#theme' => '${5}',
+	    '#default_value' => ${6},${7}
 	
 	  return $form;
 	}
 snippet hook_search_execute
 	/**
-	 * Implements hook_search_execute()
+	 * Implements hook_search_execute().
 	 */
 	function `Filename()`_search_execute($keys = NULL, $conditions = NULL) {
 	  /*
@@ -9188,7 +9004,7 @@ snippet hook_search_execute
 	}
 snippet hook_search_page
 	/**
-	 * Implements hook_search_page()
+	 * Implements hook_search_page().
 	 */
 	function `Filename()`_search_page($results) {
 	  $output['prefix']['#markup'] = '<ol class="search-results">';
@@ -9206,7 +9022,7 @@ snippet hook_search_page
 	}
 snippet hook_search_preprocess
 	/**
-	 * Implements hook_search_preprocess()
+	 * Implements hook_search_preprocess().
 	 */
 	function `Filename()`_search_preprocess($text) {
 	  // Do processing on $text
@@ -9217,7 +9033,7 @@ snippet hook_search_preprocess
 	}
 snippet hook_update_index
 	/**
-	 * Implements hook_update_index()
+	 * Implements hook_update_index().
 	 */
 	function `Filename()`_update_index() {
 	  /*
@@ -9252,7 +9068,7 @@ snippet hook_update_index
 	}
 snippet hook_locale
 	/**
-	 * Implements hook_locale()
+	 * Implements hook_locale().
 	 */
 	function `Filename()`_locale($op = 'groups') {
 	  switch ($op) {
@@ -9262,7 +9078,7 @@ snippet hook_locale
 	}
 snippet hook_language_init
 	/**
-	 * Implements hook_language_init()
+	 * Implements hook_language_init().
 	 */
 	function `Filename()`_language_init() {
 	  global $language, $conf;
@@ -9280,7 +9096,7 @@ snippet hook_language_init
 	}
 snippet hook_language_switch_links_alter
 	/**
-	 * Implements hook_language_switch_links_alter()
+	 * Implements hook_language_switch_links_alter().
 	 */
 	function `Filename()`_language_switch_links_alter(array &$links, $type, $path) {
 	  global $language;
@@ -9296,7 +9112,7 @@ snippet hook_language_switch_links_alter
 	}
 snippet hook_language_types_info
 	/**
-	 * Implements hook_language_types_info()
+	 * Implements hook_language_types_info().
 	 */
 	function `Filename()`_language_types_info() {
 	  return array(
@@ -9317,7 +9133,7 @@ snippet hook_language_types_info
 	}
 snippet hook_language_types_info_alter
 	/**
-	 * Implements hook_language_types_info_alter()
+	 * Implements hook_language_types_info_alter().
 	 */
 	function `Filename()`_language_types_info_alter(array &$language_types) {
 	  /*
@@ -9329,7 +9145,7 @@ snippet hook_language_types_info_alter
 	}
 snippet hook_language_negotiation_info
 	/**
-	 * Implements hook_language_negotiation_info()
+	 * Implements hook_language_negotiation_info().
 	 */
 	function `Filename()`_language_negotiation_info() {
 	  return array(
@@ -9365,7 +9181,7 @@ snippet hook_language_negotiation_info
 	}
 snippet hook_language_negotiation_info_alter
 	/**
-	 * Implements hook_language_negotiation_info_alter()
+	 * Implements hook_language_negotiation_info_alter().
 	 */
 	function `Filename()`_language_negotiation_info_alter(array &$language_providers) {
 	  /*
@@ -9377,7 +9193,7 @@ snippet hook_language_negotiation_info_alter
 	}
 snippet hook_multilingual_settings_changed
 	/**
-	 * Implements hook_multilingual_settings_changed()
+	 * Implements hook_multilingual_settings_changed().
 	 */
 	function `Filename()`_multilingual_settings_changed() {
 	  /*
@@ -9387,11 +9203,25 @@ snippet hook_multilingual_settings_changed
 	}
 snippet hook_language_fallback_candidates_alter
 	/**
-	 * Implements hook_language_fallback_candidates_alter()
+	 * Implements hook_language_fallback_candidates_alter().
 	 */
 	function `Filename()`_language_fallback_candidates_alter(array &$fallback_candidates) {
 	  /*
 	   *$fallback_candidates = array_reverse($fallback_candidates);
 	   */
 	  ${1:/* Your code here */}
+	}
+snippet hook_update_N
+	/**
+	 * Implements hook_update_N().
+	 */
+	function `Filename()`_update_${1:/* Update number */}(&$sandbox = NULL) {
+	  /*
+	   * Message shown when the update is successful
+	   */
+	  $ret = t('${2:/* Message */}');
+
+	  ${3:/* Your code here */}
+
+	  return $ret;
 	}
